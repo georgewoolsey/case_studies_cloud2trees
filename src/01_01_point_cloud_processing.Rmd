@@ -1,4 +1,12 @@
-# Point Cloud Processing{#processing}
+# Case Study 1: QUIC-fire Inputs for Prescribed Burn Planning
+
+use raw point clouds to generate spatial fuel data (bulk density and canopy base height) for use as input into the coupled fire-atmosphere [QUIC-fire model](https://doi.org/10.1016/j.envsoft.2019.104616). Prescribed fire modelling enables managers to optimize prescribed burn plans for effective implementation and safety.
+
+## Data{#data_desc}
+
+Lidar data from the Mogollon Rim area of the Coconino National Forest about 20 km north of Payson, Arizona, USA was acquired from the [USGS LidarExplorer](https://www.usgs.gov/tools/lidarexplorer). The [aerial lidar data](https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AZ_USFS_3DEP_Processing_2019_D20/AZ_USFS_3DEP_Processing_2019) was collected between August 2013 and October 2014 under [lidar project "AZ_USFS_3DEP_Processing_2019_D20"](https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Elevation/metadata/AZ_USFS_3DEP_Processing_2019_D20/AZ_USFS_3DEP_Processing_2019) (project ID: 195122).
+
+## Point Cloud Processing{#processing}
 
 In this section we'll process the [raw point cloud data](#data_desc) using the [`cloud2trees` R package](https://github.com/georgewoolsey/cloud2trees) developed to provide accessible routines for processing point cloud data collected by airborne lidar or generated using UAS imagery and photogrammetry (e.g. structure from motion).
 
@@ -55,13 +63,13 @@ remove(list = ls())
 gc()
 ```
 
-## Lidar Data Location
+### Lidar Data Location
 
 Let's check out the lidar data we got from the Mogollon Rim area of the Coconino National Forest about 20 km north of Payson, Arizona, USA using the [USGS LidarExplorer](https://www.usgs.gov/tools/lidarexplorer).
 
 ```{r}
 # directory with the downloaded .las|.laz files
-f <- "e:/lidar_phys_fire_mods/data/mogollon_rim_az_lidar/"
+f <- "f:/lidar_phys_fire_mods/data/mogollon_rim_az_lidar/"
 # is there data?
 list.files(f, pattern = ".*\\.(laz|las)$") %>% length()
 # what files are in here?
@@ -85,7 +93,7 @@ ctg_temp %>%
   mapview::mapview(popup = F, layer.name = "point cloud tile")
 ```
 
-## Individial Tree Detection Tuning: `itd_tuning()`{#itd}
+### Individial Tree Detection Tuning: `itd_tuning()`{#itd}
 
 The `cloud2trees` package performs individual tree detection using `lidR::locate_trees()` with the `lidR::lmf()` algorithm. The local maximum filter algorithm allows for a constant window size or a variable window size defined by a function. See the `lidR` [package book section](https://r-lidar.github.io/lidRbook/itd.html) by point cloud processing expert [Jean-Romain Roussel](https://github.com/Jean-Romain) for excellent detail on ITD and defining window size.
 
@@ -196,7 +204,7 @@ knitr::include_graphics("https://i.ibb.co/4wX2zL6p/new-itd-tuning2.jpg")
 
 Our custom linear function (`my_custom_lin`) strikes a good balance between detection of lower canopy trees (e.g. <10 m in height) without improperly subdividing dominant canopy trees based on the areas sampled. Let's move forward with our custom linear function in the `raster2trees()` and `cloud2trees()` functions.
 
-## Point Cloud Tree Extraction: `cloud2trees()`{#trees}
+### Point Cloud Tree Extraction: `cloud2trees()`{#trees}
 
 The `cloud2trees()` function combines methods in the `cloud2trees` package for an all-in-one approach. We'll call this function without estimating any of the additional tree components (the `estimate_*` parameters) which we will do separately to show the full process. With all other options turned off, `cloud2trees()` will: 1) generate a CHM from the point cloud using `cloud2raster()`; and 2) perform individual tree detection using `raster2trees()`.
 
@@ -351,7 +359,7 @@ remove(custom_lin, itd_tuning_ans)
 gc()
 ```
 
-## DBH Modeling: `trees_dbh()`
+### DBH Modeling: `trees_dbh()`
 
 The `trees_dbh()` function uses the [TreeMap](https://www.fs.usda.gov/rds/archive/catalog/RDS-2021-0074) FIA plot data in the area of the tree list to estimate the height-DBH allometry relationship. The height predicting DBH model built from the FIA data is then used to predict DBH based on tree height in the tree list.
 
@@ -467,7 +475,7 @@ readr::read_csv(
 
 that's how many FIA measured trees were used to train our model
 
-## HMD Modeling: `trees_hmd()`
+### HMD Modeling: `trees_hmd()`
 
 The `trees_hmd()` function uses the tree crown polygons we [delineated from the point cloud](#trees) with the columns `treeID` and `tree_height_m` to attempt to extract height to maximum crown diameter (HMD) directly from the height normalized point cloud by finding the height of the non-ground point farthest from the tree center (i.e. tree top). HMD refers to the vertical height at which a tree's crown has its widest horizontal spread. It describes a characteristic of the overall crown shape and structure.
 
@@ -561,7 +569,7 @@ and look at the summary statistics of HMD
 trees_hmd_ans$max_crown_diam_height_m %>% summary()
 ```
 
-## CBH Modeling: `trees_cbh()`
+### CBH Modeling: `trees_cbh()`
 
 The `trees_cbh()` function uses the tree crown polygons we [delineated from the point cloud](#trees) with the columns `treeID` and `tree_height_m` to attempt to extract crown base height (CBH) directly from the height normalized point cloud using the process outlined in [Viedma et al. (2024)](https://doi.org/10.1111/2041-210X.14427).
 
@@ -680,7 +688,7 @@ remove(list = base::setdiff(ls(), c("processing_data","dbh_fnm","hmd_fnm","cbh_f
 gc()
 ```
 
-## Forest Type: `trees_type()`{#trees_type}
+### Forest Type: `trees_type()`{#trees_type}
 
 We'll now use `trees_type()` to attach species information using USDA Forest Inventory and Analysis (FIA) codes. FIA Forest Type Group Code is attached to each tree in the tree list based on the spatial overlap with the [Forest Type Groups of the Continental United States](https://www.arcgis.com/home/item.html?id=10760c83b9e44923bd3c18efdaa7319d) data (Wilson 2023).
 
@@ -797,7 +805,7 @@ remove(foresttype_lookup, r_plt, trees_type_ans)
 gc()
 ```
 
-## Combine data
+### Combine data
 
 before our last tree component calculation, we'll bring all of our data together because the last component relies on this data
 
@@ -898,7 +906,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-## Crown Biomass: `trees_biomass()`{#trees_biomass}
+### Crown Biomass: `trees_biomass()`{#trees_biomass}
 
 Lastly, we'll use `trees_biomass()` to estimate tree crown biomass in kilograms. We'll estimate biomass based on: 1) LANDFIRE's [Forest Canopy Bulk Density (CBD) data](https://landfire.gov/fuel/cbd); and 2) based on the [Cruz et al. (2003)](https://scholar.google.com/scholar?cluster=316241498622221569&oi=gsb&hl=en&as_sdt=0,5) equations and the FIA forest type group we got above
 
@@ -1152,7 +1160,7 @@ trees_biomass_ans$stand_cell_data_cruz %>%
   ggplot2::theme_void()
 ```
 
-## Processing Time Summary
+### Processing Time Summary
 
 Let's summarize how long all of this point cloud processing took and determine which steps were most computationally intensive.
 
@@ -1215,7 +1223,7 @@ table_temp %>%
 
 plot it
 
-## Data Export
+### Data Export
 
 Now that we have our point cloud-extracted tree list with all of the tree component measurements attached, let's save the data for use in our analysis
 

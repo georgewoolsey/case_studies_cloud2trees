@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Aerial LiDAR for Fire Model Inputs</title>
-  <meta name="description" content="Using the bookdown package to write a book of data exploration. The output format for this example is bookdown::gitbook." />
+  <title>Page not found | cloud2trees case studies</title>
+  <meta name="description" content="Page not found | cloud2trees case studies" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Aerial LiDAR for Fire Model Inputs" />
+  <meta property="og:title" content="Page not found | cloud2trees case studies" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Using the bookdown package to write a book of data exploration. The output format for this example is bookdown::gitbook." />
+  
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Aerial LiDAR for Fire Model Inputs" />
+  <meta name="twitter:title" content="Page not found | cloud2trees case studies" />
   
-  <meta name="twitter:description" content="Using the bookdown package to write a book of data exploration. The output format for this example is bookdown::gitbook." />
+  
   
 
 <meta name="author" content="George Woolsey" />
@@ -51,7 +51,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -59,9 +59,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
-<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-3.0.0/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
@@ -180,92 +180,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#objective"><i class="fa fa-check"></i><b>1.1</b> Objective</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data_desc"><i class="fa fa-check"></i><b>1.2</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>2</b> Point Cloud Processing</a>
+<li class="chapter" data-level="2" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><i class="fa fa-check"></i><b>2</b> Case Study 1: QUIC-fire Inputs for Prescribed Burn Planning</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="processing.html"><a href="processing.html#lidar-data-location"><i class="fa fa-check"></i><b>2.1</b> Lidar Data Location</a></li>
-<li class="chapter" data-level="2.2" data-path="processing.html"><a href="processing.html#individial-tree-detection-tuning-itd_tuning"><i class="fa fa-check"></i><b>2.2</b> Individial Tree Detection Tuning: <code id="itd">itd_tuning()</code></a></li>
-<li class="chapter" data-level="2.3" data-path="processing.html"><a href="processing.html#point-cloud-tree-extraction-cloud2trees"><i class="fa fa-check"></i><b>2.3</b> Point Cloud Tree Extraction: <code id="trees">cloud2trees()</code></a></li>
-<li class="chapter" data-level="2.4" data-path="processing.html"><a href="processing.html#dbh-modeling-trees_dbh"><i class="fa fa-check"></i><b>2.4</b> DBH Modeling: <code>trees_dbh()</code></a></li>
-<li class="chapter" data-level="2.5" data-path="processing.html"><a href="processing.html#hmd-modeling-trees_hmd"><i class="fa fa-check"></i><b>2.5</b> HMD Modeling: <code>trees_hmd()</code></a></li>
-<li class="chapter" data-level="2.6" data-path="processing.html"><a href="processing.html#cbh-modeling-trees_cbh"><i class="fa fa-check"></i><b>2.6</b> CBH Modeling: <code>trees_cbh()</code></a></li>
-<li class="chapter" data-level="2.7" data-path="processing.html"><a href="processing.html#forest-type-trees_type"><i class="fa fa-check"></i><b>2.7</b> Forest Type: <code id="trees_type">trees_type()</code></a></li>
-<li class="chapter" data-level="2.8" data-path="processing.html"><a href="processing.html#combine-data"><i class="fa fa-check"></i><b>2.8</b> Combine data</a></li>
-<li class="chapter" data-level="2.9" data-path="processing.html"><a href="processing.html#crown-biomass-trees_biomass"><i class="fa fa-check"></i><b>2.9</b> Crown Biomass: <code id="trees_biomass">trees_biomass()</code></a></li>
-<li class="chapter" data-level="2.10" data-path="processing.html"><a href="processing.html#processing-time-summary"><i class="fa fa-check"></i><b>2.10</b> Processing Time Summary</a></li>
-<li class="chapter" data-level="2.11" data-path="processing.html"><a href="processing.html#data-export"><i class="fa fa-check"></i><b>2.11</b> Data Export</a></li>
+<li class="chapter" data-level="2.1" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#data_desc"><i class="fa fa-check"></i><b>2.1</b> Data</a></li>
+<li class="chapter" data-level="2.2" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#processing"><i class="fa fa-check"></i><b>2.2</b> Point Cloud Processing</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#lidar-data-location"><i class="fa fa-check"></i><b>2.2.1</b> Lidar Data Location</a></li>
+<li class="chapter" data-level="2.2.2" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#individial-tree-detection-tuning-itd_tuning"><i class="fa fa-check"></i><b>2.2.2</b> Individial Tree Detection Tuning: <code id="itd">itd_tuning()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#point-cloud-tree-extraction-cloud2trees"><i class="fa fa-check"></i><b>2.2.3</b> Point Cloud Tree Extraction: <code id="trees">cloud2trees()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#dbh-modeling-trees_dbh"><i class="fa fa-check"></i><b>2.2.4</b> DBH Modeling: <code>trees_dbh()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#hmd-modeling-trees_hmd"><i class="fa fa-check"></i><b>2.2.5</b> HMD Modeling: <code>trees_hmd()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#cbh-modeling-trees_cbh"><i class="fa fa-check"></i><b>2.2.6</b> CBH Modeling: <code>trees_cbh()</code></a></li>
+<li class="chapter" data-level="2.2.7" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#forest-type-trees_type"><i class="fa fa-check"></i><b>2.2.7</b> Forest Type: <code id="trees_type">trees_type()</code></a></li>
+<li class="chapter" data-level="2.2.8" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#combine-data"><i class="fa fa-check"></i><b>2.2.8</b> Combine data</a></li>
+<li class="chapter" data-level="2.2.9" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#crown-biomass-trees_biomass"><i class="fa fa-check"></i><b>2.2.9</b> Crown Biomass: <code id="trees_biomass">trees_biomass()</code></a></li>
+<li class="chapter" data-level="2.2.10" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#processing-time-summary"><i class="fa fa-check"></i><b>2.2.10</b> Processing Time Summary</a></li>
+<li class="chapter" data-level="2.2.11" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#data-export"><i class="fa fa-check"></i><b>2.2.11</b> Data Export</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html"><i class="fa fa-check"></i><b>3</b> Forest Stand Summary</a>
+<li class="chapter" data-level="2.3" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#mogollon-rim-forest-stand-summary"><i class="fa fa-check"></i><b>2.3</b> Mogollon Rim Forest Stand Summary</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#load-data"><i class="fa fa-check"></i><b>3.1</b> Load data</a></li>
-<li class="chapter" data-level="3.2" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#silvicultural-metrics"><i class="fa fa-check"></i><b>3.2</b> Silvicultural metrics</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#height-distribution"><i class="fa fa-check"></i><b>3.2.1</b> Height Distribution</a></li>
-<li class="chapter" data-level="3.2.2" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#dbh-distribution"><i class="fa fa-check"></i><b>3.2.2</b> DBH Distribution</a></li>
-<li class="chapter" data-level="3.2.3" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#forest-type"><i class="fa fa-check"></i><b>3.2.3</b> Forest Type</a></li>
-<li class="chapter" data-level="3.2.4" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#crown-biomass"><i class="fa fa-check"></i><b>3.2.4</b> Crown Biomass</a></li>
-<li class="chapter" data-level="3.2.5" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#summary-statistics"><i class="fa fa-check"></i><b>3.2.5</b> Summary Statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#spatial-forest-structure"><i class="fa fa-check"></i><b>3.3</b> Spatial Forest Structure</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#chm_plt"><i class="fa fa-check"></i><b>3.3.1</b> CHM</a></li>
-<li class="chapter" data-level="3.3.2" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#function-to-rasterize"><i class="fa fa-check"></i><b>3.3.2</b> Function to Rasterize</a></li>
-<li class="chapter" data-level="3.3.3" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#mean-dbh"><i class="fa fa-check"></i><b>3.3.3</b> Mean DBH</a></li>
-<li class="chapter" data-level="3.3.4" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#mean-height"><i class="fa fa-check"></i><b>3.3.4</b> Mean Height</a></li>
-<li class="chapter" data-level="3.3.5" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#qmd"><i class="fa fa-check"></i><b>3.3.5</b> QMD</a></li>
-<li class="chapter" data-level="3.3.6" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#basal-area"><i class="fa fa-check"></i><b>3.3.6</b> Basal Area</a></li>
-<li class="chapter" data-level="3.3.7" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#tph"><i class="fa fa-check"></i><b>3.3.7</b> TPH</a></li>
-<li class="chapter" data-level="3.3.8" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#cfl-cruz"><i class="fa fa-check"></i><b>3.3.8</b> CFL Cruz</a></li>
-<li class="chapter" data-level="3.3.9" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#cfl-landfire"><i class="fa fa-check"></i><b>3.3.9</b> CFL LANDFIRE</a></li>
-<li class="chapter" data-level="3.3.10" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#fia-forest-type-group"><i class="fa fa-check"></i><b>3.3.10</b> FIA Forest Type Group</a></li>
-<li class="chapter" data-level="3.3.11" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#combine-by-stand-unit"><i class="fa fa-check"></i><b>3.3.11</b> Combine by stand unit</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#canopy-cover"><i class="fa fa-check"></i><b>3.4</b> Canopy Cover</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#entire-area"><i class="fa fa-check"></i><b>3.4.1</b> Entire Area</a></li>
-<li class="chapter" data-level="3.4.2" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#stands"><i class="fa fa-check"></i><b>3.4.2</b> Stands</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="forest-stand-summary.html"><a href="forest-stand-summary.html#write-data"><i class="fa fa-check"></i><b>3.5</b> Write Data</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html"><i class="fa fa-check"></i><b>4</b> Validate Tree Detection and Crown Delineation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#itd_more"><i class="fa fa-check"></i><b>4.1</b> ITD tuning</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#default-variable-window-functions"><i class="fa fa-check"></i><b>4.1.1</b> Default variable window functions</a></li>
-<li class="chapter" data-level="4.1.2" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#augmented-variable-window-functions"><i class="fa fa-check"></i><b>4.1.2</b> Augmented variable window functions</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#neontreeevaluation-benchmark"><i class="fa fa-check"></i><b>4.2</b> <code>NeonTreeEvaluation</code> benchmark</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#lidar-data-in-neontreeevaluation"><i class="fa fa-check"></i><b>4.2.1</b> lidar data in <code id="neon_lidar">NeonTreeEvaluation</code></a></li>
-<li class="chapter" data-level="4.2.2" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#ht_filter"><i class="fa fa-check"></i><b>4.2.2</b> Height threshold for “canopy” trees</a></li>
-<li class="chapter" data-level="4.2.3" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#ex_valid"><i class="fa fa-check"></i><b>4.2.3</b> Example validation process</a></li>
-<li class="chapter" data-level="4.2.4" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#training-validation-process"><i class="fa fa-check"></i><b>4.2.4</b> Training validation process</a></li>
-<li class="chapter" data-level="4.2.5" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#evaluation-validation-process"><i class="fa fa-check"></i><b>4.2.5</b> Evaluation validation process</a></li>
-<li class="chapter" data-level="4.2.6" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#valid_sum"><i class="fa fa-check"></i><b>4.2.6</b> Summary of validation against ground truth</a></li>
-<li class="chapter" data-level="4.2.7" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#neon_lidar"><i class="fa fa-check"></i><b>4.2.7</b> Summary of evaluation lidar data</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#for-instance-benchmark"><i class="fa fa-check"></i><b>4.3</b> FOR-instance benchmark</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#lidar-data-in-for-instance"><i class="fa fa-check"></i><b>4.3.1</b> lidar data in FOR-instance</a></li>
-<li class="chapter" data-level="4.3.2" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#ex_valid2"><i class="fa fa-check"></i><b>4.3.2</b> Example validation process</a></li>
-<li class="chapter" data-level="4.3.3" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#fi_train"><i class="fa fa-check"></i><b>4.3.3</b> Training validation process</a></li>
-<li class="chapter" data-level="4.3.4" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#evaluation-validation-process-1"><i class="fa fa-check"></i><b>4.3.4</b> Evaluation validation process</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="validate-tree-detection-and-crown-delineation.html"><a href="validate-tree-detection-and-crown-delineation.html#summary-of-lidar-data"><i class="fa fa-check"></i><b>4.4</b> Summary of lidar data</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="appendix.html"><a href="appendix.html#data_ex"><i class="fa fa-check"></i><b>5.1</b> Example lidar data</a></li>
-<li class="chapter" data-level="5.2" data-path="appendix.html"><a href="appendix.html#cbh"><i class="fa fa-check"></i><b>5.2</b> CBH Process</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="appendix.html"><a href="appendix.html#return-cbh-metrics"><i class="fa fa-check"></i><b>5.2.1</b> Return CBH Metrics</a></li>
-<li class="chapter" data-level="5.2.2" data-path="appendix.html"><a href="appendix.html#cbh-on-the-point-cloud"><i class="fa fa-check"></i><b>5.2.2</b> CBH on the point cloud</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="appendix.html"><a href="appendix.html#hmd"><i class="fa fa-check"></i><b>5.3</b> HMD Process</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="appendix.html"><a href="appendix.html#one-tree-example"><i class="fa fa-check"></i><b>5.3.1</b> One Tree Example</a></li>
-<li class="chapter" data-level="5.3.2" data-path="appendix.html"><a href="appendix.html#tree-list-example"><i class="fa fa-check"></i><b>5.3.2</b> Tree List Example</a></li>
+<li class="chapter" data-level="2.3.1" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#load-data"><i class="fa fa-check"></i><b>2.3.1</b> Load data</a></li>
+<li class="chapter" data-level="2.3.2" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#silvicultural-metrics"><i class="fa fa-check"></i><b>2.3.2</b> Silvicultural metrics</a></li>
+<li class="chapter" data-level="2.3.3" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#spatial-forest-structure"><i class="fa fa-check"></i><b>2.3.3</b> Spatial Forest Structure</a></li>
+<li class="chapter" data-level="2.3.4" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#canopy-cover"><i class="fa fa-check"></i><b>2.3.4</b> Canopy Cover</a></li>
+<li class="chapter" data-level="2.3.5" data-path="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html"><a href="case-study-1-quic-fire-inputs-for-prescribed-burn-planning.html#write-data"><i class="fa fa-check"></i><b>2.3.5</b> Write Data</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -277,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aerial LiDAR for Fire Model Inputs</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>cloud2trees</code> case studies</a>
           </h1>
         </div>
 

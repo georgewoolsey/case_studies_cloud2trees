@@ -1,4 +1,4 @@
-book_filename: "lidar_phys_fire_mods"
+book_filename: "case_studies_cloud2trees"
 output_dir: "../docs"
 output: 
   bookdown::gitbook:
@@ -7,7 +7,7 @@ output:
       in_header: header.html
 language:
   ui:
-    chapter_name: "Section "
+    chapter_name: ""
 delete_merged_file: true
 # rmd_subdir: ["src/"]
 # rmd_files: ["index.Rmd"

@@ -1,5 +1,5 @@
 --- 
-title: "Aerial LiDAR for Fire Model Inputs"
+title: "`cloud2trees` case studies"
 author: "George Woolsey"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 site: bookdown::bookdown_site
@@ -8,7 +8,7 @@ output:
     includes:
       in_header: header.html
 documentclass: book
-book_filename: "lidar_phys_fire_mods"
+book_filename: "case_studies_cloud2trees"
 output_dir: "../docs"
 language:
   ui:
@@ -21,20 +21,22 @@ suppress-bibliography: true
 lang: en-US
 zotero: true
 link-citations: true
-description: "Using the bookdown package to write a book of data exploration. The output format for this example is bookdown::gitbook."
+description: ""
 ---
 
 # Introduction
 
-Code in support of "Using aerial LiDAR data for object-based physical fire modeling in conifer forests of the southwestern US"
+The integration of [modern precision forestry](https://doi.org/10.3390/rs17203465) tools promotes data-driven solutions to advance sustainable outcomes across forest planning and management implementation. While advanced inventories utilizing aerial point cloud data from airborne laser scanning (ALS) and digital aerial photogrammetry (DAP) have been [developed and validated](https://doi.org/10.1007/978-94-017-8663-8_1) for over two decades, their adoption by the land management industry [remains limited by technical barriers](https://doi.org/10.1093/forestry/cpad024). Individual tree detection (ITD) data processing routines are siloed across isolated research papers and disparate software packages, resulting in a steep analytical burden for analysts and managers to implement these routines. This burden consumes time and increases the potential for implementation errors. Moving beyond theoretical method development and refinement of ITD approaches to active operational implementation is needed to truly assess the practical utility and limitations of existing methods and identify factors that matter most for real-world management which may be understudied. The `cloud2trees` R [package](https://github.com/georgewoolsey/cloud2trees) bridges this gap by compiling these fragmented, multi-stage processing routines into a unified, open-source platform. By removing the technical hurdles required to transform raw aerial point clouds into comprehensive single-tree inventories with complete biophysical attributes (such as height, DBH, and CBH), `cloud2trees` transitions remote sensing from a theoretical academic exercise into an accessible tool for active land management.
 
 ## Objective
 
-The objective of this study is to demonstrate the use of aerial LiDAR data to create inputs for physics-based fire models in frequent-fire forests of the southwestern United States. We review the methods used to extract tree location, species, and physical form from aerial LiDAR data. We evaluate this canopy crown detection methodology using a benchmark data set created to standardize evaluation metrics (Weinstein et al. 2021). We explain how to format this data for seamless integration with two commonly used object-based physical fire modeling tools. We demonstrate the end-to-end process using a case study from the southwestern United States.
+The primary objective of this framework is to move beyond theoretical method development and establish a standardized, scalable pipeline that translates raw aerial point cloud data into familiar tree list inventories for use in site-specific, spatially-informed silvicultural prescription development. Forest managers are tasked with "increasing the pace and scale" of [active treatments](https://www.usda.gov/sites/default/files/documents/national-active-forest-management-strategy.pdf) to confront escalating [wildfire activity](https://doi.org/10.1093/jofore/fvae012) and rising [wood demand](https://www.federalregister.gov/d/2025-03695) with a [shrinking workforce](https://www.federalregister.gov/d/2025-03133). Here, we use the `cloud2trees` framework to demonstrate a precision forestry approach by executing end-to-end processing workflows for two real-world operational challenges:
 
-## Data{#data_desc}
+1) QUIC-Fire Input Generation: use raw point clouds to generate spatial fuel data (bulk density and canopy base height) for use as input into the coupled fire-atmosphere [QUIC-fire model](https://doi.org/10.1016/j.envsoft.2019.104616). Prescribed fire modeling enables managers to optimize prescribed burn plans for effective implementation and safety.
 
-Lidar data from the Mogollon Rim area of the Coconino National Forest about 20 km north of Payson, Arizona, USA was acquired from the [USGS LidarExplorer](https://www.usgs.gov/tools/lidarexplorer). The [aerial lidar data](https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AZ_USFS_3DEP_Processing_2019_D20/AZ_USFS_3DEP_Processing_2019) was collected between August 2013 and October 2014 under [lidar project "AZ_USFS_3DEP_Processing_2019_D20"](https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Elevation/metadata/AZ_USFS_3DEP_Processing_2019_D20/AZ_USFS_3DEP_Processing_2019) (project ID: 195122).
+2) Individual, Clumps, and Openings (ICO) Thinning Implementation: use raw point clouds to generate spatial tree lists required to plan and execute structural restoration treatments following the Churchill et al. (2016) methodology, providing a clear, reproducible cut-retention list based on target basal area constraints and specific canopy clump proportions.
+
+`cloud2trees` standardizes point cloud processing workflows into a single-command operation to empower land managers and interdisciplinary scientists to focus entirely on implementing precision forestry on the ground where it impacts ecosystem resilience and wildfire risk reduction.
 
 ```{r, include=FALSE, echo=FALSE}
 knitr::write_bib(c(

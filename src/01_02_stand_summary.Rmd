@@ -1,4 +1,4 @@
-# Forest Stand Summary
+## Mogollon Rim Forest Stand Summary
 
 In this section we'll process the point cloud-extracted [tree list data](#processing) given stand boundaries that fall within the extent of the original point cloud data. When processing point cloud data with the objective for summarizing data within a forest stand, it is imperative to ensure that the point cloud extent completely covers and extends beyond the stand extent to avoid edge effects and tree artifacts.
 
@@ -50,9 +50,9 @@ outdir <- "../data/mogollon_rim_fire_unit_trees"
 if(!dir.exists(outdir)){dir.create(outdir, showWarnings = F)}
 ```
 
-## Load data
+### Load data
 
-### Study area
+#### Study area
 
 first, we'll load our stand data and the boundary data of the point cloud that we processed
 
@@ -318,8 +318,7 @@ ggplot2::ggsave(
 )
 ```
 
-
-### `cloud2trees` outputs
+#### `cloud2trees` outputs
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 remove(list = ls()[grep("_temp",ls())])
@@ -424,7 +423,7 @@ chm_rast %>%
 terra::plot(terra::vect(stand_sf), add = T, col = NA, border = "black", lwd = 2)
 ```
 
-## Silvicultural metrics
+### Silvicultural metrics
 
 Let's look at some common stand-level forestry metrics
 
@@ -509,7 +508,7 @@ silv_metrics %>%
   kableExtra::kable_styling(font_size = 12)
 ```
 
-### Height Distribution
+#### Height Distribution
 
 ```{r}
 # there are always tree heights
@@ -530,7 +529,7 @@ treetops_sf %>%
   )
 ```
 
-### DBH Distribution
+#### DBH Distribution
 
 ```{r}
 treetops_sf %>%
@@ -550,7 +549,7 @@ treetops_sf %>%
   )
 ```
 
-### Forest Type
+#### Forest Type
 
 The `cloud2trees::trees_type()` function was used in our [point cloud processing](#trees_type) pipeline to attach FIA Forest Type Group Code information using the [Forest Type Groups of the Continental United States](https://www.arcgis.com/home/item.html?id=10760c83b9e44923bd3c18efdaa7319d) data (Wilson 2023).
 
@@ -675,13 +674,13 @@ treetops_sf %>%
     )
 ```
 
-### Crown Biomass
+#### Crown Biomass
 
 The `cloud2trees::trees_biomass()` function was used in our [point cloud processing](#trees_biomass) pipeline to estimate tree crown biomass in kilograms. We estimated biomass based on: 1) LANDFIRE's [Forest Canopy Bulk Density (CBD) data](https://landfire.gov/fuel/cbd); and 2) based on the [Cruz et al. (2003)](https://scholar.google.com/scholar?cluster=316241498622221569&oi=gsb&hl=en&as_sdt=0,5) equations and the FIA forest type group we got above
 
 the fire science community is likely more familiar with crown bulk density (CBD) values which represent the mass of flammable material per unit volume of the tree crown and are typically expressed in units of mass per unit volume (e.g., kilograms per cubic meter). We'll look at distributions of CBD.
 
-#### Cruz CBD
+##### Cruz CBD
 
 ```{r}
 treetops_sf %>%
@@ -705,7 +704,7 @@ treetops_sf %>%
   )
 ```
 
-#### LANDFIRE CBD
+##### LANDFIRE CBD
 
 ```{r}
 treetops_sf %>%
@@ -729,7 +728,7 @@ treetops_sf %>%
   )
 ```
 
-#### Missing Cruz Estimates
+##### Missing Cruz Estimates
 
 The Cruz et al. (2003) study developed models to predict canopy fuel stratum at the stand level for *four* coniferous forest types common in the western US: Douglas-fir, ponderosa pine, lodgepole pine, and mixed conifer. Models for other forests types are currently lacking which limits the scope of this methodology. If the tree list has trees that are in a FIA forest type group not represented in the list above, then we will fill the values with LANDFIRE estimates which have complete coverage at the CONUS level
 
@@ -802,7 +801,7 @@ treetops_sf <-
   )
 ```
 
-### Summary Statistics
+#### Summary Statistics
 
 let's get summary statistics for selected metrics by stand unit
 
@@ -882,7 +881,7 @@ let's get summary statistics for selected metrics by stand unit
   kableExtra::collapse_rows(columns = 1, valign = "top")
 ```
 
-## Spatial Forest Structure
+### Spatial Forest Structure
 
 Because we have a spatial tree list, we can look at the spatial arrangement of forest structural metrics
 
@@ -1003,7 +1002,7 @@ plot_raster_stand_fn <- function(
 # )
 ```
 
-### CHM{#chm_plt}
+#### CHM{#chm_plt}
 
 the canopy height model is a raster dataset that represents the height of objects above the ground, we set the minimum height at `r min(terra::values(chm_rast), na.rm = T)` m
 
@@ -1037,7 +1036,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### Function to Rasterize
+#### Function to Rasterize
 
 the CHM was easy to plot because it was already a raster dataset; what if we want to plot a raster of a metric based on our vector tree data?
 
@@ -1135,7 +1134,7 @@ vect_to_rast_plot_fn <- function(
 }
 ```
 
-### Mean DBH
+#### Mean DBH
 
 take this for a spin to get a raster of mean DBH plotted with our stand boundary
 
@@ -1172,7 +1171,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### Mean Height
+#### Mean Height
 
 now get a raster of mean tree height plotted with our stand boundary which will be similar to the CHM but aggregated as if at the inventory plot level
 
@@ -1209,7 +1208,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### QMD
+#### QMD
 
 to get the quadratic mean diameter (QMD) we are going to have to create a custom function that takes a list of DBH values and returns a single value
 
@@ -1257,7 +1256,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### Basal Area
+#### Basal Area
 
 to get Basal Area (BA) in square meters per hectare we will also need to create a function that uses the area of the raster cell
 
@@ -1295,7 +1294,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### TPH
+#### TPH
 
 to get trees per hectare (TPH) we will also need to create a function that uses the area of the raster cell
 
@@ -1332,7 +1331,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### CFL Cruz
+#### CFL Cruz
 
 to get canopy fuel load (CFL) we will also need to create a function that uses the area of the raster cell
 
@@ -1373,7 +1372,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### CFL LANDFIRE
+#### CFL LANDFIRE
 
 to get canopy fuel load (CFL) we will also need to create a function that uses the area of the raster cell
 
@@ -1414,7 +1413,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-### FIA Forest Type Group
+#### FIA Forest Type Group
 
 We'll load the FIA Forest Type Group raster data written to the output directory during the processing as well as the lookup table that gets downloaded during `cloud2trees` setup (`cloud2trees::get_data()`)
 
@@ -1492,7 +1491,7 @@ remove(foresttype_lookup, foresttype_rast)
 gc()
 ```
 
-### Combine by stand unit
+#### Combine by stand unit
 
 put all desired plots into a list to combine by stand unit
 
@@ -1674,7 +1673,7 @@ remove(list = ls()[stringr::str_starts(ls(),"plt_")])
 gc()
 ```
 
-## Canopy Cover
+### Canopy Cover
 
 To get a raster of canopy cover, which refers to the proportional area of the ground covered by tree crowns, it is more straightforward (and computationally efficient) to use the [CHM](#chm_plt) and not the tree crown polygons. As a reminder, the canopy height model is a raster dataset that represents the height of objects above the ground, we set the minimum height at `r min(terra::values(chm_rast), na.rm = T)` m
 
@@ -1725,7 +1724,7 @@ chm_to_canopy_cov_fn <- function(chm_rast, min_ht_m = 2, des_res) {
 }
 ```
 
-### Entire Area
+#### Entire Area
 
 let's get canopy cover for a canopy defined as heights > 6 m and raster cells aggregated to 100 x 100 m (1 ha cells) and make a quick plot
 
@@ -1749,7 +1748,7 @@ cc_rast %>%
 terra::plot(terra::vect(stand_sf), add = T, col = NA, border = "black", lwd = 2)
 ```
 
-### Stands
+#### Stands
 
 we can use our canopy cover raster to get a plot for each stand
 
@@ -1786,7 +1785,7 @@ remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
 
-## Write Data
+### Write Data
 
 if we want to extend the buffer on our stand polygons to include trees outside of the unit for exporting data, then we will need to read in the tree list again since we filtered it above for only trees within unit boundaries to quantify the stand structure properly
 

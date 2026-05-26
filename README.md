@@ -1,5 +1,5 @@
-# Aerial LiDAR for Fire Model Inputs
+# `cloud2trees` case studies
 
-Code in support of "Using aerial LiDAR data for object-based physical fire modeling in conifer forests of the southwestern US"
+[`cloud2trees`](https://georgewoolsey.github.io/cloud2trees/) case studies presented in "cloud2trees: A Unified Framework for Forest Inventories and Spatial Management"
 
-**View the:** [*Analysis project site here*](https://georgewoolsey.github.io/lidar_phys_fire_mods/)
+**View the:** [*Analysis project site here*](https://georgewoolsey.github.io/case_studies_cloud2trees/)
