@@ -1,0 +1,97 @@
+## Manitou EF ICO Prescription
+
+let's use the spatial tree list inventory for implementing the Individuals, Clumps, and Openings (ICO) method defined by Churchill et al. ([2016](https://scholarworks.umt.edu/ico/3)) to generate a cut-retention prescription. The `trees2ico` [package and workflow](https://github.com/georgewoolsey/trees2ico/tree/main) determines which trees to 'cut' or 'keep' based on stand-level targets for basal area and specific clump size proportions.
+
+load the `trees2ico` [package](https://github.com/georgewoolsey/trees2ico/tree/main) which was developed specifically for this use-case
+
+```{r, eval=FALSE}
+## remotes helps us get packages hosted on github
+install.packages("remotes")
+## get trees2ico
+remotes::install_github(repo = "georgewoolsey/trees2ico", upgrade = F)
+```
+
+### Define Targets
+
+in order to define our basal area and tree clump group proportion targets, we need to know the current conditions. let's use some `trees2ico` helper functions to get the current conditions as we follow xxx
+
+first, we'll define our distance in meters to separate tree clump groupings. See [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) Figure 4 (p.10) and [Matonis and Binkley (2018)](https://scholar.google.com/scholar?cluster=14613232085713826018&hl=en&as_sdt=0,6) who "calculated coverage of mosaic-meadows (percentage of stand > 6 m from overstory trees)" (p. 124)
+
+```{r}
+my_clump_dist_m <- 6
+ico_clumps_temp <- trees2ico:::get_ico_clumps(treetops_sf, clump_dist_m = my_clump_dist_m) 
+# huh?
+names(ico_clumps_temp)
+```
+
+this gave us the tree list with clumps defined using a maximum distance between trees for determining tree clumps of `r scales::comma(my_clump_dist_m,accuracy=.1)` m which is based on the approximate crown radius of a typical, mature overstory tree. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) provide instructions for implementing the clump identification (Plotkin et al. 2002) in ArcGIS:
+
+>Use the Buffer tool (in the Proximity toolset within the Analysis toolbox) to create a buffer of distance $d/2$, one half the inter-tree distance, around each point. This quantity $d/2$ is meant to approximate the crown radius of a "typical" overstory tree. Set the Dissolve Type option to ALL, which dissolves overlapping buffers, creating a reduced set of spatially non-overlapping polygons stored as a multipart polygon feature...[Sanchez Meador et al. (2011)](https://scholar.google.com/scholar?cluster=15721451396848616769&oi=gsb&hl=en&as_sdt=0,6) provide some useful examples of how clump attributes can be summarized...The method described here can be modified to use measured or modeled crown radii for each tree in place of $d/2$
+(p.36)
+
+with respect to clump size groupings, [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) note that:
+
+>Proportions for clump sizes should be lumped into four or five bins for operational simplicity. We use 4 or 5 bins (Fig 5): individual trees, small clumps (2-4 trees), medium clumps (5-9 trees), and large clumps (10-20+ trees). Note that when instructed to leave a large clump (e.g. 10-20 trees), marking crews often have difficulty leaving the upper end of the size range (e.g. an 18, 19, or 20 tree clump). Thus adding a fifth bin for “super clumps” may be necessary (e.g. 15-20 trees or 20-25+ trees), especially if the upper size range of clumps is desired. (p. 12-13)
+
+`trees2ico` implements these group sizes by default
+
+```{r}
+ico_clumps_temp$tree_list %>% 
+  dplyr::pull(clump_n_trees_grp) %>% 
+  # get factor levels in case there aren't any represented in our tree list
+  levels()
+```
+
+use another `trees2ico` helper function to see the current distribution of trees by clump size in our data as well as the BA
+
+```{r}
+agg_stand_clumps_temp <- 
+  ico_clumps_temp %>% 
+  purrr::pluck("tree_list") %>%
+  # get rid of columns we use as param
+  dplyr::select( -dplyr::any_of(c(
+    "hey_xxxxxxxxxx"
+    , "stand_area_ha"
+  ))) %>%
+  trees2ico:::agg_stand_clumps(
+    stand_area_ha = stand_sf$stand_area_ha
+  )
+```
+
+current (pre-treatment) distribution of trees by clump size
+
+```{r}
+agg_stand_clumps_temp$props %>%
+  dplyr::mutate(
+    count=scales::comma(count,accuracy=1)
+    , prop=scales::percent(prop,accuracy=0.1)
+  ) %>% 
+  kableExtra::kbl(
+    caption = "current (pre-treatment) group size tree distribution"
+    , col.names = c(
+      "group size","# trees","% trees"
+    )
+  ) %>% 
+  kableExtra::kable_styling()
+```
+
+what about BA?
+
+```{r}
+print(paste(
+  "current stand BA:"
+  , scales::comma(agg_stand_clumps_temp$stats$ba_m2_ha, accuracy = 0.1)
+  , "m2/ha"
+))
+```
+
+we'll use the current clump size proportions and basal area to set targets for our ICO prescription based on historical reference conditions
+
+
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+remove(list = ls()[grep("_temp",ls())])
+gc()
+```
+

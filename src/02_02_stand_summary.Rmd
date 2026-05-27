@@ -1,0 +1,516 @@
+## Manitou EF Forest Stand Summary
+
+In this section we'll process the point cloud-extracted tree list data using only trees within the stand boundary. When processing point cloud data with the objective for summarizing data within a forest stand, it is imperative to ensure that the point cloud extent completely covers and extends beyond the stand extent to avoid edge effects and tree artifacts.
+
+### Study area
+
+load our stand boundary
+
+```{r}
+# stands
+stand_sf <- 
+  sf::st_read("../data/N1_Boundary/N1_Boundary.shp", quiet = T) %>% 
+  sf::st_transform(sf::st_crs(treetops_sf)) %>% 
+  dplyr::rename_with(~tolower(stringr::str_replace_all(.x,"\\.", "_"))) %>% 
+  dplyr::mutate(
+    stand_area_m2 = sf::st_area(.) %>% as.numeric()
+    , stand_area_ha = stand_area_m2/10000
+    , unit_name = "Manitou EF"
+  ) %>% 
+  dplyr::slice(1)
+las_ctg_sf_temp <- sf::st_read(file.path(c2t_process_dir, "raw_las_ctg_info.gpkg"), quiet = T)
+```
+
+let's look at the point cloud bounds and stand unit boundary on a map
+
+```{r}
+mapview::mapview(
+  las_ctg_sf_temp
+  , layer.name = "point cloud tile"
+  , color = "black"
+  , lwd = 1
+  , alpha.regions = 0
+  , label = FALSE
+  , legend = FALSE
+  , popup = FALSE
+) +
+mapview::mapview(
+  stand_sf %>% dplyr::select(unit_name)
+  , color = "navy"
+  , col.regions = "navy"
+  , lwd = 2
+  , alpha.regions = 0
+  , layer.name = "stand bounds"
+) 
+```
+
+we processed point cloud data well outside these stand bounds, nice.
+
+let's filter our point cloud-generated forest inventory tree list to keep only the trees within the unit boundary and we'll also keep only trees that are >= 2 m in height
+
+```{r}
+my_tree_ht_m <- 2
+treetops_sf <- treetops_sf %>% 
+  sf::st_intersection(stand_sf %>% dplyr::select(unit_name,stand_area_ha)) %>% 
+  dplyr::filter(tree_height_m>=my_tree_ht_m)
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+remove(list = ls()[grep("_temp",ls())])
+gc()
+```
+
+### Silvicultural metrics
+
+Let's look at some common stand-level forestry metrics
+
+```{r, message=F, results=F}
+### stand-level summaries
+silv_metrics <-
+  treetops_sf %>%
+    sf::st_drop_geometry() %>% 
+    # dplyr::filter(dbh_cm >= ostory_dbh_cm) %>% 
+    dplyr::ungroup() %>%
+    dplyr::group_by(unit_name,stand_area_ha) %>%
+    dplyr::summarise(
+      n_trees = dplyr::n_distinct(treeID)
+      , mean_dbh_cm = mean(dbh_cm, na.rm = T)
+      , mean_tree_height_m = mean(tree_height_m, na.rm = T)
+      , loreys_height_m = sum(basal_area_m2*tree_height_m, na.rm = T) / sum(basal_area_m2, na.rm = T)
+      , basal_area_m2 = sum(basal_area_m2, na.rm = T)
+      , sum_dbh_cm_sq = sum(dbh_cm^2, na.rm = T)
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      trees_per_ha = (n_trees/stand_area_ha)
+      , basal_area_m2_per_ha = (basal_area_m2/stand_area_ha)
+      , qmd_cm = sqrt(sum_dbh_cm_sq/n_trees)
+    ) %>%
+    dplyr::select(-c(sum_dbh_cm_sq))
+```
+
+stand-level silvicultural summary
+
+```{r}
+silv_metrics %>% 
+  dplyr::select(
+    unit_name
+    , stand_area_ha
+    , n_trees
+    , mean_dbh_cm
+    , qmd_cm
+    , mean_tree_height_m
+    , loreys_height_m
+    , trees_per_ha
+    , basal_area_m2_per_ha
+  ) %>% 
+  dplyr::mutate(
+    dplyr::across(
+      .cols = c(stand_area_ha) 
+      , .fns = ~ scales::comma(.x, accuracy = .1)
+    )
+    , dplyr::across(
+      .cols = c(n_trees) 
+      , .fns = ~ scales::comma(.x, accuracy = 1)
+    )
+  ) %>% 
+  kableExtra::kbl(
+    digits = 1
+    , escape = F
+    , caption = "Silvicultral metrics"
+    , col.names = c(
+      "Unit Name"
+      , "area (ha)"
+      , "trees"
+      , "mean<br>DBH (cm)"
+      , "QMD (cm)"
+      , "mean<br>Ht. (m)"
+      , "Loreys<br>Ht. (m)"
+      , "TPH"
+      , "BA<br>m<sup>2</sup> ha<sup>-1</sup>"
+      )
+  ) %>% 
+  kableExtra::kable_styling(font_size = 12)
+```
+
+#### Summary Statistics
+
+let's get summary statistics for selected metrics by stand unit
+
+```{r}
+# table_temp =
+  treetops_sf %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::group_by(unit_name) %>%
+  dplyr::summarise(
+    dplyr::across(
+      c(tree_height_m, dbh_cm)
+      , .fns = list(mean = mean, median = median, sd = sd, min = min, max = max)
+    )
+    , n = dplyr::n()
+  ) %>% 
+  dplyr::ungroup() %>% 
+  tidyr::pivot_longer(cols = -c(unit_name,n)) %>% 
+  dplyr::mutate(
+    agg = stringr::word(name,-1,sep = "_")
+    , metric = stringr::str_remove_all(name, paste0("_",agg))
+  ) %>% 
+  dplyr::select(-name) %>% 
+  dplyr::mutate(
+    value = dplyr::case_when(
+      metric == "tree_height_m" ~ scales::comma(value,accuracy=0.1)
+      , metric == "dbh_cm" ~ scales::comma(value,accuracy=0.1)
+      , metric == "tree_cbh_m" ~ scales::comma(value,accuracy=0.1)
+      , metric == "cruz_tree_kg_per_m3" ~ scales::comma(value,accuracy=0.001)
+      , metric == "landfire_tree_kg_per_m3" ~ scales::comma(value,accuracy=0.001)
+      , T ~ scales::comma(value,accuracy=0.1)
+    )
+  ) %>% 
+  tidyr::pivot_wider(names_from = agg, values_from = value) %>% 
+  dplyr::mutate(
+    unit_lab = paste0(
+      unit_name
+      ,"<br>("
+      , scales::comma(n,accuracy=1)
+      ," trees)"
+    )
+    , range = paste0(min, "—", max)
+  ) %>% 
+  dplyr::arrange( unit_name, desc(n)) %>% 
+  dplyr::select(-c(unit_name,n,min,max)) %>% 
+  dplyr::relocate(unit_lab) %>% 
+  dplyr::mutate(
+    metric = factor(
+      metric
+      , ordered = T
+      , levels = c(
+          "tree_height_m"
+          , "tree_cbh_m"
+          , "dbh_cm"
+          , "cruz_tree_kg_per_m3"
+          , "landfire_tree_kg_per_m3"
+        )
+      , labels = c(
+          "Height (m)"
+          , "Crown Base Ht. (m)"
+          , "DBH (cm)"
+          , "Cruz CBD<br>kg m<sup>-3</sup>"
+          , "LANDFIRE CBD<br>kg m<sup>-3</sup>"
+        )
+    )
+  ) %>% 
+  kableExtra::kbl(
+    caption = "Summary statistics for selected metrics by stand"
+    , col.names = c(
+      "Unit Name", "Metric"
+      , "Mean", "Median"
+      , "Std Dev", "Range"
+    )
+    , escape = F
+    # , digits = 2
+  ) %>% 
+  kableExtra::kable_styling(font_size = 13) %>% 
+  kableExtra::collapse_rows(columns = 1, valign = "top")
+```
+
+#### Height Distribution
+
+```{r}
+# there are always tree heights
+treetops_sf %>%
+  ggplot2::ggplot(mapping = ggplot2::aes(x = tree_height_m)) +
+  ggplot2::geom_density(alpha = 0.7, color = "navy", fill = "navy") +
+  ggplot2::scale_x_continuous(breaks = scales::breaks_extended(11)) +
+  ggplot2::labs(x = "tree ht. (m)", y = "", subtitle = "Distribution of tree height") +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "none"
+    , axis.text.y = ggplot2::element_blank()
+    , axis.ticks.y = ggplot2::element_blank()
+    , strip.text = ggplot2::element_text(color = "black", size = 10)
+  )
+```
+
+another common thing to look at are binned height distributions
+
+```{r}
+# make ggplot2::cut_* bins pretty
+make_bins_pretty <- function(bin_factor, suffix = "") {
+  # convert factor to character and remove brackets and parens
+  clean_labels <- bin_factor %>%
+    as.character() %>%
+    stringr::str_replace_all(c("\\[" = "", "\\(" = "", "\\]" = "", "\\)" = "")) %>%
+    stringr::str_replace(",", "-")
+  
+  # suffix
+  if(stringr::str_squish(suffix) != "" && inherits(suffix,"character")){
+    clean_labels <- stringr::str_c(clean_labels, " ", suffix) %>% stringr::str_squish()
+  }
+  
+  # reorder based on the original factor levels 
+  forcats::fct_reorder(factor(clean_labels), as.numeric(bin_factor))
+}
+# plot 
+treetops_sf %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::select(stand_area_ha,tree_height_m) %>% 
+  # metric cuts/bins
+  dplyr::mutate(
+    tree_height_m_bin = ggplot2::cut_width(tree_height_m, width = 4, boundary = 0) %>% 
+      make_bins_pretty(suffix = "m") %>%  # pretty that
+      forcats::fct_relabel(~ stringr::str_replace(.x, "^0-", paste0(my_tree_ht_m,"-")) )
+  ) %>% 
+  dplyr::count(stand_area_ha,tree_height_m_bin) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::group_by(stand_area_ha) %>% 
+  dplyr::mutate(
+    pct = n/sum(n)
+    # , pct_lab = scales::percent(pct,accuracy=0.1)
+    , tph = n/stand_area_ha
+    , lab = paste0(scales::comma(tph,accuracy=1), "\n",scales::percent(pct,accuracy=1) )
+  ) %>% 
+  dplyr::ungroup() %>% 
+  # dplyr::glimpse()
+  ggplot2::ggplot(
+    mapping = ggplot2::aes(y = tph, x = tree_height_m_bin)
+  ) +
+  ggplot2::geom_col(
+    width = 0.6
+    , color = NA, alpha = 0.8
+    , fill = "navy"
+  ) +
+  ggplot2::geom_text(
+    mapping = ggplot2::aes(label = lab)
+    , color = "black", size = 2.5, vjust = -0.2
+  ) +
+  ggplot2::scale_x_discrete(drop = F) + 
+  ggplot2::scale_y_continuous(
+    # breaks = seq(0,1,by=0.2)
+    labels = scales::comma
+    , expand = ggplot2::expansion(mult = c(0,0.1))
+  ) +
+  ggplot2::labs(
+    x = "height", y = "TPH"
+    , subtitle = "Trees per hectare by height bin"
+  ) +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "none"
+    , strip.text = ggplot2::element_text(size = 11, color = "black", face = "bold")
+    , axis.text.x = ggplot2::element_text(size = 9, angle = 45, hjust = 1, vjust = 1)
+    # , axis.text.x = ggplot2::element_text(size = 12)
+    # , axis.text.y = ggplot2::element_blank()
+    # , axis.ticks.y = ggplot2::element_blank()
+  )
+
+```
+
+#### DBH Distribution
+
+```{r}
+treetops_sf %>%
+  ggplot2::ggplot(mapping = ggplot2::aes(x = tree_height_m)) +
+  ggplot2::geom_density(alpha = 0.7, color = "steelblue", fill = "steelblue") +
+  ggplot2::scale_x_continuous(breaks = scales::breaks_extended(11)) +
+  ggplot2::labs(x = "tree DBH (cm)", y = "", subtitle = "Distribution of tree DBH") +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "none"
+    , axis.text.y = ggplot2::element_blank()
+    , axis.ticks.y = ggplot2::element_blank()
+    , strip.text = ggplot2::element_text(color = "black", size = 10)
+  )
+```
+
+another common thing to look at are binned DBH distributions
+
+```{r}
+# plot 
+treetops_sf %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::select(stand_area_ha,dbh_cm) %>% 
+  # metric cuts/bins
+  dplyr::mutate(
+    dbh_cm_bin = ggplot2::cut_width(dbh_cm, width = 8, boundary = 0) %>% 
+      make_bins_pretty(suffix = "cm") %>%  # pretty that
+      forcats::fct_relabel(~ stringr::str_replace(.x, "^0-", paste0( floor(min(treetops_sf$dbh_cm)) ,"-")) )
+  ) %>% 
+  dplyr::count(stand_area_ha,dbh_cm_bin) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::group_by(stand_area_ha) %>% 
+  dplyr::mutate(
+    pct = n/sum(n)
+    # , pct_lab = scales::percent(pct,accuracy=0.1)
+    , tph = n/stand_area_ha
+    , lab = paste0(scales::comma(tph,accuracy=1), "\n",scales::percent(pct,accuracy=1) )
+  ) %>% 
+  dplyr::ungroup() %>% 
+  # dplyr::glimpse()
+  ggplot2::ggplot(
+    mapping = ggplot2::aes(y = tph, x = dbh_cm_bin)
+  ) +
+  ggplot2::geom_col(
+    width = 0.6
+    , color = NA, alpha = 0.8
+    , fill = "steelblue"
+  ) +
+  ggplot2::geom_text(
+    mapping = ggplot2::aes(label = lab)
+    , color = "black", size = 2.5, vjust = -0.2
+  ) +
+  ggplot2::scale_x_discrete(drop = F) + 
+  ggplot2::scale_y_continuous(
+    # breaks = seq(0,1,by=0.2)
+    labels = scales::comma
+    , expand = ggplot2::expansion(mult = c(0,0.1))
+  ) +
+  ggplot2::labs(
+    x = "DBH", y = "TPH"
+    , subtitle = "Trees per hectare by DBH bin"
+  ) +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "none"
+    , strip.text = ggplot2::element_text(size = 11, color = "black", face = "bold")
+    , axis.text.x = ggplot2::element_text(size = 9, angle = 45, hjust = 1, vjust = 1)
+    # , axis.text.x = ggplot2::element_text(size = 12)
+    # , axis.text.y = ggplot2::element_blank()
+    # , axis.ticks.y = ggplot2::element_blank()
+  )
+
+```
+
+#### Forest Type
+
+The `cloud2trees::trees_type()` function was used in our [point cloud processing](#trees_type) pipeline to attach FIA Forest Type Group Code information using the [Forest Type Groups of the Continental United States](https://www.arcgis.com/home/item.html?id=10760c83b9e44923bd3c18efdaa7319d) data (Wilson 2023).
+
+let's check out the distribution of forest type groups overall across units
+
+```{r}
+treetops_sf %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::count(forest_type_group) %>% 
+  dplyr::arrange(desc(n)) %>% 
+  dplyr::mutate(
+    pct = scales::percent(n/sum(n), accuracy = 0.1) 
+  ) %>% 
+  dplyr::mutate(n = scales::comma(n,accuracy=1)) %>% 
+  kableExtra::kbl(
+    caption = "Count of trees by FIA Forest Type Group overall"
+    , digits = 2
+    , col.names = c(
+      ""
+      , "# trees"
+      , "% trees"
+    )
+  ) %>% 
+  kableExtra::kable_styling()
+```
+
+nice, that is what we expect for this stand
+
+### Spatial Forest Structure
+
+Because we have a spatial tree list, we can look at the spatial arrangement of trees and their size
+
+let's look at the tree points colored by height
+
+```{r}
+treetops_sf %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = stand_sf
+    , color = "black", fill = NA
+  ) +
+  ggplot2::geom_sf(
+    mapping = ggplot2::aes(color = tree_height_m)
+    , size = 3, alpha = 0.8
+  ) +
+  ggplot2::scale_color_distiller(palette = "YlOrBr", direction = 1, name = "Height (m)") +
+  ggplot2::theme_void() +
+  ggplot2::theme(legend.position = "top", legend.title = ggplot2::element_text(size=7)) 
+```
+
+there are clearly patches of smaller trees that have filled-in the space between groups of larger trees
+
+a fun thing to do is to overlay the tree points on the CHM. we used a fine-resolution raster for ITD but here we'll smooth out the CHM and make contours based on heights to make it look more continuous which should help us see the patches of taller and smaller trees...let's try it out
+
+```{r}
+# load the chm since we may have dropped it
+chm_temp <- terra::rast(file.path(c2t_process_dir, "chm_0.25m.tif"))
+agg_chm_temp <- 
+  chm_temp %>% 
+  terra::aggregate(
+    fact = round(1/terra::res(chm_temp)[1])
+    , fun = "mean", na.remove = T
+  )
+# interpolate na areas to give appearance of smooth contours
+chm_contour_df <- 
+  terra::interpIDW(
+    x = terra::init(agg_chm_temp, fun = NA)
+    , y = terra::as.points(agg_chm_temp,na.rm = T)
+    , field = names(agg_chm_temp)[1]
+    , radius = 20 # set big so no missing
+  ) %>% 
+  # terra::plot()
+  # smooth
+  terra::focal(w = 7, fun = "mean", na.policy = "omit", na.rm = T) %>% 
+  # terra::plot()
+  terra::crop(
+    stand_sf %>% sf::st_buffer(2) %>% terra::vect()
+    , mask = T
+  ) %>% 
+  terra::as.data.frame(xy=T) %>% 
+  dplyr::rename(f=3)
+# plot
+chm_contour_df %>% 
+  # plt
+  ggplot2::ggplot() +
+  # contour bands
+  ggplot2::geom_contour_filled(
+    mapping = ggplot2::aes(x = x, y = y, z = f)
+    , breaks = seq(my_tree_ht_m, ceiling(max(treetops_sf$tree_height_m)), length.out = 9)
+    , alpha = 0.3
+  ) +
+  # contour lines
+  ggplot2::geom_contour(
+    mapping = ggplot2::aes(x = x, y = y, z = f)
+    , breaks = seq(my_tree_ht_m, ceiling(max(treetops_sf$tree_height_m)), length.out = 9)
+    , color = "gray90"
+    , lwd = 0.05
+  ) +
+  ggplot2::geom_sf(
+    data = stand_sf
+    , color = "black", fill = NA
+  ) +
+  ggplot2::geom_sf(
+    data = treetops_sf
+    , mapping = ggplot2::aes(color = tree_height_m)
+    , size = 3, alpha = 0.95
+  ) +
+  ggplot2::scale_color_distiller(
+    palette = "YlOrBr"
+    , limits = c(my_tree_ht_m, ceiling(max(treetops_sf$tree_height_m)*1.02) )
+    , direction = 1
+    , name = "Height (m)"
+  ) +
+  ggplot2::scale_fill_brewer(
+    palette = "YlOrBr"
+    # , limits = c(my_tree_ht_m, ceiling(max(treetops_sf$tree_height_m)*1.02) )
+    , direction = 1
+    , name = "Height (m)"
+    , guide = "none"
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::theme(legend.position = "top", legend.title = ggplot2::element_text(size=7)) 
+
+```
+
+that helps to make the small tree and tall tree groups stand out visually. neat.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+remove(list = ls()[grep("_temp",ls())])
+remove(f, silv_metrics)
+gc()
+```
+

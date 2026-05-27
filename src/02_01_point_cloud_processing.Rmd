@@ -12,15 +12,11 @@ In this section we'll process the raw point cloud data using the [`cloud2trees` 
 
 The `cloud2trees` package can be installed by following the directions listed in the [README file on GitHub](https://github.com/georgewoolsey/cloud2trees). If one is still experiencing difficulties installing the package, see the [setup guide](https://georgewoolsey.github.io/cloud2trees/articles/cloud2trees-setup.html) which details how to install the package using a virgin R instance.
 
-We'll also load the `trees2ico` [package](https://github.com/georgewoolsey/trees2ico/tree/main) which was developed specifically for this use-case
-
 ```{r, eval=FALSE}
 ## remotes helps us get packages hosted on github
 install.packages("remotes")
 ## get cloud2trees
 remotes::install_github(repo = "georgewoolsey/cloud2trees", upgrade = F)
-## get trees2ico
-remotes::install_github(repo = "georgewoolsey/trees2ico", upgrade = F)
 ```
 
 Load the standard libraries we use to do work
@@ -519,7 +515,7 @@ treetops_sf <- cloud2trees_ans$treetops_sf
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 remove(list = ls()[grep("_temp",ls())])
-remove(custom_lin, itd_tuning_ans, timer_df, f, cloud2trees_ans)
+remove(my_linear, itd_tuning_ans, timer_df, cloud2trees_ans)
 gc()
 ```
 
