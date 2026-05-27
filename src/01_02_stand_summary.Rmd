@@ -2117,8 +2117,3 @@ lidR::writeLAS(
 )
 ```
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
-# clean session
-remove(list = ls())
-gc()
-```

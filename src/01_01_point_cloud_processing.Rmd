@@ -10,7 +10,7 @@ Lidar data from the Mogollon Rim area of the Coconino National Forest about 20 k
 
 In this section we'll process the [raw point cloud data](#data_desc) using the [`cloud2trees` R package](https://github.com/georgewoolsey/cloud2trees) developed to provide accessible routines for processing point cloud data collected by airborne lidar or generated using UAS imagery and photogrammetry (e.g. structure from motion).
 
-The `cloud2trees` package can be installed by following the directions listed in the [README file on GitHub](https://github.com/georgewoolsey/cloud2trees). If one is still experiencing difficulties installing the package, see the [example.R file](https://github.com/georgewoolsey/cloud2trees/blob/main/inst/examples/example.R) which details how to install the package using a virgin R instance.
+The `cloud2trees` package can be installed by following the directions listed in the [README file on GitHub](https://github.com/georgewoolsey/cloud2trees). If one is still experiencing difficulties installing the package, see the [setup guide](https://georgewoolsey.github.io/cloud2trees/articles/cloud2trees-setup.html) which details how to install the package using a virgin R instance.
 
 ```{r, eval=FALSE}
 ## remotes helps us get packages hosted on github
@@ -363,6 +363,14 @@ gc()
 
 The `trees_dbh()` function uses the [TreeMap](https://www.fs.usda.gov/rds/archive/catalog/RDS-2021-0074) FIA plot data in the area of the tree list to estimate the height-DBH allometry relationship. The height predicting DBH model built from the FIA data is then used to predict DBH based on tree height in the tree list.
 
+Note, we use the argument `dbh_model_regional = "power"` within the `trees_dbh()` function to use a nonlinear power function for regional dbh-height allometry based on FIA tree measurements with the form: 
+
+$$
+\text{DBH (cm)} = \theta_1 \cdot \text{Height (m)} + \text{Height (m)}^{\theta_2}
+$$
+
+
+
 ```{r}
 # where should we save the file?
 dbh_fnm <- "../data/point_cloud_processing_delivery/dbh_data.csv"
@@ -373,6 +381,7 @@ if(!file.exists(dbh_fnm)){
   # run it
   trees_dbh_ans <- cloud2trees::trees_dbh(
     tree_list = cloud2trees_ans$treetops_sf
+    , dbh_model_regional = "power"
     , outfolder = "../data/point_cloud_processing_delivery"
   )
   # timer

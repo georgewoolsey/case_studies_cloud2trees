@@ -34,7 +34,7 @@ The primary objective of this framework is to move beyond theoretical method dev
 
 1) QUIC-Fire Input Generation: use raw point clouds to generate spatial fuel data (bulk density and canopy base height) for use as input into the coupled fire-atmosphere [QUIC-fire model](https://doi.org/10.1016/j.envsoft.2019.104616). Prescribed fire modeling enables managers to optimize prescribed burn plans for effective implementation and safety.
 
-2) Individual, Clumps, and Openings (ICO) Thinning Implementation: use raw point clouds to generate spatial tree lists required to plan and execute structural restoration treatments following the Churchill et al. (2016) methodology, providing a clear, reproducible cut-retention list based on target basal area constraints and specific canopy clump proportions.
+2) Individual, Clumps, and Openings (ICO) Thinning Prescription: use raw point clouds to generate spatial tree lists required to plan and execute structural restoration treatments following the Churchill et al. ([2016](https://scholarworks.umt.edu/ico/3)) methodology, providing a clear, reproducible cut-retention list based on target basal area constraints and specific overstory clump proportions.
 
 `cloud2trees` standardizes point cloud processing workflows into a single-command operation to empower land managers and interdisciplinary scientists to focus entirely on implementing precision forestry on the ground where it impacts ecosystem resilience and wildfire risk reduction.
 
