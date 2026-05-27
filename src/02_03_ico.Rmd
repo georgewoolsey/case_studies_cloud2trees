@@ -85,8 +85,69 @@ print(paste(
 ))
 ```
 
-we'll use the current clump size proportions and basal area to set targets for our ICO prescription based on historical reference conditions
+starting from the current clump size proportions and basal area, we'll set targets for our ICO prescription based on historical reference conditions with relevant research for our study area and forest type from:
 
+* [Churchill et al. (2013)](https://doi.org/10.1016/j.foreco.2012.11.007)
+* [Brown et al. (2015)](https://doi.org/10.1139/cjfr-2014-0387)
+* [Ziegler et al. (2017)](https://doi.org/10.1016/j.foreco.2016.12.002)
+
+define 3 target scenarios
+
+```{r}
+ico_targets_df <- 
+  levels(ico_clumps_temp$tree_list$clump_n_trees_grp) %>% 
+    dplyr::as_tibble() %>% 
+    dplyr::rename(clump_n_trees_grp = 1) %>% 
+    dplyr::mutate(
+      clump_n_trees_grp = ordered(clump_n_trees_grp, levels =  levels(ico_clumps_temp$tree_list$clump_n_trees_grp))
+    ) %>% 
+    tidyr::uncount(3, .id = "scenario_id") %>% 
+    dplyr::arrange(scenario_id, clump_n_trees_grp) %>% 
+  dplyr::bind_cols(
+    # scenarios
+    dplyr::bind_rows(
+      dplyr::tibble(
+        scenario_desc = "Low Clumping (Churchill et al. 2013)"
+        , target_props = c(0.42, 0.37, 0.16, 0.05, 0.0)
+        , target_ba_m2_ha = 15
+      )
+      , dplyr::tibble(
+          scenario_desc = "Moderate Clumping (Ziegler et al. 2017)"
+          , target_props = c(
+            median(c(0.27,0.25,0.28,0.36,0.51,0.14,0.58))
+            , median(c(0.38,0.36,0.37,0.35,0.24,0.28,0.42))
+            , median(c(0.25,0.30,0.25,0.16,0.12,0.27,0.0))
+            , 0.0 # median(c(0.11,0.10,0.06,0.08,0.12,0.15,0.0))
+            , 0.0
+          )
+          , target_ba_m2_ha = median(c(14.5,19.7,10.6,9.5,9.0,17.6,7.5))
+        ) %>% 
+        dplyr::mutate(
+          target_props = ifelse(
+            dplyr::row_number() == 4
+            , (1 - sum(target_props))
+            , target_props
+          )
+        )
+      , dplyr::tibble(
+        scenario_desc = "High Clumping (Churchill et al. 2016 [Malheur])"
+        , target_props = c(0.15, 0.25, 0.25, 0.1, 0.25)
+        , target_ba_m2_ha = 21
+      )
+    )
+  ) %>% 
+  # set a constant BA target?
+    # Brown et al. (2015): 25% q = 14.8, mean = 16.7; 75% q = 21.5
+  dplyr::mutate(
+    target_ba_m2_ha = 17
+    , scenario_desc = scenario_desc %>% 
+      stringr::str_extract("^.*?(?=\\()") %>% 
+      stringr::str_squish() %>% 
+      forcats::fct_inorder()
+    # , huh = as.numeric(scenario_desc)
+  )
+# dplyr::glimpse(ico_targets_df)
+```
 
 
 
@@ -94,4 +155,3 @@ we'll use the current clump size proportions and basal area to set targets for o
 remove(list = ls()[grep("_temp",ls())])
 gc()
 ```
-
