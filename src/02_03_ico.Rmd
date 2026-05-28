@@ -17,6 +17,10 @@ in order to define our basal area and tree clump group proportion targets, we ne
 
 first, we'll define our distance in meters to separate tree clump groupings. See [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) Figure 4 (p.10) and [Matonis and Binkley (2018)](https://scholar.google.com/scholar?cluster=14613232085713826018&hl=en&as_sdt=0,6) who "calculated coverage of mosaic-meadows (percentage of stand > 6 m from overstory trees)" (p. 124)
 
+[Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) define tree clumps:
+
+>The definition of a tree clump is based on the average inter-tree distance at which mature/old trees of the dominant leave tree species have clearly interlocking crowns and form patches of contiguous canopy. This distance can vary from 15 to 22 feet (4.57 to 6.71 m), depending on site productivity of the stand. The ICO method requires that a single distance be used to define and identify clumps in the field. A default distance of 20 feet (6.1 m) is recommended for dry forests dominated by ponderosa pine and Douglas-fir. Trees are members of the same clump if they are within this distance of at least one other tree in the clump. (p.11)
+
 ```{r}
 my_clump_dist_m <- 6
 ico_clumps_temp <- trees2ico:::get_ico_clumps(treetops_sf, clump_dist_m = my_clump_dist_m) 
@@ -24,7 +28,7 @@ ico_clumps_temp <- trees2ico:::get_ico_clumps(treetops_sf, clump_dist_m = my_clu
 names(ico_clumps_temp)
 ```
 
-this gave us the tree list with clumps defined using a maximum distance between trees for determining tree clumps of `r scales::comma(my_clump_dist_m,accuracy=.1)` m which is based on the approximate crown radius of a typical, mature overstory tree. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) provide instructions for implementing the clump identification (Plotkin et al. 2002) in ArcGIS:
+this gave us the tree list with clumps defined using a maximum distance between trees for determining tree clumps of `r scales::comma(my_clump_dist_m,accuracy=.1)` m which is based on the approximate crown radius of a typical, mature overstory tree. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) provide instructions for implementing the clump identification ([Plotkin et al. 2002](https://doi.org/10.1086/342823)) in ArcGIS:
 
 >Use the Buffer tool (in the Proximity toolset within the Analysis toolbox) to create a buffer of distance $d/2$, one half the inter-tree distance, around each point. This quantity $d/2$ is meant to approximate the crown radius of a "typical" overstory tree. Set the Dissolve Type option to ALL, which dissolves overlapping buffers, creating a reduced set of spatially non-overlapping polygons stored as a multipart polygon feature...[Sanchez Meador et al. (2011)](https://scholar.google.com/scholar?cluster=15721451396848616769&oi=gsb&hl=en&as_sdt=0,6) provide some useful examples of how clump attributes can be summarized...The method described here can be modified to use measured or modeled crown radii for each tree in place of $d/2$
 (p.36)
@@ -85,7 +89,11 @@ print(paste(
 ))
 ```
 
-starting from the current clump size proportions and basal area, we'll set targets for our ICO prescription based on historical reference conditions with relevant research for our study area and forest type from:
+starting from the current clump size proportions and basal area, we'll set targets for our ICO prescription based on historical reference conditions. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) suggest the following:
+
+>In some cases, reference spatial information may already be available and summarized in a way that it can be directly incorporated into ICO prescriptions. Such data exist and have been published for areas in Arizona ([Abella and Denton 2009](https://doi.org/10.1139/X09-146), [Sánchez Meador et al. 2011](https://doi.org/10.1111/j.1526-100X.2010.00652.x)), the eastern Washington Cascades ([Churchill et al. 2013](https://doi.org/10.1016/j.foreco.2012.11.007)), the northern Rockies ([Larson et al. 2012](https://doi.org/10.1139/x2012-100)), and the Sierra Nevada ([Lydersen et al. 2013](https://doi.org/10.1016/j.foreco.2013.05.023)). Reference datasets for using ICO in other forest types, such as coastal Douglas-fir or Pacific silver fir, also exist ([Larson and Churchill 2008](https://doi.org/10.1139/X08-123)). (p.28)
+
+relevant research for our study area and forest type includes:
 
 * [Churchill et al. (2013)](https://doi.org/10.1016/j.foreco.2012.11.007)
 * [Brown et al. (2015)](https://doi.org/10.1139/cjfr-2014-0387)
@@ -107,7 +115,7 @@ ico_targets_df <-
     # scenarios
     dplyr::bind_rows(
       dplyr::tibble(
-        scenario_desc = "Low Clumping (Churchill et al. 2013)"
+        scenario_desc = "Low Clumping (Churchill et al. 2013)" # all trees >15 cm dbh were mapped...The 15 cm cutoff was based on a commercial thinning minimum diameter threshold.
         , target_props = c(0.42, 0.37, 0.16, 0.05, 0.0)
         , target_ba_m2_ha = 15
       )
@@ -139,19 +147,485 @@ ico_targets_df <-
   # set a constant BA target?
     # Brown et al. (2015): 25% q = 14.8, mean = 16.7; 75% q = 21.5
   dplyr::mutate(
-    target_ba_m2_ha = 17
-    , scenario_desc = scenario_desc %>% 
+    target_ba_m2_ha = 15
+    , scenario_desc_fact = scenario_desc %>% 
       stringr::str_extract("^.*?(?=\\()") %>% 
       stringr::str_squish() %>% 
       forcats::fct_inorder()
-    # , huh = as.numeric(scenario_desc)
+    # , huh = as.numeric(scenario_desc_fact)
   )
 # dplyr::glimpse(ico_targets_df)
 ```
 
+what are the 3 target scenarios we defined?
 
+```{r}
+ico_targets_df %>% 
+  dplyr::select(scenario_desc, clump_n_trees_grp, target_props) %>% 
+  dplyr::mutate(target_props = scales::percent(target_props,accuracy=1)) %>% 
+  tidyr::pivot_wider(names_from = clump_n_trees_grp, values_from = target_props) %>% 
+  dplyr::mutate(scenario_desc = scenario_desc %>% stringr::str_replace("lumping \\(","lumping<br />\\(")) %>% 
+  dplyr::rename(scenario=scenario_desc) %>% 
+  kableExtra::kbl(
+    caption = paste0(
+      "ICO Scenarios: target proportion of trees in different sized clumps"
+      , "<br />"
+      , "Target BA for all: "
+      , scales::comma( max(ico_targets_df$target_ba_m2_ha), accuracy = 0.1 )
+      , " m<sup>2</sup> ha<sup>-1</sup>"
+      , " (Brown et al. 2015)"
+    )
+    , escape = F
+    # , digits = 2
+  ) %>% 
+  kableExtra::kable_styling() 
+```
+
+plot this
+
+```{r}
+pal_clump_grp <- 
+  levels(ico_clumps_temp$tree_list$clump_n_trees_grp) %>% 
+  length() %>% 
+  harrypotter::hp(option = "Always") %>% 
+  setNames(
+    levels(ico_clumps_temp$tree_list$clump_n_trees_grp) %>% 
+    as.character()
+  )
+# scales::show_col(pal_clump_grp)
+
+ico_targets_df %>% 
+  dplyr::select(scenario_desc_fact, clump_n_trees_grp, target_props) %>% 
+  dplyr::mutate(
+    target_props_lab = scales::percent(ifelse(target_props>=0.08,target_props,NA), accuracy = 1)
+    , scenario_desc_fact = forcats::fct_rev(scenario_desc_fact)
+    , clump_n_trees_grp = forcats::fct_rev(clump_n_trees_grp)
+    , huh = ifelse(
+      clump_n_trees_grp %in% c(">15 trees","10-15 trees")
+      , "white"
+      , "black"
+    )
+  ) %>% 
+ggplot2::ggplot(
+  mapping = ggplot2::aes(x = target_props, y = scenario_desc_fact, fill=clump_n_trees_grp, group=clump_n_trees_grp)
+) +
+  ggplot2::geom_col(
+    width = 0.7, alpha=0.95
+  ) +
+  ggplot2::geom_text(
+    mapping = aes(
+        label = target_props_lab
+        , color = huh
+        , fontface = "bold"
+      )
+    , position = ggplot2::position_stack(vjust = 0.5)
+    # , color = "black"
+    , size = 4
+  ) +
+  ggplot2::scale_fill_manual(values = pal_clump_grp) +
+  ggplot2::scale_color_identity() +
+  ggplot2::scale_x_continuous(labels = scales::percent_format()) +
+  ggplot2::labs(
+    fill = "clump\nsize"
+    , y = ""
+    , x = "target proportion of trees in different sized clumps"
+    # , subtitle = ""
+  ) +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "top"
+    , legend.direction  = "horizontal"
+    , legend.title = element_text(size=7)
+    , axis.title.x = element_text(size=10, face = "bold")
+    , axis.text.x = element_blank()
+    , axis.ticks.x = element_blank()
+    , axis.text.y = ggplot2::element_text(size = 9, face = "bold")
+  ) +
+  ggplot2::guides(
+    fill = ggplot2::guide_legend(
+      # nrow = 2, byrow = T, 
+      reverse = T
+      # , override.aes = list(alpha = 0.9)
+    )
+  )
+```
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 remove(list = ls()[grep("_temp",ls())])
 gc()
+```
+
+### Get ICO Prescription
+
+let's get the ICO prescrition for each of these target scenarios. We'll use the `trees2ico` package which uses a spatial tree list that includes DBH measurements in (cm) to generate a cut-retention prescription. It determines which trees to 'cut' or 'keep' based on stand-level targets for basal area and specific clump size proportions
+
+```{r, results=F}
+# outdir
+ico_output_dir <- file.path(c2t_output_dir,"ico_prescriptions")
+if(!dir.exists(ico_output_dir)) dir.create(ico_output_dir)
+##############################################################
+# map over the scenarios
+##############################################################
+trees2ico_ans_list <- 
+  unique(ico_targets_df$scenario_id) %>% 
+  purrr::set_names() %>% 
+  purrr::map(function(x){
+    # fnms
+    fnm_tree_list <- file.path(ico_output_dir, paste0("tree_list_scenario_",x,".gpkg") )
+    fnm_pre_cut_clumps <- file.path(ico_output_dir, paste0("pre_cut_clumps_scenario_",x,".gpkg") )
+    fnm_post_cut_clumps <- file.path(ico_output_dir, paste0("post_cut_clumps_scenario_",x,".gpkg") )
+    if(
+      !file.exists( fnm_tree_list )
+      || !file.exists( fnm_pre_cut_clumps )
+      || !file.exists( fnm_post_cut_clumps )
+    ){
+      # trees2ico
+      trees2ico_ans <- trees2ico::trees2ico(
+        tree_list = treetops_sf %>% 
+          dplyr::select( -dplyr::any_of(c(
+            "hey_xxxxxxxxxx"
+            , "stand_area_ha"
+          )))
+        , target_clump_props = ico_targets_df %>% 
+          dplyr::filter(scenario_id==x) %>% 
+          dplyr::arrange(clump_n_trees_grp) %>% 
+          dplyr::pull(target_props)
+        , target_ba_m2_ha = ico_targets_df %>% 
+          dplyr::filter(scenario_id==x) %>% 
+          dplyr::slice_max(order_by = target_ba_m2_ha, with_ties = F, na_rm = T) %>% 
+          dplyr::pull(target_ba_m2_ha)
+        , clump_dist_m = my_clump_dist_m
+        , stand_area_ha = stand_sf$stand_area_ha[1]
+      )
+      # write
+      trees2ico_ans$tree_list %>% sf::st_write( fnm_tree_list, append = F, quiet = T )
+      trees2ico_ans$pre_cut_clumps %>% sf::st_write( fnm_pre_cut_clumps, append = F, quiet = T )
+      trees2ico_ans$post_cut_clumps %>% sf::st_write( fnm_post_cut_clumps, append = F, quiet = T )
+      # return
+      return(trees2ico_ans)
+    }else{
+      return(list(
+        tree_list <- sf::st_read( fnm_tree_list, quiet =T )
+        , pre_cut_clumps <- sf::st_read( fnm_pre_cut_clumps, quiet =T )
+        , post_cut_clumps <- sf::st_read( fnm_post_cut_clumps, quiet =T )
+      ))
+    }
+  })
+
+```
+
+what did we get back?
+
+```{r}
+trees2ico_ans_list[[1]] %>% names()
+```
+
+let's look at the `tree_list` object
+
+```{r}
+trees2ico_ans_list[[1]] %>% 
+  purrr::pluck("tree_list") %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::select(
+    treeID, tree_height_m, dbh_cm
+    # cols that trees2ico::trees2ico says it created in the help file
+    , is_keep_tree
+    , pre_clump_id
+    , pre_clump_n_trees
+    , pre_clump_n_trees_grp
+    , post_clump_id
+    , post_clump_n_trees
+    , post_clump_n_trees_grp
+  ) %>% 
+  dplyr::glimpse()
+```
+
+compare the pre- and post-treatment proportion of trees in different sized clumps
+
+```{r}
+trees2ico_ans_trees_df <- 
+  trees2ico_ans_list %>% 
+  purrr::map(~purrr::pluck(.x,"tree_list")) %>% 
+  purrr::list_rbind(names_to = "scenario_id") %>% 
+  dplyr::mutate(scenario_id = as.numeric(scenario_id)) %>% 
+  dplyr::inner_join(
+    ico_targets_df %>% 
+      dplyr::distinct(scenario_id, scenario_desc_fact)
+    , by = "scenario_id"
+  ) 
+# count props
+pre_post_temp <- 
+  dplyr::bind_rows(
+  # get pre-treatment
+    dplyr::distinct(ico_targets_df, clump_n_trees_grp, scenario_desc_fact) %>% 
+    dplyr::left_join(
+      trees2ico_ans_trees_df %>% 
+        sf::st_drop_geometry() %>%
+        dplyr::group_by(scenario_desc_fact,pre_clump_n_trees_grp) %>% 
+        dplyr::summarise(
+          basal_area_m2_per_ha=sum(basal_area_m2)/stand_sf$stand_area_ha
+          , trees = dplyr::n()
+          , .groups = "drop"
+        ) %>% 
+        dplyr::ungroup() %>% 
+        dplyr::rename(clump_n_trees_grp=pre_clump_n_trees_grp)
+      , by = dplyr::join_by(clump_n_trees_grp, scenario_desc_fact)
+    ) %>% 
+    dplyr::group_by(scenario_desc_fact) %>% 
+    dplyr::mutate(
+      trees = dplyr::coalesce(trees,0)
+      , pct_trees = trees/sum(trees,na.rm = T)
+      , basal_area_m2_per_ha = sum(basal_area_m2_per_ha,na.rm = T)
+    ) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(status = "pre-treatment")
+  # get post-treatment
+  , dplyr::distinct(ico_targets_df, clump_n_trees_grp, scenario_desc_fact) %>% 
+    dplyr::left_join(
+      trees2ico_ans_trees_df %>% 
+        sf::st_drop_geometry() %>%
+        dplyr::filter(is_keep_tree) %>% 
+        dplyr::group_by(scenario_desc_fact,post_clump_n_trees_grp) %>% 
+        dplyr::summarise(
+          basal_area_m2_per_ha=sum(basal_area_m2)/stand_sf$stand_area_ha
+          , trees = dplyr::n()
+          , .groups = "drop"
+        ) %>% 
+        dplyr::ungroup() %>% 
+        dplyr::rename(clump_n_trees_grp=post_clump_n_trees_grp)
+      , by = dplyr::join_by(clump_n_trees_grp, scenario_desc_fact)
+    ) %>% 
+    dplyr::group_by(scenario_desc_fact) %>% 
+    dplyr::mutate(
+      trees = dplyr::coalesce(trees,0)
+      , pct_trees = trees/sum(trees,na.rm = T)
+      , basal_area_m2_per_ha = sum(basal_area_m2_per_ha,na.rm = T)
+    ) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(status = "post-treatment")
+) 
+# table
+pre_post_temp %>% 
+  dplyr::select(-c(trees)) %>% 
+  dplyr::mutate(
+    pct_trees = scales::percent(pct_trees,accuracy=1)
+    , basal_area_m2_per_ha = scales::comma(basal_area_m2_per_ha,accuracy=.1)
+  ) %>% 
+  tidyr::pivot_wider(names_from = clump_n_trees_grp, values_from = pct_trees) %>% 
+  dplyr::rename(scenario=scenario_desc_fact) %>% 
+  dplyr::arrange(scenario,desc(status)) %>% 
+  dplyr::relocate(scenario,status) %>% 
+  dplyr::rename(
+    `BA m<sup>2</sup> ha<sup>-1</sup>` = basal_area_m2_per_ha
+  ) %>% 
+  kableExtra::kbl(
+    caption = "ICO Scenarios: pre- and post-treatment proportion of trees in different sized clumps"
+    , escape = F
+    # , digits = 2
+  ) %>% 
+  kableExtra::kable_styling() %>% 
+  kableExtra::collapse_rows(columns = 1, valign = "top")
+```
+
+visualize that
+
+```{r}
+pre_post_temp %>% 
+dplyr::mutate(
+    pct_trees_lab = scales::percent(ifelse(pct_trees>=0.05,pct_trees,NA), accuracy = 1)
+    , clump_n_trees_grp = forcats::fct_rev(clump_n_trees_grp)
+    , huh = ifelse(
+      clump_n_trees_grp %in% c(">15 trees","10-15 trees")
+      , "white"
+      , "black"
+    )
+  ) %>% 
+ggplot2::ggplot(
+  mapping = ggplot2::aes(x = pct_trees, y = status, fill=clump_n_trees_grp, group=clump_n_trees_grp)
+) +
+  ggplot2::geom_col(
+    width = 0.7, alpha=0.95
+  ) +
+  ggplot2::geom_text(
+    mapping = aes(
+        label = pct_trees_lab
+        , color = huh
+        , fontface = "bold"
+      )
+    , position = ggplot2::position_stack(vjust = 0.5)
+    # , color = "black"
+    , size = 4
+  ) +
+  # ggplot2::facet_grid(rows = dplyr::vars(scenario_desc_fact), switch = "y") +
+  ggplot2::facet_wrap(facets = dplyr::vars(scenario_desc_fact), ncol = 1) +
+  ggplot2::scale_fill_manual(values = pal_clump_grp) +
+  ggplot2::scale_color_identity() +
+  ggplot2::scale_x_continuous(labels = scales::percent_format()) +
+  ggplot2::labs(
+    fill = "clump\nsize"
+    , y = ""
+    , x = "target proportion of trees in different sized clumps"
+    # , subtitle = ""
+  ) +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "top"
+    , legend.direction  = "horizontal"
+    , legend.title = element_text(size=7)
+    , axis.title.x = element_text(size=10, face = "bold")
+    , axis.text.x = element_blank()
+    , axis.ticks.x = element_blank()
+    , axis.text.y = ggplot2::element_text(size = 9, face = "bold")
+    # facet label
+    , strip.placement = "outside"
+    # , strip.background = ggplot2::element_blank() #element_rect(fill = "white", color = "black")
+    , strip.text = ggplot2::element_text(size = 11, face = "bold", angle = 0, color = "black")
+  ) +
+  ggplot2::guides(
+    fill = ggplot2::guide_legend(
+      # nrow = 2, byrow = T, 
+      reverse = T
+      # , override.aes = list(alpha = 0.9)
+    )
+  )
+```
+
+
+```{r, include = F, eval = F}
+# create function to pass a return from get_clump_summary() and get a distance raster
+get_clump_dist_rast <- function(get_clump_summary_ans, stand_sf){
+  # get clump_dist_m
+  clump_dist_m <- min(get_clump_summary_ans$clump_dist_m, na.rm = T)
+  # rasterize the clump polygons and then calculate distance between clumps as raster
+  dist_rast <- 
+    terra::rasterize(
+        x = get_clump_summary_ans %>% terra::vect()
+        , y = get_clump_summary_ans %>% 
+          terra::vect() %>% 
+          terra::rast(res = 0.2)
+      ) %>% 
+      terra::distance() %>% 
+      # crop it to stand extent
+      terra::crop(
+        stand_sf %>% 
+          terra::vect()
+        , mask = T
+      )
+  ######### part 2
+  # now create openings vector data
+  openings_vect <- 
+    dist_rast %>% 
+      terra::classify(rcl = c(clump_dist_m/2,Inf), others = NA, include.lowest = T) %>% 
+      terra::as.polygons(na.rm = T) %>% 
+      sf::st_as_sf() %>% 
+      sf::st_cast("POLYGON") %>% 
+      dplyr::mutate(layer = dplyr::row_number()) %>% 
+      dplyr::mutate(
+        openining_area_m2 = sf::st_area(geometry) %>% as.numeric()
+        , clump_dist_m = clump_dist_m
+      )
+  
+  # return
+  return(list(dist_rast = dist_rast, openings_vect = openings_vect))
+}
+
+```
+
+#### Silvicultural metrics
+
+Let's look at some common stand-level forestry metrics
+
+```{r, message=F, results=F}
+### stand-level summaries
+# silv_metrics <-
+dplyr::bind_rows(
+  treetops_sf %>%
+    sf::st_drop_geometry() %>% 
+    # dplyr::filter(dbh_cm >= ostory_dbh_cm) %>% 
+    dplyr::ungroup() %>%
+    dplyr::mutate(status = "pre-treatment") %>% 
+    dplyr::group_by(status,stand_area_ha) %>%
+    dplyr::summarise(
+      n_trees = dplyr::n_distinct(treeID)
+      , mean_dbh_cm = mean(dbh_cm, na.rm = T)
+      , mean_tree_height_m = mean(tree_height_m, na.rm = T)
+      , loreys_height_m = sum(basal_area_m2*tree_height_m, na.rm = T) / sum(basal_area_m2, na.rm = T)
+      , basal_area_m2 = sum(basal_area_m2, na.rm = T)
+      , sum_dbh_cm_sq = sum(dbh_cm^2, na.rm = T)
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      trees_per_ha = (n_trees/stand_area_ha)
+      , basal_area_m2_per_ha = (basal_area_m2/stand_area_ha)
+      , qmd_cm = sqrt(sum_dbh_cm_sq/n_trees)
+    ) %>%
+    dplyr::select(-c(sum_dbh_cm_sq)) %>% 
+    dplyr::mutate(scenario_desc_fact = " ") %>% 
+    dplyr::relocate(status,scenario_desc_fact)
+
+  , trees2ico_ans_trees_df %>%
+      sf::st_drop_geometry() %>% 
+      dplyr::filter(is_keep_tree) %>%
+      dplyr::ungroup() %>%
+      dplyr::mutate(
+        status = "post-treatment"
+        , stand_area_ha = stand_sf$stand_area_ha[1]
+      ) %>% 
+      dplyr::group_by(status,scenario_desc_fact,stand_area_ha) %>%
+      dplyr::summarise(
+        n_trees = dplyr::n_distinct(treeID)
+        , mean_dbh_cm = mean(dbh_cm, na.rm = T)
+        , mean_tree_height_m = mean(tree_height_m, na.rm = T)
+        , loreys_height_m = sum(basal_area_m2*tree_height_m, na.rm = T) / sum(basal_area_m2, na.rm = T)
+        , basal_area_m2 = sum(basal_area_m2, na.rm = T)
+        , sum_dbh_cm_sq = sum(dbh_cm^2, na.rm = T)
+      ) %>%
+      dplyr::group_by(scenario_desc_fact) %>%
+      dplyr::mutate(
+        trees_per_ha = (n_trees/stand_area_ha)
+        , basal_area_m2_per_ha = (basal_area_m2/stand_area_ha)
+        , qmd_cm = sqrt(sum_dbh_cm_sq/n_trees)
+      ) %>%
+      dplyr::select(-c(sum_dbh_cm_sq)) %>% 
+      dplyr::relocate(status,scenario_desc_fact)
+) %>% 
+  dplyr::select(
+    status,scenario_desc_fact
+    , stand_area_ha
+    , n_trees
+    , mean_dbh_cm
+    , qmd_cm
+    , mean_tree_height_m
+    , loreys_height_m
+    , trees_per_ha
+    , basal_area_m2_per_ha
+  ) %>% 
+  dplyr::mutate(
+    dplyr::across(
+      .cols = c(stand_area_ha) 
+      , .fns = ~ scales::comma(.x, accuracy = .1)
+    )
+    , dplyr::across(
+      .cols = c(n_trees) 
+      , .fns = ~ scales::comma(.x, accuracy = 1)
+    )
+  ) %>% 
+  kableExtra::kbl(
+    digits = 1
+    , escape = F
+    , caption = "ICO Scenarios: pre- and post-treatment silvicultral metrics"
+    , col.names = c(
+      "status","scenario"
+      , "area (ha)"
+      , "trees"
+      , "mean<br>DBH (cm)"
+      , "QMD (cm)"
+      , "mean<br>Ht. (m)"
+      , "Loreys<br>Ht. (m)"
+      , "TPH"
+      , "BA<br>m<sup>2</sup> ha<sup>-1</sup>"
+      )
+  ) %>% 
+  kableExtra::kable_styling(font_size = 12) %>% 
+  kableExtra::collapse_rows(columns = 1, valign = "top")
 ```
