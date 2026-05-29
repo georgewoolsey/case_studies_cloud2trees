@@ -309,7 +309,7 @@ Let's look at the distribution of tree height in our study area
 # there are always tree heights
 cloud2trees_ans$treetops_sf %>%
   ggplot2::ggplot(mapping = ggplot2::aes(x = tree_height_m)) +
-  ggplot2::geom_density(fill = "navy", color = "navy", alpha = 0.2) +
+  ggplot2::geom_density(fill = "plum4", color = "plum4", alpha = 0.2) +
   ggplot2::scale_x_continuous(breaks = scales::breaks_extended(11)) +
   ggplot2::labs(x = "tree ht. (m)", y = "") +
   ggplot2::theme_light() +
@@ -411,7 +411,7 @@ let's check the relationship between height and DBH as estimated by the regional
 trees_dbh_ans %>% 
   dplyr::slice_sample(n=7777) %>% 
   ggplot2::ggplot(mapping = ggplot2::aes(x = tree_height_m, y = dbh_cm)) + 
-  ggplot2::geom_point(color = "navy", alpha = 0.6) +
+  ggplot2::geom_point(color = "plum4", alpha = 0.6) +
   ggplot2::labs(x = "tree ht. (m)", y = "tree DBH (cm)") +
   ggplot2::scale_x_continuous(limits = c(0,NA)) +
   ggplot2::scale_y_continuous(limits = c(0,NA)) +

@@ -353,7 +353,7 @@ cloud2trees_ans$treetops_sf %>%
   dplyr::glimpse()
 ```
 
-note, we only really need tree location and DBH to implement the ICO method, so we were able to save on processing time by not extracting CBH or HMD. If we were interested in utilizing those tree-level metrics for additional analysis or planning beyond implemeting the ICO method, then we would need to enable those options in `cloud2trees()`
+note, we only really need tree location and DBH to implement the ICO method, so we were able to save on processing time by not extracting CBH or HMD. If we were interested in utilizing those tree-level metrics for additional analysis or planning beyond implementing the ICO method, then we would need to enable those options in `cloud2trees()`
 
 let's check the relationship between height and DBH as estimated by the regional allometric relationship
 
@@ -362,7 +362,7 @@ cloud2trees_ans$treetops_sf %>%
   sf::st_drop_geometry() %>% 
   dplyr::slice_sample(prop = 0.55) %>% 
   ggplot2::ggplot(mapping = ggplot2::aes(x = tree_height_m, y = dbh_cm)) + 
-  ggplot2::geom_point(color = "navy", alpha = 0.6) +
+  ggplot2::geom_point(color = "plum4", alpha = 0.6) +
   ggplot2::labs(x = "tree ht. (m)", y = "tree DBH (cm)") +
   ggplot2::scale_x_continuous(limits = c(0,NA), breaks = scales::breaks_extended(n=8)) +
   ggplot2::scale_y_continuous(limits = c(0,NA), breaks = scales::breaks_extended(n=8)) +

@@ -13,7 +13,7 @@ remotes::install_github(repo = "georgewoolsey/trees2ico", upgrade = F)
 
 ### Define Targets
 
-in order to define our basal area and tree clump group proportion targets, we need to know the current conditions. let's use some `trees2ico` helper functions to get the current conditions as we follow xxx
+in order to define our basal area and tree clump group proportion targets, we need to know the current conditions. let's use some `trees2ico` helper functions to get the current conditions
 
 first, we'll define our distance in meters to separate tree clump groupings. See [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) Figure 4 (p.10) and [Matonis and Binkley (2018)](https://scholar.google.com/scholar?cluster=14613232085713826018&hl=en&as_sdt=0,6) who "calculated coverage of mosaic-meadows (percentage of stand > 6 m from overstory trees)" (p. 124)
 
@@ -89,6 +89,12 @@ print(paste(
 ))
 ```
 
+For setting the stand average density target, [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) note:
+
+>An average BA, TPA, or SDI target for the stand should be selected that is appropriate for the species, structure, site conditions, and management objectives. Expected mortality from prescribed fire should be factored in. Stand average targets can come from historical reference stands, plant association based stocking guides, density management tools, or a combination of both (see Franklin et al. (2013) for a full discussion of setting density targets). (p.11)
+
+the `trees2ico` package requires a stand average basal area (BA) target in square meters per hectare since BA is commonly used in silvicultural managment and widely represented in the research on historical reference conditions.
+
 starting from the current clump size proportions and basal area, we'll set targets for our ICO prescription based on historical reference conditions. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) suggest the following:
 
 >In some cases, reference spatial information may already be available and summarized in a way that it can be directly incorporated into ICO prescriptions. Such data exist and have been published for areas in Arizona ([Abella and Denton 2009](https://doi.org/10.1139/X09-146), [Sánchez Meador et al. 2011](https://doi.org/10.1111/j.1526-100X.2010.00652.x)), the eastern Washington Cascades ([Churchill et al. 2013](https://doi.org/10.1016/j.foreco.2012.11.007)), the northern Rockies ([Larson et al. 2012](https://doi.org/10.1139/x2012-100)), and the Sierra Nevada ([Lydersen et al. 2013](https://doi.org/10.1016/j.foreco.2013.05.023)). Reference datasets for using ICO in other forest types, such as coastal Douglas-fir or Pacific silver fir, also exist ([Larson and Churchill 2008](https://doi.org/10.1139/X08-123)). (p.28)
@@ -158,6 +164,8 @@ ico_targets_df <-
 # dplyr::glimpse(ico_targets_df)
 ```
 
+We set the same BA target of `scales::comma( max(ico_targets_df$target_ba_m2_ha), accuracy = 0.1 )` square meters per hectare for all of these scenarios. This target was based on post-treatment [Ziegler et al. (2017)](https://doi.org/10.1016/j.foreco.2016.12.002) outcomes on sites that had been treated across the Colorado Plateau and southern Rocky Mountains (matching our demonstration site) with the expressed treatment goals of restoring forest structural patterns and potential fire behavior akin to historic ranges.
+
 what are the 3 target scenarios we defined?
 
 ```{r}
@@ -193,6 +201,7 @@ pal_clump_grp <-
     levels(ico_clumps_temp$tree_list$clump_n_trees_grp) %>% 
     as.character()
   )
+# names(pal_clump_grp)
 # scales::show_col(pal_clump_grp)
 
 ico_targets_df %>% 
@@ -306,9 +315,35 @@ trees2ico_ans_list <-
       return(trees2ico_ans)
     }else{
       return(list(
-        tree_list <- sf::st_read( fnm_tree_list, quiet =T )
-        , pre_cut_clumps <- sf::st_read( fnm_pre_cut_clumps, quiet =T )
-        , post_cut_clumps <- sf::st_read( fnm_post_cut_clumps, quiet =T )
+        "tree_list" = sf::st_read( fnm_tree_list, quiet =T ) %>% 
+          dplyr::mutate(
+            pre_clump_n_trees_grp = factor(
+              pre_clump_n_trees_grp
+              , ordered = T
+              , levels = names(pal_clump_grp) # c("Individual", "2-4 trees", "5-9 trees", "10-15 trees", ">15 trees")
+            )
+            , post_clump_n_trees_grp = factor(
+              post_clump_n_trees_grp
+              , ordered = T
+              , levels = names(pal_clump_grp) # c("Individual", "2-4 trees", "5-9 trees", "10-15 trees", ">15 trees")
+            )
+          )
+        , "pre_cut_clumps" = sf::st_read( fnm_pre_cut_clumps, quiet =T ) %>% 
+          dplyr::mutate(
+            clump_n_trees_grp = factor(
+              clump_n_trees_grp
+              , ordered = T
+              , levels = names(pal_clump_grp) # c("Individual", "2-4 trees", "5-9 trees", "10-15 trees", ">15 trees")
+            )
+          )
+        , "post_cut_clumps" = sf::st_read( fnm_post_cut_clumps, quiet =T ) %>% 
+          dplyr::mutate(
+            clump_n_trees_grp = factor(
+              clump_n_trees_grp
+              , ordered = T
+              , levels = names(pal_clump_grp) # c("Individual", "2-4 trees", "5-9 trees", "10-15 trees", ">15 trees")
+            )
+          )
       ))
     }
   })
@@ -350,12 +385,16 @@ trees2ico_ans_trees_df <-
   trees2ico_ans_list %>% 
   purrr::map(~purrr::pluck(.x,"tree_list")) %>% 
   purrr::list_rbind(names_to = "scenario_id") %>% 
-  dplyr::mutate(scenario_id = as.numeric(scenario_id)) %>% 
+  dplyr::mutate(
+    scenario_id = as.numeric(scenario_id)
+    ,cut_leave = ifelse(is_keep_tree, "leave", "cut") %>% ordered()
+  ) %>% 
   dplyr::inner_join(
     ico_targets_df %>% 
       dplyr::distinct(scenario_id, scenario_desc_fact)
     , by = "scenario_id"
-  ) 
+  ) %>% 
+  sf::st_set_geometry("geom")
 # count props
 pre_post_temp <- 
   dplyr::bind_rows(
@@ -561,7 +600,10 @@ silv_metrics_temp <-
     , loreys_height_m
     , trees_per_ha
     , basal_area_m2_per_ha
-  ) 
+  )
+```
+
+```{r}
 # table
 silv_metrics_temp %>% 
   dplyr::mutate(
@@ -809,12 +851,12 @@ pre_get_clump_dist_rast_ans <- get_clump_dist_rast(clumps_sf = trees2ico_ans_lis
 # pre_get_clump_dist_rast_ans$openings_vect %>% terra::plot()
 ```
 
-pre-treatment spatial pattern
+now we'll make a function to plot the spatial pattern roughly following [Churchill et al. (2013)](https://doi.org/10.1016/j.foreco.2012.11.007) Figure 2
 
-```{r,eval=T, results=F}
+```{r, results=F}
 # scales::show_col(pal_clump_grp)
 # get_the_plts 
-get_the_plts_fn <- function(dist_rast, openings_vect, stand_sf, clump_polys, ttops, my_tit = "", openining_area_m2_max = NA, dist_max = NA) {
+get_the_plts_fn <- function(dist_rast, openings_vect, stand_sf, clump_polys, ttops, my_title = "", openining_area_m2_max = NA, dist_max = NA) {
   # get the area spacing
   if(is.na(openining_area_m2_max)){
     openining_area_m2_max <- 
@@ -832,25 +874,23 @@ get_the_plts_fn <- function(dist_rast, openings_vect, stand_sf, clump_polys, tto
   }
   plt_stand <- 
     ggplot2::ggplot() +
-      ggplot2::geom_sf(data = stand_sf %>% dplyr::slice(1), color = "black", fill = NA, lwd = 2) +
+      ggplot2::geom_sf(data = stand_sf %>% dplyr::slice(1), color = "black", fill = NA, lwd = 1.5) +
       ggplot2::scale_x_continuous(expand = c(0, 0)) +
       ggplot2::scale_y_continuous(expand = c(0, 0)) +
       ggplot2::labs(
         x = ""
         , y = ""
-        , subtitle = my_tit
+        , subtitle = my_title
       ) +
       ggplot2::theme_void() +
       ggplot2::theme(
-        legend.position = "top" # c(0.5,1)
+        legend.position = "bottom" # c(0.5,1)
         , legend.direction = "horizontal"
         , legend.margin = ggplot2::margin(0,0,0,0)
-        , legend.text = ggplot2::element_text(size = 8)
-        , legend.title = ggplot2::element_text(size = 8)
+        , legend.title= ggplot2::element_text(size=8, face = "bold")
+        , legend.text= ggplot2::element_text(size = 7)
         , legend.key = ggplot2::element_rect(fill = NA, color = NA)
-        # , plot.title = ggtext::element_markdown(size = 10, hjust = 0.5)
-        , plot.title = ggplot2::element_text(size = 10, hjust = 0.5, face = "bold")
-        , plot.subtitle = ggplot2::element_text(size = 8, hjust = 0.5, face = "italic")
+        , plot.subtitle = ggplot2::element_text(size = 10, hjust = 0.5, face = "bold")
       )
 ##################################################
 # plot distance raster and trees
@@ -886,7 +926,7 @@ plt_dist_rast1 <-
     ggplot2::scale_color_gradient(
       low = "gray77", high = "gray11"
       , labels = scales::comma_format(accuracy = 1)
-      , name = latex2exp::TeX("opening\narea ($\\m^2$)")
+      , name = "opening\narea (m²)" # latex2exp::TeX("opening\narea ($\\m^2$)")
       , limits = c(0,openining_area_m2_max)
     ) +
     # clumps
@@ -897,16 +937,19 @@ plt_dist_rast1 <-
       , color = NA
     ) +
     # harrypotter::scale_fill_hp_d("always", name = "clump size", drop = F) +
-    ggplot2::scale_fill_manual(values = pal_clump_grp, name = "clump size", drop = F) +
+    ggplot2::scale_fill_manual(
+      values = pal_clump_grp, name = "clump size", drop = F
+      , guide = ggplot2::guide_legend(nrow = 2, byrow = T)
+    ) +
     # tree points
     ggplot2::geom_sf(data = ttops, color = "gray88", shape = ".") +
     # ggplot2::labs(subtitle = paste0(nm, ": pre-treatment")) +
     ggplot2::theme_void() +
     ggplot2::theme(
-      legend.position = "right"
-      , legend.direction = "vertical"
+      legend.position = "bottom"
+      , legend.direction = "horizontal"
       , plot.subtitle = ggplot2::element_text(size = 10, hjust = 0.5, face = "bold")
-      , legend.title= ggplot2::element_text(size=8)
+      , legend.title= ggplot2::element_text(size=8, face = "bold")
       , legend.text= ggplot2::element_text(size = 7)
     )
 ##################################################
@@ -921,7 +964,10 @@ plt_dist_rast1 <-
         , color = NA
       ) +
       # harrypotter::scale_fill_hp_d("always", name = "clump size", drop = F) + 
-      ggplot2::scale_fill_manual(values = pal_clump_grp, name = "clump size", drop = F) +
+      ggplot2::scale_fill_manual(
+        values = pal_clump_grp, name = "clump size", drop = F
+        , guide = ggplot2::guide_legend(nrow = 2, byrow = T)
+      ) +
       # openings
       ggnewscale::new_scale_fill() +
       ggplot2::geom_sf(
@@ -931,7 +977,7 @@ plt_dist_rast1 <-
       ggplot2::scale_fill_gradient(
         low = "gray77", high = "gray11"
         , labels = scales::comma_format(accuracy = 1)
-        , name = latex2exp::TeX("opening\narea ($\\m^2$)")
+        , name = "opening\narea (m²)" # latex2exp::TeX("opening\narea ($\\m^2$)")
         , limits = c(0,openining_area_m2_max)
       ) +
       # tree points
@@ -939,10 +985,10 @@ plt_dist_rast1 <-
       # ggplot2::labs(subtitle = paste0(nm, ": pre-treatment")) +
       ggplot2::theme_void() +
       ggplot2::theme(
-          legend.position = "right"
-          , legend.direction = "vertical"
+          legend.position = "bottom"
+          , legend.direction = "horizontal"
           , plot.subtitle = ggplot2::element_text(size = 10, hjust = 0.5, face = "bold")
-          , legend.title= ggplot2::element_text(size=8)
+          , legend.title= ggplot2::element_text(size=8, face = "bold")
           , legend.text= ggplot2::element_text(size = 7)
         )
   
@@ -955,7 +1001,7 @@ plt_dist_rast1 <-
 
 get all the figures for the treatment scenarios and pre-treatment
 
-```{r}
+```{r, results=F}
 get_clump_dist_rast_ans <- 
   trees2ico_ans_list %>% 
   purrr::map(function(x){
@@ -999,7 +1045,7 @@ plt_post <-
         , stand_sf = stand_sf
         , clump_polys = x$post_cut_clumps
         , ttops = x$tree_list %>% dplyr::filter(is_keep_tree)
-        , my_tit = ico_targets_df %>% dplyr::filter(as.character(scenario_id)==nm) %>% dplyr::slice(1) %>% dplyr::pull(scenario_desc_fact) %>% as.character()
+        , my_title = ico_targets_df %>% dplyr::filter(as.character(scenario_id)==nm) %>% dplyr::slice(1) %>% dplyr::pull(scenario_desc_fact) %>% as.character()
         , openining_area_m2_max = openining_area_m2_max_temp, dist_max = dist_max_temp
       )    
       return(plts)
@@ -1012,7 +1058,7 @@ plt_pre <- get_the_plts_fn(
   , stand_sf = stand_sf
   , clump_polys = trees2ico_ans_list[[1]]$pre_cut_clumps
   , ttops = treetops_sf
-  , my_tit = "Pre-Treatment"
+  , my_title = "Pre-Treatment"
   , openining_area_m2_max = openining_area_m2_max_temp, dist_max = dist_max_temp
 )
 
@@ -1020,34 +1066,9 @@ plt_pre <- get_the_plts_fn(
 
 check those plots out
 
-the openings
-
-```{r, fig.height=9, fig.width=9}
-plt_post_temp <- 
-  plt_post %>% 
-  purrr::map(
-    \(x)
-    x$plt_open + 
-      ggplot2::theme(legend.position = "none") +
-      ggplot2::guides(color = "none", fill = "none", shape = "none")
-  )
-
-patchwork::wrap_plots(
-  append(
-    plt_post_temp
-    , list(plt_pre$plt_open)
-    , after = 0
-  )
-  , ncol = 2
-  , guides = "collect"
-) +
-patchwork::plot_annotation(theme = ggplot2::theme(legend.position = "bottom"))
-
-```
-
 the distance raster
 
-```{r, fig.height=9, fig.width=9}
+```{r,eval=F, fig.height=10.1, fig.width=9}
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1058,15 +1079,336 @@ plt_post_temp <-
   )
 
 patchwork::wrap_plots(
-  append(
-    plt_post_temp
-    , list(plt_pre$plt_dist_rast)
-    , after = 0
+  patchwork::wrap_plots(
+    append(
+      plt_post_temp
+      , list(
+        plt_pre$plt_dist_rast
+      )
+      , after = 0
+    )
+    , ncol = 2
   )
-  , ncol = 2
-  , guides = "collect"
+  , patchwork::guide_area()
+  , ncol = 1
+  , heights = c(1,0.02)
 ) +
-patchwork::plot_annotation(theme = ggplot2::theme(legend.position = "bottom"))
+patchwork::plot_layout(guides = "collect") +
+patchwork::plot_annotation(
+  theme = ggplot2::theme(
+    legend.position = "bottom"
+    , legend.margin = ggplot2::margin(b = 11, unit = "pt")
+    , legend.box.margin = ggplot2::margin(b = 11, unit = "pt")
+    # , plot.title = ggplot2::element_text(margin = ggplot2::margin(t = -5, b = 5, unit = "pt"))
+  )
+)
 
 ```
+
+```{r,eval=F, include=FALSE, eval=TRUE}
+ggplot2::ggsave(
+  "../data/ico_treatment_dist_rast.jpg"
+  , dpi = "print"
+  , height = 10.1, width = 9
+)
+```
+
+the openings
+
+```{r,eval=F, fig.height=10.1, fig.width=9}
+plt_post_temp <- 
+  plt_post %>% 
+  purrr::map(
+    \(x)
+    x$plt_open + 
+      ggplot2::theme(legend.position = "none") +
+      ggplot2::guides(color = "none", fill = "none", shape = "none")
+  )
+# plt_post_temp[[1]]
+# plt_pre$plt_open
+patchwork::wrap_plots(
+  patchwork::wrap_plots(
+    append(
+      plt_post_temp
+      , list(
+        plt_pre$plt_open
+      )
+      , after = 0
+    )
+    , ncol = 2
+  )
+  , patchwork::guide_area()
+  , ncol = 1
+  , heights = c(1,0.02)
+) +
+patchwork::plot_layout(guides = "collect") +
+patchwork::plot_annotation(
+  theme = ggplot2::theme(
+    legend.position = "bottom"
+    , legend.margin = ggplot2::margin(b = 11, unit = "pt")
+    , legend.box.margin = ggplot2::margin(b = 11, unit = "pt")
+    # , plot.title = ggplot2::element_text(margin = ggplot2::margin(t = -5, b = 5, unit = "pt"))
+  )
+)
+
+```
+
+```{r,eval=F, include=FALSE, eval=TRUE}
+ggplot2::ggsave(
+  "../data/ico_treatment_openings.jpg"
+  , dpi = "print"
+  , height = 10.1, width = 9
+)
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+remove(list = ls()[grep("_temp",ls())])
+gc()
+```
+
+### Treatment Cut/Leave Trees
+
+let's check out which trees were classified as 'cut' and which trees to 'leave' in each treatment scenario
+
+remember that [sweet height contour plot](#pre_str) we made using pre-treatment trees and their heights? let's use that as a background...
+
+```{r, fig.height = 10.1, fig.width = 9}
+# plts
+plt_cutleave <- 
+  trees2ico_ans_list %>% 
+  purrr::imap(function(x,nm){
+    plt <- 
+      plt_ht_contour +
+      ggplot2::geom_sf(
+        data = x$tree_list %>% 
+          dplyr::mutate(cut_leave = ifelse(is_keep_tree, "leave", "cut") %>% ordered()) %>% 
+          dplyr::arrange(cut_leave)
+        , mapping = ggplot2::aes(color = cut_leave)
+        , size = 1.1, alpha = 0.7
+      ) +
+      ggplot2::scale_color_manual(
+        values = c("gray77","navy")
+        , name = ""
+      ) +
+      ggplot2::labs(
+        subtitle = ico_targets_df %>% dplyr::filter(as.character(scenario_id)==nm) %>% dplyr::slice(1) %>% dplyr::pull(scenario_desc_fact) %>% as.character()
+      ) +
+      ggplot2::guides(
+        color = ggplot2::guide_legend(override.aes = list(shape = 15, size = 6, alpha = 1))
+      )
+    return(plt)
+  })
+# plt_cutleave[[1]]
+
+# patch that
+patchwork::wrap_plots(
+  patchwork::guide_area()
+  # , patchwork::plot_spacer()
+  , patchwork::wrap_plots(
+    append(
+      plt_cutleave
+      , list(plt_ht_contour_trees + ggplot2::labs(subtitle = "Pre-Treatment Tree Heights") )
+      , after = 0
+    )
+    , ncol = 2
+  )
+  , ncol = 1
+  , heights = c(0.01, 1)
+) +
+patchwork::plot_layout(guides = "collect") +
+patchwork::plot_annotation(
+  theme = ggplot2::theme(
+    legend.position = "top"
+    , legend.margin = ggplot2::margin(b = 0, unit = "pt")
+    , legend.box.margin = ggplot2::margin(b = 0, unit = "pt")
+    , plot.title = ggplot2::element_text(margin = ggplot2::margin(t = -5, b = 5, unit = "pt"))
+  )
+)
+```
+
+```{r, include=FALSE, eval=TRUE}
+ggplot2::ggsave(
+  "../data/ico_treatment_cutleave.jpg"
+  , dpi = "print"
+  , height = 10.1, width = 9
+)
+```
+
+neat.
+
+let's look at the distribution of heights by cut/leave tree group
+
+```{r}
+trees2ico_ans_trees_df %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::select(scenario_desc_fact, cut_leave, tree_height_m, dbh_cm) %>% 
+  tidyr::pivot_longer(cols = -c(scenario_desc_fact, cut_leave)) %>% 
+  dplyr::mutate(
+    name = dplyr::recode_values(
+      name
+      , "tree_height_m" ~ "Tree Height (m)"
+      , "dbh_cm" ~ "DBH (cm)"
+    )
+  ) %>%
+  ggplot2::ggplot(mapping = ggplot2::aes(x=value,fill = cut_leave,color = cut_leave)) +
+    ggplot2::geom_density(mapping = ggplot2::aes(y=ggplot2::after_stat(scaled)), alpha = 0.7, color=NA) +
+    # ggplot2::geom_histogram(alpha = 0.7) +
+    ggplot2::facet_grid(
+      cols = dplyr::vars(name)
+      , rows = dplyr::vars(scenario_desc_fact)
+      , switch = "y"
+      , axes = "all_x"
+      , scales = "free"
+    ) +
+    ggplot2::scale_y_continuous(NULL,breaks=NULL) +
+    ggplot2::scale_x_continuous(limits = c(0,NA), labels = scales::comma) +
+    ggplot2::scale_color_manual(
+      values = c("gray77","navy")
+      , name = ""
+    ) +
+    ggplot2::scale_fill_manual(
+      values = c("gray77","navy")
+      , name = ""
+    ) +
+    ggplot2::labs(
+      fill="",x=""
+      , subtitle = "comparison of height and diameter distributions\ncut versus leave trees"
+    ) +
+    ggplot2::theme_light() +
+    ggplot2::theme(
+      legend.position = "top"
+      , strip.text = ggplot2::element_text(size = 10, color = "black", face = "bold")
+      , axis.text.x = ggplot2::element_text(size = 9)
+      , axis.text.y = ggplot2::element_blank()
+      , axis.ticks.y = ggplot2::element_blank()
+    )
+```
+
+another way to see it
+
+```{r, fig.height=8.5}
+trees2ico_ans_trees_df %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::select(scenario_desc_fact, cut_leave, tree_height_m, dbh_cm) %>% 
+  tidyr::pivot_longer(cols = -c(scenario_desc_fact, cut_leave)) %>%
+  dplyr::mutate(
+    name = dplyr::recode_values(
+      name
+      , "tree_height_m" ~ "Tree Height (m)"
+      , "dbh_cm" ~ "DBH (cm)"
+    )
+  ) %>%
+  # dplyr::glimpse()
+  ggplot2::ggplot(
+    mapping = ggplot2::aes(y = value, x = cut_leave)
+  ) +
+  ggplot2::geom_boxplot(
+    mapping = ggplot2::aes(fill = cut_leave)
+    , width = 0.5
+    , alpha = 0.88
+    , color = "black"
+    , outliers = F
+  ) +
+  # ggplot2::geom_text(
+  #   mapping = ggplot2::aes(label = lab)
+  #   , color = "black", size = 2.5, vjust = -0.2
+  # ) +
+  ggplot2::scale_fill_manual(
+    values = c("gray77","navy")
+    , name = ""
+  ) +
+  ggplot2::scale_x_discrete(drop = F) + 
+  ggplot2::scale_y_continuous(
+    # breaks = seq(0,1,by=0.2)
+    labels = scales::comma
+    , limits = c(0,NA)
+    , expand = ggplot2::expansion(mult = c(0,0.1))
+  ) +
+  ggplot2::facet_grid(
+    cols = dplyr::vars(scenario_desc_fact)
+    , rows = dplyr::vars(name)
+    # , ncol = 2
+    , axes = "all"
+    , scales = "free_y"
+    # , switch = "y"
+  ) +
+  ggplot2::labs(
+    x = ""
+    , y = ""
+    , fill = ""
+    , subtitle = "comparison of height and diameter distributions\ncut versus leave trees"
+  ) +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "none"
+    , strip.text = ggplot2::element_text(size = 11, color = "black", face = "bold")
+    , axis.text.x = ggplot2::element_text(
+      color = "black", face = "bold"
+      # size = 9, angle = 45, hjust = 1, vjust = 1
+    )
+    # , axis.text.x = ggplot2::element_text(size = 12)
+    # , axis.text.y = ggplot2::element_blank()
+    # , axis.ticks.y = ggplot2::element_blank()
+  )
+```
+
+table that
+
+```{r}
+trees2ico_ans_trees_df %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::select(scenario_desc_fact, cut_leave, tree_height_m, dbh_cm) %>% 
+  dplyr::group_by(
+    scenario_desc_fact, cut_leave
+  ) %>% 
+  dplyr::summarise(
+    dplyr::across(
+      dplyr::where(is.numeric)
+      , .fns = list(
+        mean = ~mean(.x,na.rm=T)
+        , sd = ~sd(.x,na.rm=T)
+        # , q10 = ~quantile(.x,na.rm=T,probs=0.1)
+        # , q50 = ~quantile(.x,na.rm=T,probs=0.5)
+        # , q90 = ~quantile(.x,na.rm=T,probs=0.9)
+        # , min = ~min(.x,na.rm=T)
+        # , max = ~max(.x,na.rm=T)
+        , range = ~paste0(
+          scales::comma(min(.x,na.rm=T), accuracy = 0.1)
+          ,"-"
+          , scales::comma(max(.x,na.rm=T), accuracy = 0.1)
+        )
+      )
+    )
+    , n = dplyr::n()
+  ) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(-c(n)) %>% 
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::where(is.numeric)
+      , ~scales::comma(.x,accuracy=0.1)
+    )
+  ) %>% 
+  # ncol()
+  kableExtra::kbl(
+    caption = "comparison of height and diameter distributions <br />cut versus leave trees"
+    , col.names = c(
+      "scenario", "cut/leave"
+      , rep(c("Mean","Std Dev","Range"), times = 2)
+    )
+    , escape = F
+  ) %>% 
+  kableExtra::kable_styling(font_size = 12) %>% 
+  kableExtra::add_header_above(
+    c(
+      " "=2
+      , "Height (m)" = 3
+      , "DBH (cm)" = 3
+    )
+    , escape = F
+  ) %>% 
+  kableExtra::column_spec(seq(2,8,by=3), border_right = TRUE, include_thead = TRUE) %>% 
+  kableExtra::collapse_rows(columns = 1, valign = "top")  
+```
+
 
