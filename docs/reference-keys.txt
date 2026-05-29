@@ -17,6 +17,7 @@ tab:unnamed-chunk-221
 tab:unnamed-chunk-227
 tab:unnamed-chunk-230
 tab:unnamed-chunk-246
+tab:unnamed-chunk-249
 introduction
 objective
 case-study-1-quic-fire-inputs-for-prescribed-burn-planning
@@ -86,3 +87,4 @@ treatment-summary
 silvicultural-metrics-2
 treatment-spatial-pattern
 treatment-cutleave-trees
+openings

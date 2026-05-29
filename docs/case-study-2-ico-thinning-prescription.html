@@ -229,6 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#treatment-summary"><i class="fa fa-check"></i><b>3.4.3</b> Treatment Summary</a></li>
 <li class="chapter" data-level="3.4.4" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#treatment-spatial-pattern"><i class="fa fa-check"></i><b>3.4.4</b> Treatment Spatial Pattern</a></li>
 <li class="chapter" data-level="3.4.5" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#treatment-cutleave-trees"><i class="fa fa-check"></i><b>3.4.5</b> Treatment Cut/Leave Trees</a></li>
+<li class="chapter" data-level="3.4.6" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#openings"><i class="fa fa-check"></i><b>3.4.6</b> Openings</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -310,8 +311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="case-study-2-ico-thinning-prescription.html#cb187-1" tabindex="-1"></a>ctg_temp <span class="sc">%&gt;%</span> </span>
 <span id="cb187-2"><a href="case-study-2-ico-thinning-prescription.html#cb187-2" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;data&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb187-3"><a href="case-study-2-ico-thinning-prescription.html#cb187-3" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(<span class="at">popup =</span> F, <span class="at">layer.name =</span> <span class="st">&quot;point cloud tile&quot;</span>)</span></code></pre></div>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-2f4362ba8cafd6804cfb" style="width:1008px;height:672px;"></div>
-<script type="application/json" data-for="htmlwidget-2f4362ba8cafd6804cfb">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],"point cloud tile",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["point cloud tile"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"point cloud tile"}]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-2c0eee320fe2370eacfa" style="width:1008px;height:672px;"></div>
+<script type="application/json" data-for="htmlwidget-2c0eee320fe2370eacfa">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],"point cloud tile",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["point cloud tile"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"point cloud tile"}]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 </div>
 <div id="individial-tree-detection-tuning-itd_tuning-1" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Individial Tree Detection Tuning: <code>itd_tuning()</code><a href="case-study-2-ico-thinning-prescription.html#individial-tree-detection-tuning-itd_tuning-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -350,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         2 ~ 1, x &gt; 30 ~ 5, TRUE ~ 0.75 + (x * 0.14))
 ##     return(y)
 ## }
-## &lt;bytecode: 0x0000026562d45370&gt;
-## &lt;environment: 0x00000265cdaea860&gt;</code></pre>
+## &lt;bytecode: 0x000001dc62d61a28&gt;
+## &lt;environment: 0x000001dd82157fc0&gt;</code></pre>
 <p>it’s a function defining the window size (called <code>y</code>) based on the CHM height (called <code>x</code>)</p>
 <p>let’s make a custom linear function that limits the search window for shorter trees but keeps roughly the same window size for taller trees between 15-25 m (we don’t expect many trees above this in our study area)</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="case-study-2-ico-thinning-prescription.html#cb195-1" tabindex="-1"></a><span class="co"># define a custom function</span></span>
@@ -774,8 +775,8 @@ UAS-DAP data
 <span id="cb215-16"><a href="case-study-2-ico-thinning-prescription.html#cb215-16" tabindex="-1"></a>  , <span class="at">alpha.regions =</span> <span class="dv">0</span></span>
 <span id="cb215-17"><a href="case-study-2-ico-thinning-prescription.html#cb215-17" tabindex="-1"></a>  , <span class="at">layer.name =</span> <span class="st">&quot;stand bounds&quot;</span></span>
 <span id="cb215-18"><a href="case-study-2-ico-thinning-prescription.html#cb215-18" tabindex="-1"></a>) </span></code></pre></div>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-9dce8fd1b821394c9154" style="width:1008px;height:672px;"></div>
-<script type="application/json" data-for="htmlwidget-9dce8fd1b821394c9154">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#BEBEBE","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":2,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addPolygons","args":[[[[{"lng":[-105.11553887034,-105.1157882905086,-105.112270109677,-105.1120206344386,-105.11553887034],"lat":[39.12446966958995,39.12721018397794,39.12740313011341,39.12466307685334,39.12446966958995]}]]],null,"stand bounds",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#000000","weight":2,"opacity":0.9,"fill":true,"fillColor":"#000000","fillOpacity":0,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>unit_name&emsp;<\/th><td>Manitou EF&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Manitou EF",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],["point cloud tile","stand bounds"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#000000"],"labels":["Manitou EF"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"stand bounds"}]},{"method":"addHomeButton","args":[-105.1170921247449,39.12366989194094,-105.1108000408572,39.12841290498291,true,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-404898d1a6a265497a89" style="width:1008px;height:672px;"></div>
+<script type="application/json" data-for="htmlwidget-404898d1a6a265497a89">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#BEBEBE","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":2,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addPolygons","args":[[[[{"lng":[-105.11553887034,-105.1157882905086,-105.112270109677,-105.1120206344386,-105.11553887034],"lat":[39.12446966958995,39.12721018397794,39.12740313011341,39.12466307685334,39.12446966958995]}]]],null,"stand bounds",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#000000","weight":2,"opacity":0.9,"fill":true,"fillColor":"#000000","fillOpacity":0,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>unit_name&emsp;<\/th><td>Manitou EF&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Manitou EF",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],["point cloud tile","stand bounds"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#000000"],"labels":["Manitou EF"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"stand bounds"}]},{"method":"addHomeButton","args":[-105.1170921247449,39.12366989194094,-105.1108000408572,39.12841290498291,true,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 <p>we processed point cloud data well outside these stand bounds, nice.</p>
 <p>let’s filter our point cloud-generated forest inventory tree list to keep only the trees within the unit boundary and we’ll also keep only trees that are &gt;= 2 m in height</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="case-study-2-ico-thinning-prescription.html#cb216-1" tabindex="-1"></a>my_tree_ht_m <span class="ot">&lt;-</span> <span class="dv">2</span></span>
@@ -1612,7 +1613,7 @@ Individual
 <span id="cb237-11"><a href="case-study-2-ico-thinning-prescription.html#cb237-11" tabindex="-1"></a>      , <span class="st">&quot;Target BA for all: &quot;</span></span>
 <span id="cb237-12"><a href="case-study-2-ico-thinning-prescription.html#cb237-12" tabindex="-1"></a>      , scales<span class="sc">::</span><span class="fu">comma</span>( <span class="fu">max</span>(ico_targets_df<span class="sc">$</span>target_ba_m2_ha), <span class="at">accuracy =</span> <span class="fl">0.1</span> )</span>
 <span id="cb237-13"><a href="case-study-2-ico-thinning-prescription.html#cb237-13" tabindex="-1"></a>      , <span class="st">&quot; m&lt;sup&gt;2&lt;/sup&gt; ha&lt;sup&gt;-1&lt;/sup&gt;&quot;</span></span>
-<span id="cb237-14"><a href="case-study-2-ico-thinning-prescription.html#cb237-14" tabindex="-1"></a>      , <span class="st">&quot; (Brown et al. 2015)&quot;</span></span>
+<span id="cb237-14"><a href="case-study-2-ico-thinning-prescription.html#cb237-14" tabindex="-1"></a>      , <span class="st">&quot; (Ziegler et al. 2017)&quot;</span></span>
 <span id="cb237-15"><a href="case-study-2-ico-thinning-prescription.html#cb237-15" tabindex="-1"></a>    )</span>
 <span id="cb237-16"><a href="case-study-2-ico-thinning-prescription.html#cb237-16" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
 <span id="cb237-17"><a href="case-study-2-ico-thinning-prescription.html#cb237-17" tabindex="-1"></a>    <span class="co"># , digits = 2</span></span>
@@ -1620,7 +1621,7 @@ Individual
 <span id="cb237-19"><a href="case-study-2-ico-thinning-prescription.html#cb237-19" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>() </span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-221">Table 3.6: </span>ICO Scenarios: target proportion of trees in different sized clumps<br>Target BA for all: 10.6 m<sup>2</sup> ha<sup>-1</sup> (Brown et al. 2015)
+<span id="tab:unnamed-chunk-221">Table 3.6: </span>ICO Scenarios: target proportion of trees in different sized clumps<br>Target BA for all: 10.6 m<sup>2</sup> ha<sup>-1</sup> (Ziegler et al. 2017)
 </caption>
 <thead>
 <tr>
@@ -3369,6 +3370,260 @@ leave
 </td>
 <td style="text-align:left;border-right:1px solid;">
 3.8-49.8
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="openings" class="section level3 hasAnchor" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> Openings<a href="case-study-2-ico-thinning-prescription.html#openings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>let’s quantify the pre- and post-treatment openings. <a href="https://scholarworks.umt.edu/ico/3">Churchill et al. (2016)</a> define discuss openings:</p>
+<blockquote>
+<p>Openings are a critical part of dry forests. Identifying and quantifying them in low density forests is challenging, however, as most openings are not well defined “gaps”. Prescriptions that leave significant proportions of trees in clumps will automatically create a certain amount of small and medium sized openings (&lt; ~1/3 rd acre), especially if there are edaphic factors or disturbance agents creating openings. However, we have learned that creation of large openings must be specified. (p.37)</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>From experience and simulation analysis we have found the minimum size for quantifying patterns of tree clumps in most dry forests is about 1 ha (2.5 ac). However, quantification of openings requires larger stem maps, usually around 3 to 4 ha (about 7 to 10 ac), depending on opening sizes. (p.30)</p>
+</blockquote>
+<p>they also define “small openings (&lt;1/2 acre)” and “large openings…should be ~0.75 to 1 acre and wavy”</p>
+<p>An interesting snippet about openings based on field-marked ICO prescription implementation is discussed in <a href="https://doi.org/10.1016/j.foreco.2012.11.007">Churchill et al. (2013)</a>:</p>
+<blockquote>
+<p>Finally, our assumption that large openings would occur as a result of creating clumps did not prove correct (Fig. 2). Crews were uncomfortable with creating large openings, especially when it required marking large trees for removal. (p.448)</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>Another lesson learned was the need to provide explicit direction for the creation of large openings. Retaining large, fire tolerant trees is a key principle of dry forest restoration and increasing resilience (Agee and Skinner, 2005; Hessburg and Agee, 2003; Taylor and Skinner, 2003), and removal of pre-settlement era trees (old trees) is not necessary to restore pattern (Franklin and Johnson, 2012). However, we concur with others that rigid diameter limits, with no flexibility for young trees or fire intolerant species, can conflict with restoration of spatial pattern and other objectives (Abella et al., 2006; North et al., 2007). (p.452)</p>
+</blockquote>
+<p>with that background let’s look at the openings created under our scenario ICO prescriptions. the <code>trees2ico</code> framework is an objective, rule-based marking algorithm that can operate with or without diameter limits. since it is an automated, algorithmic approach, it is completely free from human marking hesitancy and simply strives to meet the BA and tree clump proportion targets that human crews may struggle to execute in the field.</p>
+<p>We define openings as contiguous spatial areas that originate 6.0 m away from the nearest tree stem, which is equal to a 3.0 m buffer from the nearest tree crown edge based on a typical overstory tree crown radius of 3.0 m. Although these openings may form highly sinuous (“wavy”) corridors winding through tree clump groups, they are closed-off wherever the proximity of an adjacent tree or clump becomes less than the 6.0 m limit. We also require that an opening must cover at least a 40.5 square meter (0.01 acre) area to be considered an actual opening.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="case-study-2-ico-thinning-prescription.html#cb259-1" tabindex="-1"></a>openings_temp <span class="ot">&lt;-</span></span>
+<span id="cb259-2"><a href="case-study-2-ico-thinning-prescription.html#cb259-2" tabindex="-1"></a>  get_clump_dist_rast_ans <span class="sc">%&gt;%</span> </span>
+<span id="cb259-3"><a href="case-study-2-ico-thinning-prescription.html#cb259-3" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(<span class="sc">~</span>purrr<span class="sc">::</span><span class="fu">pluck</span>(.x,<span class="st">&quot;openings_vect&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-4"><a href="case-study-2-ico-thinning-prescription.html#cb259-4" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">&quot;scenario_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-5"><a href="case-study-2-ico-thinning-prescription.html#cb259-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb259-6"><a href="case-study-2-ico-thinning-prescription.html#cb259-6" tabindex="-1"></a>    <span class="at">scenario_id =</span> <span class="fu">as.numeric</span>(scenario_id)</span>
+<span id="cb259-7"><a href="case-study-2-ico-thinning-prescription.html#cb259-7" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-8"><a href="case-study-2-ico-thinning-prescription.html#cb259-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb259-9"><a href="case-study-2-ico-thinning-prescription.html#cb259-9" tabindex="-1"></a>    ico_targets_df <span class="sc">%&gt;%</span> </span>
+<span id="cb259-10"><a href="case-study-2-ico-thinning-prescription.html#cb259-10" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">distinct</span>(scenario_id, scenario_desc_fact)</span>
+<span id="cb259-11"><a href="case-study-2-ico-thinning-prescription.html#cb259-11" tabindex="-1"></a>    , <span class="at">by =</span> <span class="st">&quot;scenario_id&quot;</span></span>
+<span id="cb259-12"><a href="case-study-2-ico-thinning-prescription.html#cb259-12" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-13"><a href="case-study-2-ico-thinning-prescription.html#cb259-13" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_set_geometry</span>(<span class="st">&quot;geometry&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-14"><a href="case-study-2-ico-thinning-prescription.html#cb259-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(</span>
+<span id="cb259-15"><a href="case-study-2-ico-thinning-prescription.html#cb259-15" tabindex="-1"></a>    pre_get_clump_dist_rast_ans<span class="sc">$</span>openings_vect <span class="sc">%&gt;%</span> </span>
+<span id="cb259-16"><a href="case-study-2-ico-thinning-prescription.html#cb259-16" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">scenario_id=</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-17"><a href="case-study-2-ico-thinning-prescription.html#cb259-17" tabindex="-1"></a>      sf<span class="sc">::</span><span class="fu">st_set_geometry</span>(<span class="st">&quot;geometry&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-18"><a href="case-study-2-ico-thinning-prescription.html#cb259-18" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">select</span>(scenario_id,layer,openining_area_m2,clump_dist_m)</span>
+<span id="cb259-19"><a href="case-study-2-ico-thinning-prescription.html#cb259-19" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-20"><a href="case-study-2-ico-thinning-prescription.html#cb259-20" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb259-21"><a href="case-study-2-ico-thinning-prescription.html#cb259-21" tabindex="-1"></a>    <span class="at">scenario_desc_fact =</span> scenario_desc_fact <span class="sc">%&gt;%</span> </span>
+<span id="cb259-22"><a href="case-study-2-ico-thinning-prescription.html#cb259-22" tabindex="-1"></a>      forcats<span class="sc">::</span><span class="fu">fct_na_value_to_level</span>(<span class="at">level =</span> <span class="st">&quot;Pre-Treatment&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-23"><a href="case-study-2-ico-thinning-prescription.html#cb259-23" tabindex="-1"></a>      forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="st">&quot;Pre-Treatment&quot;</span>)</span>
+<span id="cb259-24"><a href="case-study-2-ico-thinning-prescription.html#cb259-24" tabindex="-1"></a>    <span class="co"># openings desc</span></span>
+<span id="cb259-25"><a href="case-study-2-ico-thinning-prescription.html#cb259-25" tabindex="-1"></a>    , <span class="at">openings_desc =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb259-26"><a href="case-study-2-ico-thinning-prescription.html#cb259-26" tabindex="-1"></a>      openining_area_m2 <span class="sc">&lt;</span> <span class="fl">0.5</span><span class="sc">*</span><span class="dv">4047</span> <span class="sc">~</span> <span class="st">&quot;small opening&quot;</span></span>
+<span id="cb259-27"><a href="case-study-2-ico-thinning-prescription.html#cb259-27" tabindex="-1"></a>      , openining_area_m2 <span class="sc">&gt;</span> <span class="fl">0.75</span><span class="sc">*</span><span class="dv">4047</span> <span class="sc">~</span> <span class="st">&quot;large opening&quot;</span> <span class="co"># large openings...should be ~0.75 to 1 acre and wavy</span></span>
+<span id="cb259-28"><a href="case-study-2-ico-thinning-prescription.html#cb259-28" tabindex="-1"></a>      , T <span class="sc">~</span> <span class="st">&quot;medium opening&quot;</span></span>
+<span id="cb259-29"><a href="case-study-2-ico-thinning-prescription.html#cb259-29" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-30"><a href="case-study-2-ico-thinning-prescription.html#cb259-30" tabindex="-1"></a>    <span class="fu">ordered</span>(</span>
+<span id="cb259-31"><a href="case-study-2-ico-thinning-prescription.html#cb259-31" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;small opening&quot;</span>,<span class="st">&quot;medium opening&quot;</span>,<span class="st">&quot;large opening&quot;</span>)</span>
+<span id="cb259-32"><a href="case-study-2-ico-thinning-prescription.html#cb259-32" tabindex="-1"></a>    )</span>
+<span id="cb259-33"><a href="case-study-2-ico-thinning-prescription.html#cb259-33" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-34"><a href="case-study-2-ico-thinning-prescription.html#cb259-34" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb259-35"><a href="case-study-2-ico-thinning-prescription.html#cb259-35" tabindex="-1"></a>    openining_area_m2 <span class="sc">&gt;</span> <span class="fl">0.01</span><span class="sc">*</span><span class="dv">4047</span></span>
+<span id="cb259-36"><a href="case-study-2-ico-thinning-prescription.html#cb259-36" tabindex="-1"></a>  )</span>
+<span id="cb259-37"><a href="case-study-2-ico-thinning-prescription.html#cb259-37" tabindex="-1"></a>  <span class="co"># sf::st_drop_geometry() %&gt;% dplyr::count(scenario_desc_fact)</span></span>
+<span id="cb259-38"><a href="case-study-2-ico-thinning-prescription.html#cb259-38" tabindex="-1"></a>  <span class="co"># dplyr::glimpse()</span></span>
+<span id="cb259-39"><a href="case-study-2-ico-thinning-prescription.html#cb259-39" tabindex="-1"></a><span class="co"># openings_temp %&gt;% names()</span></span></code></pre></div>
+<p>let’s first look at the proportion of the stand that is covered by openings under the different scenarios</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="case-study-2-ico-thinning-prescription.html#cb260-1" tabindex="-1"></a>openings_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb260-2"><a href="case-study-2-ico-thinning-prescription.html#cb260-2" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb260-3"><a href="case-study-2-ico-thinning-prescription.html#cb260-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(scenario_desc_fact) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-4"><a href="case-study-2-ico-thinning-prescription.html#cb260-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb260-5"><a href="case-study-2-ico-thinning-prescription.html#cb260-5" tabindex="-1"></a>    <span class="at">sum_openining_area_m2 =</span> <span class="fu">sum</span>(openining_area_m2, <span class="at">na.rm =</span>T)</span>
+<span id="cb260-6"><a href="case-study-2-ico-thinning-prescription.html#cb260-6" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-7"><a href="case-study-2-ico-thinning-prescription.html#cb260-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb260-8"><a href="case-study-2-ico-thinning-prescription.html#cb260-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb260-9"><a href="case-study-2-ico-thinning-prescription.html#cb260-9" tabindex="-1"></a>    <span class="at">sum_openining_area_ha =</span> sum_openining_area_m2<span class="sc">/</span><span class="dv">10000</span></span>
+<span id="cb260-10"><a href="case-study-2-ico-thinning-prescription.html#cb260-10" tabindex="-1"></a>    , <span class="at">pct_open =</span> sum_openining_area_ha<span class="sc">/</span>stand_sf<span class="sc">$</span>stand_area_ha</span>
+<span id="cb260-11"><a href="case-study-2-ico-thinning-prescription.html#cb260-11" tabindex="-1"></a>    , <span class="at">lab =</span> <span class="fu">paste0</span>(scales<span class="sc">::</span><span class="fu">comma</span>(sum_openining_area_ha,<span class="at">accuracy=</span><span class="fl">0.01</span>), <span class="st">&quot; ha </span><span class="sc">\n</span><span class="st">&quot;</span>,scales<span class="sc">::</span><span class="fu">percent</span>(pct_open,<span class="at">accuracy=</span><span class="dv">1</span>), <span class="st">&quot; of stand&quot;</span> )</span>
+<span id="cb260-12"><a href="case-study-2-ico-thinning-prescription.html#cb260-12" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-13"><a href="case-study-2-ico-thinning-prescription.html#cb260-13" tabindex="-1"></a>  <span class="co"># dplyr::glimpse()</span></span>
+<span id="cb260-14"><a href="case-study-2-ico-thinning-prescription.html#cb260-14" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb260-15"><a href="case-study-2-ico-thinning-prescription.html#cb260-15" tabindex="-1"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">y =</span> sum_openining_area_ha, <span class="at">x =</span> scenario_desc_fact)</span>
+<span id="cb260-16"><a href="case-study-2-ico-thinning-prescription.html#cb260-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb260-17"><a href="case-study-2-ico-thinning-prescription.html#cb260-17" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_col</span>(</span>
+<span id="cb260-18"><a href="case-study-2-ico-thinning-prescription.html#cb260-18" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.6</span></span>
+<span id="cb260-19"><a href="case-study-2-ico-thinning-prescription.html#cb260-19" tabindex="-1"></a>    , <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.8</span></span>
+<span id="cb260-20"><a href="case-study-2-ico-thinning-prescription.html#cb260-20" tabindex="-1"></a>    , <span class="at">fill =</span> <span class="st">&quot;plum4&quot;</span></span>
+<span id="cb260-21"><a href="case-study-2-ico-thinning-prescription.html#cb260-21" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb260-22"><a href="case-study-2-ico-thinning-prescription.html#cb260-22" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_text</span>(</span>
+<span id="cb260-23"><a href="case-study-2-ico-thinning-prescription.html#cb260-23" tabindex="-1"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">label =</span> lab)</span>
+<span id="cb260-24"><a href="case-study-2-ico-thinning-prescription.html#cb260-24" tabindex="-1"></a>    , <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.2</span></span>
+<span id="cb260-25"><a href="case-study-2-ico-thinning-prescription.html#cb260-25" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb260-26"><a href="case-study-2-ico-thinning-prescription.html#cb260-26" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_discrete</span>(<span class="at">drop =</span> F) <span class="sc">+</span> </span>
+<span id="cb260-27"><a href="case-study-2-ico-thinning-prescription.html#cb260-27" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(</span>
+<span id="cb260-28"><a href="case-study-2-ico-thinning-prescription.html#cb260-28" tabindex="-1"></a>    <span class="co"># breaks = seq(0,1,by=0.2)</span></span>
+<span id="cb260-29"><a href="case-study-2-ico-thinning-prescription.html#cb260-29" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>comma</span>
+<span id="cb260-30"><a href="case-study-2-ico-thinning-prescription.html#cb260-30" tabindex="-1"></a>    , <span class="at">expand =</span> ggplot2<span class="sc">::</span><span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>))</span>
+<span id="cb260-31"><a href="case-study-2-ico-thinning-prescription.html#cb260-31" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb260-32"><a href="case-study-2-ico-thinning-prescription.html#cb260-32" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb260-33"><a href="case-study-2-ico-thinning-prescription.html#cb260-33" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;total open area (ha)&quot;</span></span>
+<span id="cb260-34"><a href="case-study-2-ico-thinning-prescription.html#cb260-34" tabindex="-1"></a>    , <span class="at">subtitle =</span> <span class="st">&quot;openings by treatment scenario&quot;</span></span>
+<span id="cb260-35"><a href="case-study-2-ico-thinning-prescription.html#cb260-35" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb260-36"><a href="case-study-2-ico-thinning-prescription.html#cb260-36" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb260-37"><a href="case-study-2-ico-thinning-prescription.html#cb260-37" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb260-38"><a href="case-study-2-ico-thinning-prescription.html#cb260-38" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb260-39"><a href="case-study-2-ico-thinning-prescription.html#cb260-39" tabindex="-1"></a>    , <span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb260-40"><a href="case-study-2-ico-thinning-prescription.html#cb260-40" tabindex="-1"></a></span>
+<span id="cb260-41"><a href="case-study-2-ico-thinning-prescription.html#cb260-41" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="case_studies_cloud2trees_files/figure-html/unnamed-chunk-248-1.png" alt="" width="1008" /></p>
+<p>interesting</p>
+<p>let’s look at the distribution of openings by opening size where a small opening is classified as between 0.01 and 0.5 acres, large openings are &gt; 0.75 acres, and medium openings are anything between</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="case-study-2-ico-thinning-prescription.html#cb261-1" tabindex="-1"></a>openings_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb261-2"><a href="case-study-2-ico-thinning-prescription.html#cb261-2" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb261-3"><a href="case-study-2-ico-thinning-prescription.html#cb261-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(scenario_desc_fact,openings_desc) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-4"><a href="case-study-2-ico-thinning-prescription.html#cb261-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb261-5"><a href="case-study-2-ico-thinning-prescription.html#cb261-5" tabindex="-1"></a>    <span class="at">n =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()</span>
+<span id="cb261-6"><a href="case-study-2-ico-thinning-prescription.html#cb261-6" tabindex="-1"></a>    , <span class="at">sum_openining_area_m2 =</span> <span class="fu">sum</span>(openining_area_m2, <span class="at">na.rm =</span>T)</span>
+<span id="cb261-7"><a href="case-study-2-ico-thinning-prescription.html#cb261-7" tabindex="-1"></a>    , <span class="at">mean_openining_area_m2 =</span> <span class="fu">mean</span>(openining_area_m2, <span class="at">na.rm =</span>T)</span>
+<span id="cb261-8"><a href="case-study-2-ico-thinning-prescription.html#cb261-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-9"><a href="case-study-2-ico-thinning-prescription.html#cb261-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb261-10"><a href="case-study-2-ico-thinning-prescription.html#cb261-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb261-11"><a href="case-study-2-ico-thinning-prescription.html#cb261-11" tabindex="-1"></a>    <span class="at">sum_openining_area_m2 =</span> scales<span class="sc">::</span><span class="fu">comma</span>(sum_openining_area_m2,<span class="at">accuracy=</span><span class="fl">0.1</span>)</span>
+<span id="cb261-12"><a href="case-study-2-ico-thinning-prescription.html#cb261-12" tabindex="-1"></a>    , <span class="at">mean_openining_area_m2 =</span> scales<span class="sc">::</span><span class="fu">comma</span>(mean_openining_area_m2,<span class="at">accuracy=</span><span class="fl">0.1</span>)</span>
+<span id="cb261-13"><a href="case-study-2-ico-thinning-prescription.html#cb261-13" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-14"><a href="case-study-2-ico-thinning-prescription.html#cb261-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(scenario_desc_fact, openings_desc) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-15"><a href="case-study-2-ico-thinning-prescription.html#cb261-15" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>(</span>
+<span id="cb261-16"><a href="case-study-2-ico-thinning-prescription.html#cb261-16" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;opening size distribution&quot;</span></span>
+<span id="cb261-17"><a href="case-study-2-ico-thinning-prescription.html#cb261-17" tabindex="-1"></a>    , <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb261-18"><a href="case-study-2-ico-thinning-prescription.html#cb261-18" tabindex="-1"></a>      <span class="st">&quot;scenario&quot;</span>, <span class="st">&quot;opening class&quot;</span></span>
+<span id="cb261-19"><a href="case-study-2-ico-thinning-prescription.html#cb261-19" tabindex="-1"></a>      , <span class="st">&quot;# openings&quot;</span></span>
+<span id="cb261-20"><a href="case-study-2-ico-thinning-prescription.html#cb261-20" tabindex="-1"></a>      , <span class="st">&quot;total&lt;br /&gt;opening area (m&lt;sup&gt;2&lt;/sup&gt;)&quot;</span></span>
+<span id="cb261-21"><a href="case-study-2-ico-thinning-prescription.html#cb261-21" tabindex="-1"></a>      , <span class="st">&quot;mean&lt;br /&gt;opening area (m&lt;sup&gt;2&lt;/sup&gt;)&quot;</span></span>
+<span id="cb261-22"><a href="case-study-2-ico-thinning-prescription.html#cb261-22" tabindex="-1"></a>    )</span>
+<span id="cb261-23"><a href="case-study-2-ico-thinning-prescription.html#cb261-23" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
+<span id="cb261-24"><a href="case-study-2-ico-thinning-prescription.html#cb261-24" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-25"><a href="case-study-2-ico-thinning-prescription.html#cb261-25" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-26"><a href="case-study-2-ico-thinning-prescription.html#cb261-26" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">collapse_rows</span>(<span class="at">columns =</span> <span class="dv">1</span>, <span class="at">valign =</span> <span class="st">&quot;top&quot;</span>)  </span></code></pre></div>
+<table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-249">Table 3.10: </span>opening size distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+scenario
+</th>
+<th style="text-align:left;">
+opening class
+</th>
+<th style="text-align:right;">
+# openings
+</th>
+<th style="text-align:left;">
+total<br>opening area (m<sup>2</sup>)
+</th>
+<th style="text-align:left;">
+mean<br>opening area (m<sup>2</sup>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Pre-Treatment
+</td>
+<td style="text-align:left;">
+small opening
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+1,064.5
+</td>
+<td style="text-align:left;">
+62.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Clumping
+</td>
+<td style="text-align:left;">
+small opening
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+17,584.9
+</td>
+<td style="text-align:left;">
+283.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Moderate Clumping
+</td>
+<td style="text-align:left;">
+small opening
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+15,906.4
+</td>
+<td style="text-align:left;">
+217.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="3">
+High Clumping
+</td>
+<td style="text-align:left;">
+small opening
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+13,609.1
+</td>
+<td style="text-align:left;">
+316.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium opening
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2,678.8
+</td>
+<td style="text-align:left;">
+2,678.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+large opening
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+3,168.4
+</td>
+<td style="text-align:left;">
+3,168.4
 </td>
 </tr>
 </tbody>

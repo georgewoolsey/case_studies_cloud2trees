@@ -182,7 +182,7 @@ ico_targets_df %>%
       , "Target BA for all: "
       , scales::comma( max(ico_targets_df$target_ba_m2_ha), accuracy = 0.1 )
       , " m<sup>2</sup> ha<sup>-1</sup>"
-      , " (Brown et al. 2015)"
+      , " (Ziegler et al. 2017)"
     )
     , escape = F
     # , digits = 2
@@ -1408,6 +1408,152 @@ trees2ico_ans_trees_df %>%
     , escape = F
   ) %>% 
   kableExtra::column_spec(seq(2,8,by=3), border_right = TRUE, include_thead = TRUE) %>% 
+  kableExtra::collapse_rows(columns = 1, valign = "top")  
+```
+
+### Openings
+
+let's quantify the pre- and post-treatment openings. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) define discuss openings:
+
+>Openings are a critical part of dry forests. Identifying and quantifying them in low density forests is challenging, however, as most openings are not well defined “gaps”. Prescriptions that leave significant proportions of trees in clumps will automatically create a certain amount of small and medium sized openings (< ~1/3 rd acre), especially if there are edaphic factors or disturbance agents creating openings. However, we have learned that creation of large openings must be specified. (p.37)
+
+and
+
+>From experience and simulation analysis we have found the minimum size for quantifying patterns of tree clumps in most dry forests is about 1 ha (2.5 ac). However, quantification of openings requires larger stem maps, usually around 3 to 4 ha (about 7 to 10 ac), depending on opening sizes. (p.30)
+
+they also define "small openings (<1/2 acre)" and "large openings...should be ~0.75 to 1 acre and wavy"
+
+An interesting snippet about openings based on field-marked ICO prescription implementation is discussed in [Churchill et al. (2013)](https://doi.org/10.1016/j.foreco.2012.11.007):
+
+>Finally, our assumption that large openings would occur as a result of creating clumps did not prove correct (Fig. 2). Crews were uncomfortable with creating large openings, especially when it required marking large trees for removal. (p.448)
+
+and
+
+>Another lesson learned was the need to provide explicit direction for the creation of large openings. Retaining large, fire tolerant trees is a key principle of dry forest restoration and increasing resilience (Agee and Skinner, 2005; Hessburg and Agee, 2003; Taylor and Skinner, 2003), and removal of pre-settlement era trees (old trees) is not necessary to restore pattern (Franklin and Johnson, 2012). However, we concur with others that rigid diameter limits, with no flexibility for young trees or fire intolerant species, can conflict with restoration of spatial pattern and other objectives (Abella et al., 2006; North et al., 2007). (p.452)
+
+with that background let's look at the openings created under our scenario ICO prescriptions. the `trees2ico` framework is an objective, rule-based marking algorithm that can operate with or without diameter limits. since it is an automated, algorithmic approach, it is completely free from human marking hesitancy and simply strives to meet the BA and tree clump proportion targets that human crews may struggle to execute in the field.
+
+We define openings as contiguous spatial areas that originate `r scales::comma(my_clump_dist_m,accuracy=.1)` m away from the nearest tree stem, which is equal to a `r scales::comma(my_clump_dist_m/2,accuracy=.1)` m buffer from the nearest tree crown edge based on a typical overstory tree crown radius of `r scales::comma(my_clump_dist_m/2,accuracy=.1)` m. Although these openings may form highly sinuous ("wavy") corridors winding through tree clump groups, they are closed-off wherever the proximity of an adjacent tree or clump becomes less than the `r scales::comma(my_clump_dist_m,accuracy=.1)` m limit. We also require that an opening must cover at least a `r scales::comma(0.01*4047,accuracy=.1)` square meter (`r scales::comma(0.01,accuracy=.01)` acre) area to be considered an actual opening.
+
+```{r}
+openings_temp <-
+  get_clump_dist_rast_ans %>% 
+  purrr::map(~purrr::pluck(.x,"openings_vect")) %>% 
+  purrr::list_rbind(names_to = "scenario_id") %>% 
+  dplyr::mutate(
+    scenario_id = as.numeric(scenario_id)
+  ) %>% 
+  dplyr::inner_join(
+    ico_targets_df %>% 
+      dplyr::distinct(scenario_id, scenario_desc_fact)
+    , by = "scenario_id"
+  ) %>% 
+  sf::st_set_geometry("geometry") %>% 
+  dplyr::bind_rows(
+    pre_get_clump_dist_rast_ans$openings_vect %>% 
+      dplyr::mutate(scenario_id=99) %>% 
+      sf::st_set_geometry("geometry") %>% 
+      dplyr::select(scenario_id,layer,openining_area_m2,clump_dist_m)
+  ) %>% 
+  dplyr::mutate(
+    scenario_desc_fact = scenario_desc_fact %>% 
+      forcats::fct_na_value_to_level(level = "Pre-Treatment") %>% 
+      forcats::fct_relevel("Pre-Treatment")
+    # openings desc
+    , openings_desc = dplyr::case_when(
+      openining_area_m2 < 0.5*4047 ~ "small opening"
+      , openining_area_m2 > 0.75*4047 ~ "large opening" # large openings...should be ~0.75 to 1 acre and wavy
+      , T ~ "medium opening"
+    ) %>% 
+    ordered(
+      levels = c("small opening","medium opening","large opening")
+    )
+  ) %>% 
+  dplyr::filter(
+    openining_area_m2 > 0.01*4047
+  )
+  # sf::st_drop_geometry() %>% dplyr::count(scenario_desc_fact)
+  # dplyr::glimpse()
+# openings_temp %>% names()
+```
+
+let's first look at the proportion of the stand that is covered by openings under the different scenarios
+
+```{r}
+openings_temp %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::group_by(scenario_desc_fact) %>% 
+  dplyr::summarise(
+    sum_openining_area_m2 = sum(openining_area_m2, na.rm =T)
+  ) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(
+    sum_openining_area_ha = sum_openining_area_m2/10000
+    , pct_open = sum_openining_area_ha/stand_sf$stand_area_ha
+    , lab = paste0(scales::comma(sum_openining_area_ha,accuracy=0.01), " ha \n",scales::percent(pct_open,accuracy=1), " of stand" )
+  ) %>% 
+  # dplyr::glimpse()
+  ggplot2::ggplot(
+    mapping = ggplot2::aes(y = sum_openining_area_ha, x = scenario_desc_fact)
+  ) +
+  ggplot2::geom_col(
+    width = 0.6
+    , color = NA, alpha = 0.8
+    , fill = "plum4"
+  ) +
+  ggplot2::geom_text(
+    mapping = ggplot2::aes(label = lab)
+    , color = "black", size = 3, vjust = -0.2
+  ) +
+  ggplot2::scale_x_discrete(drop = F) + 
+  ggplot2::scale_y_continuous(
+    # breaks = seq(0,1,by=0.2)
+    labels = scales::comma
+    , expand = ggplot2::expansion(mult = c(0,0.1))
+  ) +
+  ggplot2::labs(
+    x = "", y = "total open area (ha)"
+    , subtitle = "openings by treatment scenario"
+  ) +
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "none"
+    , axis.text.x = ggplot2::element_text(size = 10, face = "bold")
+
+  )
+  
+```
+
+interesting
+
+let's look at the distribution of openings by opening size where a small opening is classified as between 0.01 and 0.5 acres, large openings are > 0.75 acres, and medium openings are anything between
+
+```{r}
+openings_temp %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::group_by(scenario_desc_fact,openings_desc) %>% 
+  dplyr::summarise(
+    n = dplyr::n()
+    , sum_openining_area_m2 = sum(openining_area_m2, na.rm =T)
+    , mean_openining_area_m2 = mean(openining_area_m2, na.rm =T)
+  ) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(
+    sum_openining_area_m2 = scales::comma(sum_openining_area_m2,accuracy=0.1)
+    , mean_openining_area_m2 = scales::comma(mean_openining_area_m2,accuracy=0.1)
+  ) %>% 
+  dplyr::arrange(scenario_desc_fact, openings_desc) %>% 
+  kableExtra::kbl(
+    caption = "opening size distribution"
+    , col.names = c(
+      "scenario", "opening class"
+      , "# openings"
+      , "total<br />opening area (m<sup>2</sup>)"
+      , "mean<br />opening area (m<sup>2</sup>)"
+    )
+    , escape = F
+  ) %>% 
+  kableExtra::kable_styling(font_size = 12) %>% 
   kableExtra::collapse_rows(columns = 1, valign = "top")  
 ```
 
