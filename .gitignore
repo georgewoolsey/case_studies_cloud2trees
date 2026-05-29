@@ -39,11 +39,7 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-data/
-data/*.pdf
-data/*.xlsx
-data/*.png
-data/*.jpg
-data/*.jpeg
+data/*
+!data/itd_tuning*.jpg
 src/_bookdown_files/
 src/gee_js/

@@ -44,7 +44,7 @@ library(cloud2trees) # the cloud2trees
 
 ```{r, include=F, warning=F, message=F}
 #########################
-#   ```{r,eval=F
+#   ```{r,eval=T
 #########################
 
 # knit options
@@ -117,7 +117,7 @@ itd_tuning_ans <-
   )
 ```
 
-```{r,eval=F, include=F, echo=F}
+```{r,eval=T, include=F, echo=F}
 itd_tuning_ans <- 
   cloud2trees::itd_tuning(
     input_las_dir = f
@@ -129,7 +129,7 @@ itd_tuning_ans <-
 
 what does `cloud2trees::itd_tuning()` give us?
 
-```{r,eval=F}
+```{r,eval=T}
 names(itd_tuning_ans)
 ```
 
@@ -165,7 +165,7 @@ these results confirm what we identified about the `log_fn` compared to the othe
 
 let's look at the default window function named `lin_fn` (i.e. linear function) from `cloud2trees` to see how we might adjust it to obtain different tree segmentation results
 
-```{r,eval=F}
+```{r,eval=T}
 itd_tuning_ans$ws_fn_list$lin_fn
 ```
 
@@ -200,7 +200,7 @@ my_linear <- function(x){
 
 we can plot the two default functions that we did not rule out based on the first set of `cloud2trees::itd_tuning()` samples along with our custom linear function
 
-```{r,eval=F}
+```{r,eval=T}
 # plot the ws fn
 ggplot2::ggplot() +
   ggplot2::geom_function(fun = itd_tuning_ans$ws_fn_list$lin_fn, aes(color = "lin_fn"), lwd = 1) +

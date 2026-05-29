@@ -471,7 +471,7 @@ pre_post_temp %>%
 
 visualize that
 
-```{r}
+```{r, fig.height=8}
 pre_post_temp %>% 
 dplyr::mutate(
     pct_trees_lab = scales::percent(ifelse(pct_trees>=0.05,pct_trees,NA), accuracy = 1)
@@ -1068,7 +1068,7 @@ check those plots out
 
 the distance raster
 
-```{r,eval=F, fig.height=10.1, fig.width=9}
+```{r,eval=T, fig.height=10.1, fig.width=9}
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1105,7 +1105,7 @@ patchwork::plot_annotation(
 
 ```
 
-```{r,eval=F, include=FALSE, eval=TRUE}
+```{r,eval=T, include=FALSE, eval=TRUE}
 ggplot2::ggsave(
   "../data/ico_treatment_dist_rast.jpg"
   , dpi = "print"
@@ -1115,7 +1115,7 @@ ggplot2::ggsave(
 
 the openings
 
-```{r,eval=F, fig.height=10.1, fig.width=9}
+```{r,eval=T, fig.height=10.1, fig.width=9}
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1153,7 +1153,7 @@ patchwork::plot_annotation(
 
 ```
 
-```{r,eval=F, include=FALSE, eval=TRUE}
+```{r,eval=T, include=FALSE, eval=TRUE}
 ggplot2::ggsave(
   "../data/ico_treatment_openings.jpg"
   , dpi = "print"
@@ -1238,7 +1238,7 @@ neat.
 
 let's look at the distribution of heights by cut/leave tree group
 
-```{r}
+```{r, fig.height=9}
 trees2ico_ans_trees_df %>% 
   sf::st_drop_geometry() %>% 
   dplyr::select(scenario_desc_fact, cut_leave, tree_height_m, dbh_cm) %>% 
