@@ -226,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#define-targets"><i class="fa fa-check"></i><b>3.4.1</b> Define Targets</a></li>
 <li class="chapter" data-level="3.4.2" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#get-ico-prescription"><i class="fa fa-check"></i><b>3.4.2</b> Get ICO Prescription</a></li>
-<li class="chapter" data-level="3.4.3" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#treatment-summary"><i class="fa fa-check"></i><b>3.4.3</b> Treatment Summary</a></li>
+<li class="chapter" data-level="3.4.3" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#pre--and-post-treatment-summary"><i class="fa fa-check"></i><b>3.4.3</b> Pre- and Post-Treatment Summary</a></li>
 <li class="chapter" data-level="3.4.4" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#treatment-spatial-pattern"><i class="fa fa-check"></i><b>3.4.4</b> Treatment Spatial Pattern</a></li>
 <li class="chapter" data-level="3.4.5" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#treatment-cutleave-trees"><i class="fa fa-check"></i><b>3.4.5</b> Treatment Cut/Leave Trees</a></li>
 <li class="chapter" data-level="3.4.6" data-path="case-study-2-ico-thinning-prescription.html"><a href="case-study-2-ico-thinning-prescription.html#openings"><i class="fa fa-check"></i><b>3.4.6</b> Openings</a></li>
@@ -311,8 +311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="case-study-2-ico-thinning-prescription.html#cb187-1" tabindex="-1"></a>ctg_temp <span class="sc">%&gt;%</span> </span>
 <span id="cb187-2"><a href="case-study-2-ico-thinning-prescription.html#cb187-2" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;data&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb187-3"><a href="case-study-2-ico-thinning-prescription.html#cb187-3" tabindex="-1"></a>  mapview<span class="sc">::</span><span class="fu">mapview</span>(<span class="at">popup =</span> F, <span class="at">layer.name =</span> <span class="st">&quot;point cloud tile&quot;</span>)</span></code></pre></div>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-2c0eee320fe2370eacfa" style="width:1008px;height:672px;"></div>
-<script type="application/json" data-for="htmlwidget-2c0eee320fe2370eacfa">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],"point cloud tile",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["point cloud tile"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"point cloud tile"}]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-44b9e89d1f9d9a31175e" style="width:1008px;height:672px;"></div>
+<script type="application/json" data-for="htmlwidget-44b9e89d1f9d9a31175e">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],"point cloud tile",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["point cloud tile"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"point cloud tile"}]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 </div>
 <div id="individial-tree-detection-tuning-itd_tuning-1" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Individial Tree Detection Tuning: <code>itd_tuning()</code><a href="case-study-2-ico-thinning-prescription.html#individial-tree-detection-tuning-itd_tuning-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -351,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         2 ~ 1, x &gt; 30 ~ 5, TRUE ~ 0.75 + (x * 0.14))
 ##     return(y)
 ## }
-## &lt;bytecode: 0x000001dc62d61a28&gt;
-## &lt;environment: 0x000001dd82157fc0&gt;</code></pre>
+## &lt;bytecode: 0x000002406287e6c8&gt;
+## &lt;environment: 0x00000241ee6238b0&gt;</code></pre>
 <p>it’s a function defining the window size (called <code>y</code>) based on the CHM height (called <code>x</code>)</p>
 <p>let’s make a custom linear function that limits the search window for shorter trees but keeps roughly the same window size for taller trees between 15-25 m (we don’t expect many trees above this in our study area)</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="case-study-2-ico-thinning-prescription.html#cb195-1" tabindex="-1"></a><span class="co"># define a custom function</span></span>
@@ -775,8 +775,8 @@ UAS-DAP data
 <span id="cb215-16"><a href="case-study-2-ico-thinning-prescription.html#cb215-16" tabindex="-1"></a>  , <span class="at">alpha.regions =</span> <span class="dv">0</span></span>
 <span id="cb215-17"><a href="case-study-2-ico-thinning-prescription.html#cb215-17" tabindex="-1"></a>  , <span class="at">layer.name =</span> <span class="st">&quot;stand bounds&quot;</span></span>
 <span id="cb215-18"><a href="case-study-2-ico-thinning-prescription.html#cb215-18" tabindex="-1"></a>) </span></code></pre></div>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-404898d1a6a265497a89" style="width:1008px;height:672px;"></div>
-<script type="application/json" data-for="htmlwidget-404898d1a6a265497a89">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#BEBEBE","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":2,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addPolygons","args":[[[[{"lng":[-105.11553887034,-105.1157882905086,-105.112270109677,-105.1120206344386,-105.11553887034],"lat":[39.12446966958995,39.12721018397794,39.12740313011341,39.12466307685334,39.12446966958995]}]]],null,"stand bounds",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#000000","weight":2,"opacity":0.9,"fill":true,"fillColor":"#000000","fillOpacity":0,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>unit_name&emsp;<\/th><td>Manitou EF&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Manitou EF",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],["point cloud tile","stand bounds"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#000000"],"labels":["Manitou EF"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"stand bounds"}]},{"method":"addHomeButton","args":[-105.1170921247449,39.12366989194094,-105.1108000408572,39.12841290498291,true,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-30e9903cfd8cbe3ba3ca" style="width:1008px;height:672px;"></div>
+<script type="application/json" data-for="htmlwidget-30e9903cfd8cbe3ba3ca">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-105.1170842823922,-105.1170921247449,-105.110807462291,-105.1108000408572,-105.1170842823922],"lat":[39.12366989194094,39.12840676149774,39.12841290498291,39.12367603439533,39.12366989194094]}]]],null,"point cloud tile",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#BEBEBE","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":2,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addPolygons","args":[[[[{"lng":[-105.11553887034,-105.1157882905086,-105.112270109677,-105.1120206344386,-105.11553887034],"lat":[39.12446966958995,39.12721018397794,39.12740313011341,39.12466307685334,39.12446966958995]}]]],null,"stand bounds",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#000000","weight":2,"opacity":0.9,"fill":true,"fillColor":"#000000","fillOpacity":0,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>unit_name&emsp;<\/th><td>Manitou EF&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Manitou EF",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":0.9,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addLayersControl","args":[["OpenStreetMap","Esri.WorldImagery"],["point cloud tile","stand bounds"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#000000"],"labels":["Manitou EF"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"stand bounds"}]},{"method":"addHomeButton","args":[-105.1170921247449,39.12366989194094,-105.1108000408572,39.12841290498291,true,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"limits":{"lat":[39.12366989194094,39.12841290498291],"lng":[-105.1170921247449,-105.1108000408572]},"fitBounds":[39.12366989194094,-105.1170921247449,39.12841290498291,-105.1108000408572,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 <p>we processed point cloud data well outside these stand bounds, nice.</p>
 <p>let’s filter our point cloud-generated forest inventory tree list to keep only the trees within the unit boundary and we’ll also keep only trees that are &gt;= 2 m in height</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="case-study-2-ico-thinning-prescription.html#cb216-1" tabindex="-1"></a>my_tree_ht_m <span class="ot">&lt;-</span> <span class="dv">2</span></span>
@@ -1598,7 +1598,7 @@ Individual
 <span id="cb236-52"><a href="case-study-2-ico-thinning-prescription.html#cb236-52" tabindex="-1"></a>    <span class="co"># , huh = as.numeric(scenario_desc_fact)</span></span>
 <span id="cb236-53"><a href="case-study-2-ico-thinning-prescription.html#cb236-53" tabindex="-1"></a>  )</span>
 <span id="cb236-54"><a href="case-study-2-ico-thinning-prescription.html#cb236-54" tabindex="-1"></a><span class="co"># dplyr::glimpse(ico_targets_df)</span></span></code></pre></div>
-<p>We set the same BA target of <code>scales::comma( max(ico_targets_df$target_ba_m2_ha), accuracy = 0.1 )</code> square meters per hectare for all of these scenarios. This target was based on post-treatment <a href="https://doi.org/10.1016/j.foreco.2016.12.002">Ziegler et al. (2017)</a> outcomes on sites that had been treated across the Colorado Plateau and southern Rocky Mountains (matching our demonstration site) with the expressed treatment goals of restoring forest structural patterns and potential fire behavior akin to historic ranges.</p>
+<p>We set the same BA target of 10.6 square meters per hectare for all of these scenarios. This target was based on post-treatment <a href="https://doi.org/10.1016/j.foreco.2016.12.002">Ziegler et al. (2017)</a> outcomes on sites that had been treated across the Colorado Plateau and southern Rocky Mountains (matching our demonstration site) with the expressed treatment goals of restoring forest structural patterns and potential fire behavior akin to historic ranges.</p>
 <p>what are the 3 target scenarios we defined?</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="case-study-2-ico-thinning-prescription.html#cb237-1" tabindex="-1"></a>ico_targets_df <span class="sc">%&gt;%</span> </span>
 <span id="cb237-2"><a href="case-study-2-ico-thinning-prescription.html#cb237-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(scenario_desc, clump_n_trees_grp, target_props) <span class="sc">%&gt;%</span> </span>
@@ -1888,8 +1888,8 @@ High Clumping<br>(Churchill et al. 2016 [Malheur])
 ## $ post_clump_n_trees     &lt;int&gt; NA, 10, NA, NA, NA, NA, NA, NA, NA, 1, NA, 10, …
 ## $ post_clump_n_trees_grp &lt;ord&gt; NA, 10-15 trees, NA, NA, NA, NA, NA, NA, NA, In…</code></pre>
 </div>
-<div id="treatment-summary" class="section level3 hasAnchor" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> Treatment Summary<a href="case-study-2-ico-thinning-prescription.html#treatment-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="pre--and-post-treatment-summary" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Pre- and Post-Treatment Summary<a href="case-study-2-ico-thinning-prescription.html#pre--and-post-treatment-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>compare the pre- and post-treatment proportion of trees in different sized clumps</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="case-study-2-ico-thinning-prescription.html#cb244-1" tabindex="-1"></a>trees2ico_ans_trees_df <span class="ot">&lt;-</span> </span>
 <span id="cb244-2"><a href="case-study-2-ico-thinning-prescription.html#cb244-2" tabindex="-1"></a>  trees2ico_ans_list <span class="sc">%&gt;%</span> </span>
@@ -2219,8 +2219,6 @@ post-treatment
 <span id="cb245-57"><a href="case-study-2-ico-thinning-prescription.html#cb245-57" tabindex="-1"></a>    )</span>
 <span id="cb245-58"><a href="case-study-2-ico-thinning-prescription.html#cb245-58" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="case_studies_cloud2trees_files/figure-html/unnamed-chunk-228-1.png" alt="" width="1008" /></p>
-<div id="silvicultural-metrics-2" class="section level4 hasAnchor" number="3.4.3.1">
-<h4><span class="header-section-number">3.4.3.1</span> Silvicultural metrics<a href="case-study-2-ico-thinning-prescription.html#silvicultural-metrics-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s look at some common stand-level forestry metrics</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="case-study-2-ico-thinning-prescription.html#cb246-1" tabindex="-1"></a><span class="do">### stand-level summaries</span></span>
 <span id="cb246-2"><a href="case-study-2-ico-thinning-prescription.html#cb246-2" tabindex="-1"></a>silv_metrics_temp <span class="ot">&lt;-</span></span>
@@ -2547,7 +2545,7 @@ High Clumping
 <span id="cb248-66"><a href="case-study-2-ico-thinning-prescription.html#cb248-66" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb248-67"><a href="case-study-2-ico-thinning-prescription.html#cb248-67" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(<span class="at">key_glyph =</span> <span class="st">&quot;point&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;gray&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
 <span id="cb248-68"><a href="case-study-2-ico-thinning-prescription.html#cb248-68" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_col</span>(<span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> status), <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">width =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb248-69"><a href="case-study-2-ico-thinning-prescription.html#cb248-69" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;cividis&quot;</span>) <span class="sc">+</span></span>
+<span id="cb248-69"><a href="case-study-2-ico-thinning-prescription.html#cb248-69" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;magma&quot;</span>, <span class="at">begin =</span> <span class="fl">0.5</span>, <span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
 <span id="cb248-70"><a href="case-study-2-ico-thinning-prescription.html#cb248-70" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_text</span>(</span>
 <span id="cb248-71"><a href="case-study-2-ico-thinning-prescription.html#cb248-71" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.25</span>, <span class="at">size =</span> <span class="fl">2.5</span></span>
 <span id="cb248-72"><a href="case-study-2-ico-thinning-prescription.html#cb248-72" tabindex="-1"></a>  ) <span class="sc">+</span></span>
@@ -2620,8 +2618,8 @@ High Clumping
 <span id="cb249-44"><a href="case-study-2-ico-thinning-prescription.html#cb249-44" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb249-45"><a href="case-study-2-ico-thinning-prescription.html#cb249-45" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="cn">NULL</span>,<span class="at">breaks=</span><span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb249-46"><a href="case-study-2-ico-thinning-prescription.html#cb249-46" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="cn">NA</span>), <span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
-<span id="cb249-47"><a href="case-study-2-ico-thinning-prescription.html#cb249-47" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;cividis&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-48"><a href="case-study-2-ico-thinning-prescription.html#cb249-48" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_color_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;cividis&quot;</span>) <span class="sc">+</span></span>
+<span id="cb249-47"><a href="case-study-2-ico-thinning-prescription.html#cb249-47" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;magma&quot;</span>, <span class="at">begin =</span> <span class="fl">0.5</span>, <span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb249-48"><a href="case-study-2-ico-thinning-prescription.html#cb249-48" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_color_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;magma&quot;</span>, <span class="at">begin =</span> <span class="fl">0.5</span>, <span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
 <span id="cb249-49"><a href="case-study-2-ico-thinning-prescription.html#cb249-49" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
 <span id="cb249-50"><a href="case-study-2-ico-thinning-prescription.html#cb249-50" tabindex="-1"></a>      <span class="at">fill=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;&quot;</span></span>
 <span id="cb249-51"><a href="case-study-2-ico-thinning-prescription.html#cb249-51" tabindex="-1"></a>      , <span class="at">subtitle =</span> <span class="st">&quot;comparison of height and diameter distributions</span><span class="sc">\n</span><span class="st">pre- versus post-treatment&quot;</span></span>
@@ -2635,7 +2633,6 @@ High Clumping
 <span id="cb249-59"><a href="case-study-2-ico-thinning-prescription.html#cb249-59" tabindex="-1"></a>      , <span class="at">axis.ticks.y =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>()</span>
 <span id="cb249-60"><a href="case-study-2-ico-thinning-prescription.html#cb249-60" tabindex="-1"></a>    )</span></code></pre></div>
 <p><img src="case_studies_cloud2trees_files/figure-html/unnamed-chunk-232-1.png" alt="" width="1008" /></p>
-</div>
 </div>
 <div id="treatment-spatial-pattern" class="section level3 hasAnchor" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> Treatment Spatial Pattern<a href="case-study-2-ico-thinning-prescription.html#treatment-spatial-pattern" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2680,149 +2677,157 @@ High Clumping
 <span id="cb250-37"><a href="case-study-2-ico-thinning-prescription.html#cb250-37" tabindex="-1"></a><span class="co"># pre_get_clump_dist_rast_ans$dist_rast %&gt;% terra::plot()</span></span>
 <span id="cb250-38"><a href="case-study-2-ico-thinning-prescription.html#cb250-38" tabindex="-1"></a><span class="co"># pre_get_clump_dist_rast_ans$openings_vect %&gt;% terra::plot()</span></span></code></pre></div>
 <p>now we’ll make a function to plot the spatial pattern roughly following <a href="https://doi.org/10.1016/j.foreco.2012.11.007">Churchill et al. (2013)</a> Figure 2</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="case-study-2-ico-thinning-prescription.html#cb251-1" tabindex="-1"></a><span class="co"># scales::show_col(pal_clump_grp)</span></span>
-<span id="cb251-2"><a href="case-study-2-ico-thinning-prescription.html#cb251-2" tabindex="-1"></a><span class="co"># get_the_plts </span></span>
-<span id="cb251-3"><a href="case-study-2-ico-thinning-prescription.html#cb251-3" tabindex="-1"></a>get_the_plts_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(dist_rast, openings_vect, stand_sf, clump_polys, ttops, <span class="at">my_title =</span> <span class="st">&quot;&quot;</span>, <span class="at">openining_area_m2_max =</span> <span class="cn">NA</span>, <span class="at">dist_max =</span> <span class="cn">NA</span>) {</span>
-<span id="cb251-4"><a href="case-study-2-ico-thinning-prescription.html#cb251-4" tabindex="-1"></a>  <span class="co"># get the area spacing</span></span>
-<span id="cb251-5"><a href="case-study-2-ico-thinning-prescription.html#cb251-5" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(openining_area_m2_max)){</span>
-<span id="cb251-6"><a href="case-study-2-ico-thinning-prescription.html#cb251-6" tabindex="-1"></a>    openining_area_m2_max <span class="ot">&lt;-</span> </span>
-<span id="cb251-7"><a href="case-study-2-ico-thinning-prescription.html#cb251-7" tabindex="-1"></a>      openings_vect <span class="sc">%&gt;%</span> </span>
-<span id="cb251-8"><a href="case-study-2-ico-thinning-prescription.html#cb251-8" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">pull</span>(openining_area_m2) <span class="sc">%&gt;%</span> </span>
-<span id="cb251-9"><a href="case-study-2-ico-thinning-prescription.html#cb251-9" tabindex="-1"></a>      <span class="fu">max</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb251-10"><a href="case-study-2-ico-thinning-prescription.html#cb251-10" tabindex="-1"></a>      <span class="fu">ceiling</span>()</span>
-<span id="cb251-11"><a href="case-study-2-ico-thinning-prescription.html#cb251-11" tabindex="-1"></a>  }</span>
-<span id="cb251-12"><a href="case-study-2-ico-thinning-prescription.html#cb251-12" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(dist_max)){</span>
-<span id="cb251-13"><a href="case-study-2-ico-thinning-prescription.html#cb251-13" tabindex="-1"></a>    dist_max <span class="ot">&lt;-</span> </span>
-<span id="cb251-14"><a href="case-study-2-ico-thinning-prescription.html#cb251-14" tabindex="-1"></a>      dist_rast <span class="sc">%&gt;%</span> </span>
-<span id="cb251-15"><a href="case-study-2-ico-thinning-prescription.html#cb251-15" tabindex="-1"></a>      terra<span class="sc">::</span><span class="fu">minmax</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb251-16"><a href="case-study-2-ico-thinning-prescription.html#cb251-16" tabindex="-1"></a>      .[<span class="dv">2</span>] <span class="sc">%&gt;%</span> </span>
-<span id="cb251-17"><a href="case-study-2-ico-thinning-prescription.html#cb251-17" tabindex="-1"></a>      <span class="fu">ceiling</span>()</span>
-<span id="cb251-18"><a href="case-study-2-ico-thinning-prescription.html#cb251-18" tabindex="-1"></a>  }</span>
-<span id="cb251-19"><a href="case-study-2-ico-thinning-prescription.html#cb251-19" tabindex="-1"></a>  plt_stand <span class="ot">&lt;-</span> </span>
-<span id="cb251-20"><a href="case-study-2-ico-thinning-prescription.html#cb251-20" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb251-21"><a href="case-study-2-ico-thinning-prescription.html#cb251-21" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> stand_sf <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb251-22"><a href="case-study-2-ico-thinning-prescription.html#cb251-22" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb251-23"><a href="case-study-2-ico-thinning-prescription.html#cb251-23" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb251-24"><a href="case-study-2-ico-thinning-prescription.html#cb251-24" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
-<span id="cb251-25"><a href="case-study-2-ico-thinning-prescription.html#cb251-25" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb251-26"><a href="case-study-2-ico-thinning-prescription.html#cb251-26" tabindex="-1"></a>        , <span class="at">y =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb251-27"><a href="case-study-2-ico-thinning-prescription.html#cb251-27" tabindex="-1"></a>        , <span class="at">subtitle =</span> my_title</span>
-<span id="cb251-28"><a href="case-study-2-ico-thinning-prescription.html#cb251-28" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb251-29"><a href="case-study-2-ico-thinning-prescription.html#cb251-29" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb251-30"><a href="case-study-2-ico-thinning-prescription.html#cb251-30" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
-<span id="cb251-31"><a href="case-study-2-ico-thinning-prescription.html#cb251-31" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span> <span class="co"># c(0.5,1)</span></span>
-<span id="cb251-32"><a href="case-study-2-ico-thinning-prescription.html#cb251-32" tabindex="-1"></a>        , <span class="at">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span></span>
-<span id="cb251-33"><a href="case-study-2-ico-thinning-prescription.html#cb251-33" tabindex="-1"></a>        , <span class="at">legend.margin =</span> ggplot2<span class="sc">::</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb251-34"><a href="case-study-2-ico-thinning-prescription.html#cb251-34" tabindex="-1"></a>        , <span class="at">legend.title=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb251-35"><a href="case-study-2-ico-thinning-prescription.html#cb251-35" tabindex="-1"></a>        , <span class="at">legend.text=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
-<span id="cb251-36"><a href="case-study-2-ico-thinning-prescription.html#cb251-36" tabindex="-1"></a>        , <span class="at">legend.key =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
-<span id="cb251-37"><a href="case-study-2-ico-thinning-prescription.html#cb251-37" tabindex="-1"></a>        , <span class="at">plot.subtitle =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb251-38"><a href="case-study-2-ico-thinning-prescription.html#cb251-38" tabindex="-1"></a>      )</span>
-<span id="cb251-39"><a href="case-study-2-ico-thinning-prescription.html#cb251-39" tabindex="-1"></a><span class="do">##################################################</span></span>
-<span id="cb251-40"><a href="case-study-2-ico-thinning-prescription.html#cb251-40" tabindex="-1"></a><span class="co"># plot distance raster and trees</span></span>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="case-study-2-ico-thinning-prescription.html#cb251-1" tabindex="-1"></a><span class="co"># minimum size to be considered openingn</span></span>
+<span id="cb251-2"><a href="case-study-2-ico-thinning-prescription.html#cb251-2" tabindex="-1"></a>my_min_openining_area_m2 <span class="ot">&lt;-</span> <span class="fl">0.01</span><span class="sc">*</span><span class="dv">4047</span></span>
+<span id="cb251-3"><a href="case-study-2-ico-thinning-prescription.html#cb251-3" tabindex="-1"></a><span class="co"># scales::show_col(pal_clump_grp)</span></span>
+<span id="cb251-4"><a href="case-study-2-ico-thinning-prescription.html#cb251-4" tabindex="-1"></a><span class="co"># get_the_plts </span></span>
+<span id="cb251-5"><a href="case-study-2-ico-thinning-prescription.html#cb251-5" tabindex="-1"></a>get_the_plts_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(dist_rast, openings_vect, stand_sf, clump_polys, ttops, <span class="at">my_title =</span> <span class="st">&quot;&quot;</span>, <span class="at">openining_area_m2_max =</span> <span class="cn">NA</span>, <span class="at">dist_max =</span> <span class="cn">NA</span>,<span class="at">min_openining_area_m2=</span><span class="fl">40.5</span>) {</span>
+<span id="cb251-6"><a href="case-study-2-ico-thinning-prescription.html#cb251-6" tabindex="-1"></a>  <span class="co"># get the area spacing</span></span>
+<span id="cb251-7"><a href="case-study-2-ico-thinning-prescription.html#cb251-7" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(openining_area_m2_max)){</span>
+<span id="cb251-8"><a href="case-study-2-ico-thinning-prescription.html#cb251-8" tabindex="-1"></a>    openining_area_m2_max <span class="ot">&lt;-</span> </span>
+<span id="cb251-9"><a href="case-study-2-ico-thinning-prescription.html#cb251-9" tabindex="-1"></a>      openings_vect <span class="sc">%&gt;%</span> </span>
+<span id="cb251-10"><a href="case-study-2-ico-thinning-prescription.html#cb251-10" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">pull</span>(openining_area_m2) <span class="sc">%&gt;%</span> </span>
+<span id="cb251-11"><a href="case-study-2-ico-thinning-prescription.html#cb251-11" tabindex="-1"></a>      <span class="fu">max</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb251-12"><a href="case-study-2-ico-thinning-prescription.html#cb251-12" tabindex="-1"></a>      <span class="fu">ceiling</span>()</span>
+<span id="cb251-13"><a href="case-study-2-ico-thinning-prescription.html#cb251-13" tabindex="-1"></a>  }</span>
+<span id="cb251-14"><a href="case-study-2-ico-thinning-prescription.html#cb251-14" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(dist_max)){</span>
+<span id="cb251-15"><a href="case-study-2-ico-thinning-prescription.html#cb251-15" tabindex="-1"></a>    dist_max <span class="ot">&lt;-</span> </span>
+<span id="cb251-16"><a href="case-study-2-ico-thinning-prescription.html#cb251-16" tabindex="-1"></a>      dist_rast <span class="sc">%&gt;%</span> </span>
+<span id="cb251-17"><a href="case-study-2-ico-thinning-prescription.html#cb251-17" tabindex="-1"></a>      terra<span class="sc">::</span><span class="fu">minmax</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb251-18"><a href="case-study-2-ico-thinning-prescription.html#cb251-18" tabindex="-1"></a>      .[<span class="dv">2</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb251-19"><a href="case-study-2-ico-thinning-prescription.html#cb251-19" tabindex="-1"></a>      <span class="fu">ceiling</span>()</span>
+<span id="cb251-20"><a href="case-study-2-ico-thinning-prescription.html#cb251-20" tabindex="-1"></a>  }</span>
+<span id="cb251-21"><a href="case-study-2-ico-thinning-prescription.html#cb251-21" tabindex="-1"></a>  plt_stand <span class="ot">&lt;-</span> </span>
+<span id="cb251-22"><a href="case-study-2-ico-thinning-prescription.html#cb251-22" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb251-23"><a href="case-study-2-ico-thinning-prescription.html#cb251-23" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> stand_sf <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb251-24"><a href="case-study-2-ico-thinning-prescription.html#cb251-24" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb251-25"><a href="case-study-2-ico-thinning-prescription.html#cb251-25" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb251-26"><a href="case-study-2-ico-thinning-prescription.html#cb251-26" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb251-27"><a href="case-study-2-ico-thinning-prescription.html#cb251-27" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb251-28"><a href="case-study-2-ico-thinning-prescription.html#cb251-28" tabindex="-1"></a>        , <span class="at">y =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb251-29"><a href="case-study-2-ico-thinning-prescription.html#cb251-29" tabindex="-1"></a>        , <span class="at">subtitle =</span> my_title</span>
+<span id="cb251-30"><a href="case-study-2-ico-thinning-prescription.html#cb251-30" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb251-31"><a href="case-study-2-ico-thinning-prescription.html#cb251-31" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb251-32"><a href="case-study-2-ico-thinning-prescription.html#cb251-32" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb251-33"><a href="case-study-2-ico-thinning-prescription.html#cb251-33" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span> <span class="co"># c(0.5,1)</span></span>
+<span id="cb251-34"><a href="case-study-2-ico-thinning-prescription.html#cb251-34" tabindex="-1"></a>        , <span class="at">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span></span>
+<span id="cb251-35"><a href="case-study-2-ico-thinning-prescription.html#cb251-35" tabindex="-1"></a>        , <span class="at">legend.margin =</span> ggplot2<span class="sc">::</span><span class="fu">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb251-36"><a href="case-study-2-ico-thinning-prescription.html#cb251-36" tabindex="-1"></a>        , <span class="at">legend.title=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb251-37"><a href="case-study-2-ico-thinning-prescription.html#cb251-37" tabindex="-1"></a>        , <span class="at">legend.text=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb251-38"><a href="case-study-2-ico-thinning-prescription.html#cb251-38" tabindex="-1"></a>        , <span class="at">legend.key =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb251-39"><a href="case-study-2-ico-thinning-prescription.html#cb251-39" tabindex="-1"></a>        , <span class="at">plot.subtitle =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb251-40"><a href="case-study-2-ico-thinning-prescription.html#cb251-40" tabindex="-1"></a>      )</span>
 <span id="cb251-41"><a href="case-study-2-ico-thinning-prescription.html#cb251-41" tabindex="-1"></a><span class="do">##################################################</span></span>
-<span id="cb251-42"><a href="case-study-2-ico-thinning-prescription.html#cb251-42" tabindex="-1"></a>plt_dist_rast1 <span class="ot">&lt;-</span></span>
-<span id="cb251-43"><a href="case-study-2-ico-thinning-prescription.html#cb251-43" tabindex="-1"></a>  <span class="co"># ggplot2::ggplot() + </span></span>
-<span id="cb251-44"><a href="case-study-2-ico-thinning-prescription.html#cb251-44" tabindex="-1"></a>  plt_stand <span class="sc">+</span></span>
-<span id="cb251-45"><a href="case-study-2-ico-thinning-prescription.html#cb251-45" tabindex="-1"></a>    <span class="co"># distance</span></span>
-<span id="cb251-46"><a href="case-study-2-ico-thinning-prescription.html#cb251-46" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_tile</span>(</span>
-<span id="cb251-47"><a href="case-study-2-ico-thinning-prescription.html#cb251-47" tabindex="-1"></a>      <span class="at">data =</span> dist_rast <span class="sc">%&gt;%</span> </span>
-<span id="cb251-48"><a href="case-study-2-ico-thinning-prescription.html#cb251-48" tabindex="-1"></a>        <span class="co"># terra::aggregate(fact = 2, fun = &quot;max&quot;, cores = 4) %&gt;% </span></span>
-<span id="cb251-49"><a href="case-study-2-ico-thinning-prescription.html#cb251-49" tabindex="-1"></a>        <span class="co"># terra::crop(</span></span>
-<span id="cb251-50"><a href="case-study-2-ico-thinning-prescription.html#cb251-50" tabindex="-1"></a>        <span class="co">#   stand_boundaries %&gt;% </span></span>
-<span id="cb251-51"><a href="case-study-2-ico-thinning-prescription.html#cb251-51" tabindex="-1"></a>        <span class="co">#     dplyr::filter(poly_name==x)</span></span>
-<span id="cb251-52"><a href="case-study-2-ico-thinning-prescription.html#cb251-52" tabindex="-1"></a>        <span class="co">#     # dplyr::filter(poly_name==&quot;west&quot;)</span></span>
-<span id="cb251-53"><a href="case-study-2-ico-thinning-prescription.html#cb251-53" tabindex="-1"></a>        <span class="co">#   , mask = T</span></span>
-<span id="cb251-54"><a href="case-study-2-ico-thinning-prescription.html#cb251-54" tabindex="-1"></a>        <span class="co"># ) %&gt;% </span></span>
-<span id="cb251-55"><a href="case-study-2-ico-thinning-prescription.html#cb251-55" tabindex="-1"></a>        terra<span class="sc">::</span><span class="fu">as.data.frame</span>(<span class="at">xy =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb251-56"><a href="case-study-2-ico-thinning-prescription.html#cb251-56" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">f=</span><span class="dv">3</span>)</span>
-<span id="cb251-57"><a href="case-study-2-ico-thinning-prescription.html#cb251-57" tabindex="-1"></a>      , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">fill =</span> f)</span>
-<span id="cb251-58"><a href="case-study-2-ico-thinning-prescription.html#cb251-58" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb251-59"><a href="case-study-2-ico-thinning-prescription.html#cb251-59" tabindex="-1"></a>    harrypotter<span class="sc">::</span><span class="fu">scale_fill_hp</span>(</span>
-<span id="cb251-60"><a href="case-study-2-ico-thinning-prescription.html#cb251-60" tabindex="-1"></a>      <span class="st">&quot;mischief&quot;</span></span>
-<span id="cb251-61"><a href="case-study-2-ico-thinning-prescription.html#cb251-61" tabindex="-1"></a>      , <span class="at">na.value =</span> <span class="st">&quot;transparent&quot;</span></span>
-<span id="cb251-62"><a href="case-study-2-ico-thinning-prescription.html#cb251-62" tabindex="-1"></a>      , <span class="at">name =</span> <span class="st">&quot;distance to</span><span class="sc">\n</span><span class="st">nearest tree (m)&quot;</span></span>
-<span id="cb251-63"><a href="case-study-2-ico-thinning-prescription.html#cb251-63" tabindex="-1"></a>      , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,dist_max)</span>
-<span id="cb251-64"><a href="case-study-2-ico-thinning-prescription.html#cb251-64" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb251-65"><a href="case-study-2-ico-thinning-prescription.html#cb251-65" tabindex="-1"></a>    <span class="co"># openings</span></span>
-<span id="cb251-66"><a href="case-study-2-ico-thinning-prescription.html#cb251-66" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
-<span id="cb251-67"><a href="case-study-2-ico-thinning-prescription.html#cb251-67" tabindex="-1"></a>      <span class="at">data =</span> openings_vect</span>
-<span id="cb251-68"><a href="case-study-2-ico-thinning-prescription.html#cb251-68" tabindex="-1"></a>      , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">color =</span> openining_area_m2), <span class="at">fill =</span> <span class="cn">NA</span></span>
-<span id="cb251-69"><a href="case-study-2-ico-thinning-prescription.html#cb251-69" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb251-70"><a href="case-study-2-ico-thinning-prescription.html#cb251-70" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_color_gradient</span>(</span>
-<span id="cb251-71"><a href="case-study-2-ico-thinning-prescription.html#cb251-71" tabindex="-1"></a>      <span class="at">low =</span> <span class="st">&quot;gray77&quot;</span>, <span class="at">high =</span> <span class="st">&quot;gray11&quot;</span></span>
-<span id="cb251-72"><a href="case-study-2-ico-thinning-prescription.html#cb251-72" tabindex="-1"></a>      , <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
-<span id="cb251-73"><a href="case-study-2-ico-thinning-prescription.html#cb251-73" tabindex="-1"></a>      , <span class="at">name =</span> <span class="st">&quot;opening</span><span class="sc">\n</span><span class="st">area (m²)&quot;</span> <span class="co"># latex2exp::TeX(&quot;opening\narea ($\\m^2$)&quot;)</span></span>
-<span id="cb251-74"><a href="case-study-2-ico-thinning-prescription.html#cb251-74" tabindex="-1"></a>      , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,openining_area_m2_max)</span>
-<span id="cb251-75"><a href="case-study-2-ico-thinning-prescription.html#cb251-75" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb251-76"><a href="case-study-2-ico-thinning-prescription.html#cb251-76" tabindex="-1"></a>    <span class="co"># clumps</span></span>
-<span id="cb251-77"><a href="case-study-2-ico-thinning-prescription.html#cb251-77" tabindex="-1"></a>    ggnewscale<span class="sc">::</span><span class="fu">new_scale_fill</span>() <span class="sc">+</span></span>
-<span id="cb251-78"><a href="case-study-2-ico-thinning-prescription.html#cb251-78" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
-<span id="cb251-79"><a href="case-study-2-ico-thinning-prescription.html#cb251-79" tabindex="-1"></a>      <span class="at">data =</span> clump_polys</span>
-<span id="cb251-80"><a href="case-study-2-ico-thinning-prescription.html#cb251-80" tabindex="-1"></a>      , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> clump_n_trees_grp)</span>
-<span id="cb251-81"><a href="case-study-2-ico-thinning-prescription.html#cb251-81" tabindex="-1"></a>      , <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb251-82"><a href="case-study-2-ico-thinning-prescription.html#cb251-82" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb251-83"><a href="case-study-2-ico-thinning-prescription.html#cb251-83" tabindex="-1"></a>    <span class="co"># harrypotter::scale_fill_hp_d(&quot;always&quot;, name = &quot;clump size&quot;, drop = F) +</span></span>
-<span id="cb251-84"><a href="case-study-2-ico-thinning-prescription.html#cb251-84" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_fill_manual</span>(</span>
-<span id="cb251-85"><a href="case-study-2-ico-thinning-prescription.html#cb251-85" tabindex="-1"></a>      <span class="at">values =</span> pal_clump_grp, <span class="at">name =</span> <span class="st">&quot;clump size&quot;</span>, <span class="at">drop =</span> F</span>
-<span id="cb251-86"><a href="case-study-2-ico-thinning-prescription.html#cb251-86" tabindex="-1"></a>      , <span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb251-42"><a href="case-study-2-ico-thinning-prescription.html#cb251-42" tabindex="-1"></a><span class="co"># plot distance raster and trees</span></span>
+<span id="cb251-43"><a href="case-study-2-ico-thinning-prescription.html#cb251-43" tabindex="-1"></a><span class="do">##################################################</span></span>
+<span id="cb251-44"><a href="case-study-2-ico-thinning-prescription.html#cb251-44" tabindex="-1"></a>plt_dist_rast1 <span class="ot">&lt;-</span></span>
+<span id="cb251-45"><a href="case-study-2-ico-thinning-prescription.html#cb251-45" tabindex="-1"></a>  <span class="co"># ggplot2::ggplot() + </span></span>
+<span id="cb251-46"><a href="case-study-2-ico-thinning-prescription.html#cb251-46" tabindex="-1"></a>  plt_stand <span class="sc">+</span></span>
+<span id="cb251-47"><a href="case-study-2-ico-thinning-prescription.html#cb251-47" tabindex="-1"></a>    <span class="co"># distance</span></span>
+<span id="cb251-48"><a href="case-study-2-ico-thinning-prescription.html#cb251-48" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_tile</span>(</span>
+<span id="cb251-49"><a href="case-study-2-ico-thinning-prescription.html#cb251-49" tabindex="-1"></a>      <span class="at">data =</span> dist_rast <span class="sc">%&gt;%</span> </span>
+<span id="cb251-50"><a href="case-study-2-ico-thinning-prescription.html#cb251-50" tabindex="-1"></a>        <span class="co"># terra::aggregate(fact = 2, fun = &quot;max&quot;, cores = 4) %&gt;% </span></span>
+<span id="cb251-51"><a href="case-study-2-ico-thinning-prescription.html#cb251-51" tabindex="-1"></a>        <span class="co"># terra::crop(</span></span>
+<span id="cb251-52"><a href="case-study-2-ico-thinning-prescription.html#cb251-52" tabindex="-1"></a>        <span class="co">#   stand_boundaries %&gt;% </span></span>
+<span id="cb251-53"><a href="case-study-2-ico-thinning-prescription.html#cb251-53" tabindex="-1"></a>        <span class="co">#     dplyr::filter(poly_name==x)</span></span>
+<span id="cb251-54"><a href="case-study-2-ico-thinning-prescription.html#cb251-54" tabindex="-1"></a>        <span class="co">#     # dplyr::filter(poly_name==&quot;west&quot;)</span></span>
+<span id="cb251-55"><a href="case-study-2-ico-thinning-prescription.html#cb251-55" tabindex="-1"></a>        <span class="co">#   , mask = T</span></span>
+<span id="cb251-56"><a href="case-study-2-ico-thinning-prescription.html#cb251-56" tabindex="-1"></a>        <span class="co"># ) %&gt;% </span></span>
+<span id="cb251-57"><a href="case-study-2-ico-thinning-prescription.html#cb251-57" tabindex="-1"></a>        terra<span class="sc">::</span><span class="fu">as.data.frame</span>(<span class="at">xy =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb251-58"><a href="case-study-2-ico-thinning-prescription.html#cb251-58" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">f=</span><span class="dv">3</span>)</span>
+<span id="cb251-59"><a href="case-study-2-ico-thinning-prescription.html#cb251-59" tabindex="-1"></a>      , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">fill =</span> f)</span>
+<span id="cb251-60"><a href="case-study-2-ico-thinning-prescription.html#cb251-60" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb251-61"><a href="case-study-2-ico-thinning-prescription.html#cb251-61" tabindex="-1"></a>    harrypotter<span class="sc">::</span><span class="fu">scale_fill_hp</span>(</span>
+<span id="cb251-62"><a href="case-study-2-ico-thinning-prescription.html#cb251-62" tabindex="-1"></a>      <span class="st">&quot;mischief&quot;</span></span>
+<span id="cb251-63"><a href="case-study-2-ico-thinning-prescription.html#cb251-63" tabindex="-1"></a>      , <span class="at">na.value =</span> <span class="st">&quot;transparent&quot;</span></span>
+<span id="cb251-64"><a href="case-study-2-ico-thinning-prescription.html#cb251-64" tabindex="-1"></a>      , <span class="at">name =</span> <span class="st">&quot;distance to</span><span class="sc">\n</span><span class="st">nearest tree (m)&quot;</span></span>
+<span id="cb251-65"><a href="case-study-2-ico-thinning-prescription.html#cb251-65" tabindex="-1"></a>      , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,dist_max)</span>
+<span id="cb251-66"><a href="case-study-2-ico-thinning-prescription.html#cb251-66" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb251-67"><a href="case-study-2-ico-thinning-prescription.html#cb251-67" tabindex="-1"></a>    <span class="co"># openings</span></span>
+<span id="cb251-68"><a href="case-study-2-ico-thinning-prescription.html#cb251-68" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
+<span id="cb251-69"><a href="case-study-2-ico-thinning-prescription.html#cb251-69" tabindex="-1"></a>      <span class="at">data =</span> openings_vect <span class="sc">%&gt;%</span> </span>
+<span id="cb251-70"><a href="case-study-2-ico-thinning-prescription.html#cb251-70" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb251-71"><a href="case-study-2-ico-thinning-prescription.html#cb251-71" tabindex="-1"></a>          openining_area_m2 <span class="sc">&gt;</span> min_openining_area_m2</span>
+<span id="cb251-72"><a href="case-study-2-ico-thinning-prescription.html#cb251-72" tabindex="-1"></a>        )</span>
+<span id="cb251-73"><a href="case-study-2-ico-thinning-prescription.html#cb251-73" tabindex="-1"></a>      , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">color =</span> openining_area_m2), <span class="at">fill =</span> <span class="cn">NA</span></span>
+<span id="cb251-74"><a href="case-study-2-ico-thinning-prescription.html#cb251-74" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb251-75"><a href="case-study-2-ico-thinning-prescription.html#cb251-75" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_color_gradient</span>(</span>
+<span id="cb251-76"><a href="case-study-2-ico-thinning-prescription.html#cb251-76" tabindex="-1"></a>      <span class="at">low =</span> <span class="st">&quot;gray77&quot;</span>, <span class="at">high =</span> <span class="st">&quot;gray11&quot;</span></span>
+<span id="cb251-77"><a href="case-study-2-ico-thinning-prescription.html#cb251-77" tabindex="-1"></a>      , <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb251-78"><a href="case-study-2-ico-thinning-prescription.html#cb251-78" tabindex="-1"></a>      , <span class="at">name =</span> <span class="st">&quot;opening</span><span class="sc">\n</span><span class="st">area (m²)&quot;</span> <span class="co"># latex2exp::TeX(&quot;opening\narea ($\\m^2$)&quot;)</span></span>
+<span id="cb251-79"><a href="case-study-2-ico-thinning-prescription.html#cb251-79" tabindex="-1"></a>      , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,openining_area_m2_max)</span>
+<span id="cb251-80"><a href="case-study-2-ico-thinning-prescription.html#cb251-80" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb251-81"><a href="case-study-2-ico-thinning-prescription.html#cb251-81" tabindex="-1"></a>    <span class="co"># clumps</span></span>
+<span id="cb251-82"><a href="case-study-2-ico-thinning-prescription.html#cb251-82" tabindex="-1"></a>    ggnewscale<span class="sc">::</span><span class="fu">new_scale_fill</span>() <span class="sc">+</span></span>
+<span id="cb251-83"><a href="case-study-2-ico-thinning-prescription.html#cb251-83" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
+<span id="cb251-84"><a href="case-study-2-ico-thinning-prescription.html#cb251-84" tabindex="-1"></a>      <span class="at">data =</span> clump_polys</span>
+<span id="cb251-85"><a href="case-study-2-ico-thinning-prescription.html#cb251-85" tabindex="-1"></a>      , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> clump_n_trees_grp)</span>
+<span id="cb251-86"><a href="case-study-2-ico-thinning-prescription.html#cb251-86" tabindex="-1"></a>      , <span class="at">color =</span> <span class="cn">NA</span></span>
 <span id="cb251-87"><a href="case-study-2-ico-thinning-prescription.html#cb251-87" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb251-88"><a href="case-study-2-ico-thinning-prescription.html#cb251-88" tabindex="-1"></a>    <span class="co"># tree points</span></span>
-<span id="cb251-89"><a href="case-study-2-ico-thinning-prescription.html#cb251-89" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> ttops, <span class="at">color =</span> <span class="st">&quot;gray88&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">+</span></span>
-<span id="cb251-90"><a href="case-study-2-ico-thinning-prescription.html#cb251-90" tabindex="-1"></a>    <span class="co"># ggplot2::labs(subtitle = paste0(nm, &quot;: pre-treatment&quot;)) +</span></span>
-<span id="cb251-91"><a href="case-study-2-ico-thinning-prescription.html#cb251-91" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb251-92"><a href="case-study-2-ico-thinning-prescription.html#cb251-92" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
-<span id="cb251-93"><a href="case-study-2-ico-thinning-prescription.html#cb251-93" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
-<span id="cb251-94"><a href="case-study-2-ico-thinning-prescription.html#cb251-94" tabindex="-1"></a>      , <span class="at">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span></span>
-<span id="cb251-95"><a href="case-study-2-ico-thinning-prescription.html#cb251-95" tabindex="-1"></a>      , <span class="at">plot.subtitle =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb251-96"><a href="case-study-2-ico-thinning-prescription.html#cb251-96" tabindex="-1"></a>      , <span class="at">legend.title=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb251-97"><a href="case-study-2-ico-thinning-prescription.html#cb251-97" tabindex="-1"></a>      , <span class="at">legend.text=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
-<span id="cb251-98"><a href="case-study-2-ico-thinning-prescription.html#cb251-98" tabindex="-1"></a>    )</span>
-<span id="cb251-99"><a href="case-study-2-ico-thinning-prescription.html#cb251-99" tabindex="-1"></a><span class="do">##################################################</span></span>
-<span id="cb251-100"><a href="case-study-2-ico-thinning-prescription.html#cb251-100" tabindex="-1"></a><span class="co"># highlight the openings</span></span>
-<span id="cb251-101"><a href="case-study-2-ico-thinning-prescription.html#cb251-101" tabindex="-1"></a><span class="do">##################################################</span></span>
-<span id="cb251-102"><a href="case-study-2-ico-thinning-prescription.html#cb251-102" tabindex="-1"></a>  plt_open1 <span class="ot">&lt;-</span></span>
-<span id="cb251-103"><a href="case-study-2-ico-thinning-prescription.html#cb251-103" tabindex="-1"></a>    plt_stand <span class="sc">+</span></span>
-<span id="cb251-104"><a href="case-study-2-ico-thinning-prescription.html#cb251-104" tabindex="-1"></a>      <span class="co"># clumps</span></span>
-<span id="cb251-105"><a href="case-study-2-ico-thinning-prescription.html#cb251-105" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
-<span id="cb251-106"><a href="case-study-2-ico-thinning-prescription.html#cb251-106" tabindex="-1"></a>        <span class="at">data =</span> clump_polys</span>
-<span id="cb251-107"><a href="case-study-2-ico-thinning-prescription.html#cb251-107" tabindex="-1"></a>        , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> clump_n_trees_grp)</span>
-<span id="cb251-108"><a href="case-study-2-ico-thinning-prescription.html#cb251-108" tabindex="-1"></a>        , <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb251-109"><a href="case-study-2-ico-thinning-prescription.html#cb251-109" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb251-110"><a href="case-study-2-ico-thinning-prescription.html#cb251-110" tabindex="-1"></a>      <span class="co"># harrypotter::scale_fill_hp_d(&quot;always&quot;, name = &quot;clump size&quot;, drop = F) + </span></span>
-<span id="cb251-111"><a href="case-study-2-ico-thinning-prescription.html#cb251-111" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_fill_manual</span>(</span>
-<span id="cb251-112"><a href="case-study-2-ico-thinning-prescription.html#cb251-112" tabindex="-1"></a>        <span class="at">values =</span> pal_clump_grp, <span class="at">name =</span> <span class="st">&quot;clump size&quot;</span>, <span class="at">drop =</span> F</span>
-<span id="cb251-113"><a href="case-study-2-ico-thinning-prescription.html#cb251-113" tabindex="-1"></a>        , <span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb251-88"><a href="case-study-2-ico-thinning-prescription.html#cb251-88" tabindex="-1"></a>    <span class="co"># harrypotter::scale_fill_hp_d(&quot;always&quot;, name = &quot;clump size&quot;, drop = F) +</span></span>
+<span id="cb251-89"><a href="case-study-2-ico-thinning-prescription.html#cb251-89" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">scale_fill_manual</span>(</span>
+<span id="cb251-90"><a href="case-study-2-ico-thinning-prescription.html#cb251-90" tabindex="-1"></a>      <span class="at">values =</span> pal_clump_grp, <span class="at">name =</span> <span class="st">&quot;clump size&quot;</span>, <span class="at">drop =</span> F</span>
+<span id="cb251-91"><a href="case-study-2-ico-thinning-prescription.html#cb251-91" tabindex="-1"></a>      , <span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb251-92"><a href="case-study-2-ico-thinning-prescription.html#cb251-92" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb251-93"><a href="case-study-2-ico-thinning-prescription.html#cb251-93" tabindex="-1"></a>    <span class="co"># tree points</span></span>
+<span id="cb251-94"><a href="case-study-2-ico-thinning-prescription.html#cb251-94" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> ttops, <span class="at">color =</span> <span class="st">&quot;gray88&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb251-95"><a href="case-study-2-ico-thinning-prescription.html#cb251-95" tabindex="-1"></a>    <span class="co"># ggplot2::labs(subtitle = paste0(nm, &quot;: pre-treatment&quot;)) +</span></span>
+<span id="cb251-96"><a href="case-study-2-ico-thinning-prescription.html#cb251-96" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb251-97"><a href="case-study-2-ico-thinning-prescription.html#cb251-97" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb251-98"><a href="case-study-2-ico-thinning-prescription.html#cb251-98" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb251-99"><a href="case-study-2-ico-thinning-prescription.html#cb251-99" tabindex="-1"></a>      , <span class="at">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span></span>
+<span id="cb251-100"><a href="case-study-2-ico-thinning-prescription.html#cb251-100" tabindex="-1"></a>      , <span class="at">plot.subtitle =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb251-101"><a href="case-study-2-ico-thinning-prescription.html#cb251-101" tabindex="-1"></a>      , <span class="at">legend.title=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb251-102"><a href="case-study-2-ico-thinning-prescription.html#cb251-102" tabindex="-1"></a>      , <span class="at">legend.text=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb251-103"><a href="case-study-2-ico-thinning-prescription.html#cb251-103" tabindex="-1"></a>    )</span>
+<span id="cb251-104"><a href="case-study-2-ico-thinning-prescription.html#cb251-104" tabindex="-1"></a><span class="do">##################################################</span></span>
+<span id="cb251-105"><a href="case-study-2-ico-thinning-prescription.html#cb251-105" tabindex="-1"></a><span class="co"># highlight the openings</span></span>
+<span id="cb251-106"><a href="case-study-2-ico-thinning-prescription.html#cb251-106" tabindex="-1"></a><span class="do">##################################################</span></span>
+<span id="cb251-107"><a href="case-study-2-ico-thinning-prescription.html#cb251-107" tabindex="-1"></a>  plt_open1 <span class="ot">&lt;-</span></span>
+<span id="cb251-108"><a href="case-study-2-ico-thinning-prescription.html#cb251-108" tabindex="-1"></a>    plt_stand <span class="sc">+</span></span>
+<span id="cb251-109"><a href="case-study-2-ico-thinning-prescription.html#cb251-109" tabindex="-1"></a>      <span class="co"># clumps</span></span>
+<span id="cb251-110"><a href="case-study-2-ico-thinning-prescription.html#cb251-110" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
+<span id="cb251-111"><a href="case-study-2-ico-thinning-prescription.html#cb251-111" tabindex="-1"></a>        <span class="at">data =</span> clump_polys</span>
+<span id="cb251-112"><a href="case-study-2-ico-thinning-prescription.html#cb251-112" tabindex="-1"></a>        , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> clump_n_trees_grp)</span>
+<span id="cb251-113"><a href="case-study-2-ico-thinning-prescription.html#cb251-113" tabindex="-1"></a>        , <span class="at">color =</span> <span class="cn">NA</span></span>
 <span id="cb251-114"><a href="case-study-2-ico-thinning-prescription.html#cb251-114" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb251-115"><a href="case-study-2-ico-thinning-prescription.html#cb251-115" tabindex="-1"></a>      <span class="co"># openings</span></span>
-<span id="cb251-116"><a href="case-study-2-ico-thinning-prescription.html#cb251-116" tabindex="-1"></a>      ggnewscale<span class="sc">::</span><span class="fu">new_scale_fill</span>() <span class="sc">+</span></span>
-<span id="cb251-117"><a href="case-study-2-ico-thinning-prescription.html#cb251-117" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
-<span id="cb251-118"><a href="case-study-2-ico-thinning-prescription.html#cb251-118" tabindex="-1"></a>        <span class="at">data =</span> openings_vect</span>
-<span id="cb251-119"><a href="case-study-2-ico-thinning-prescription.html#cb251-119" tabindex="-1"></a>        , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> openining_area_m2), <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb251-120"><a href="case-study-2-ico-thinning-prescription.html#cb251-120" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb251-121"><a href="case-study-2-ico-thinning-prescription.html#cb251-121" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_fill_gradient</span>(</span>
-<span id="cb251-122"><a href="case-study-2-ico-thinning-prescription.html#cb251-122" tabindex="-1"></a>        <span class="at">low =</span> <span class="st">&quot;gray77&quot;</span>, <span class="at">high =</span> <span class="st">&quot;gray11&quot;</span></span>
-<span id="cb251-123"><a href="case-study-2-ico-thinning-prescription.html#cb251-123" tabindex="-1"></a>        , <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
-<span id="cb251-124"><a href="case-study-2-ico-thinning-prescription.html#cb251-124" tabindex="-1"></a>        , <span class="at">name =</span> <span class="st">&quot;opening</span><span class="sc">\n</span><span class="st">area (m²)&quot;</span> <span class="co"># latex2exp::TeX(&quot;opening\narea ($\\m^2$)&quot;)</span></span>
-<span id="cb251-125"><a href="case-study-2-ico-thinning-prescription.html#cb251-125" tabindex="-1"></a>        , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,openining_area_m2_max)</span>
-<span id="cb251-126"><a href="case-study-2-ico-thinning-prescription.html#cb251-126" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb251-127"><a href="case-study-2-ico-thinning-prescription.html#cb251-127" tabindex="-1"></a>      <span class="co"># tree points</span></span>
-<span id="cb251-128"><a href="case-study-2-ico-thinning-prescription.html#cb251-128" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> ttops, <span class="at">color =</span> <span class="st">&quot;gray88&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">+</span></span>
-<span id="cb251-129"><a href="case-study-2-ico-thinning-prescription.html#cb251-129" tabindex="-1"></a>      <span class="co"># ggplot2::labs(subtitle = paste0(nm, &quot;: pre-treatment&quot;)) +</span></span>
-<span id="cb251-130"><a href="case-study-2-ico-thinning-prescription.html#cb251-130" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb251-131"><a href="case-study-2-ico-thinning-prescription.html#cb251-131" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
-<span id="cb251-132"><a href="case-study-2-ico-thinning-prescription.html#cb251-132" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
-<span id="cb251-133"><a href="case-study-2-ico-thinning-prescription.html#cb251-133" tabindex="-1"></a>          , <span class="at">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span></span>
-<span id="cb251-134"><a href="case-study-2-ico-thinning-prescription.html#cb251-134" tabindex="-1"></a>          , <span class="at">plot.subtitle =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb251-135"><a href="case-study-2-ico-thinning-prescription.html#cb251-135" tabindex="-1"></a>          , <span class="at">legend.title=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb251-136"><a href="case-study-2-ico-thinning-prescription.html#cb251-136" tabindex="-1"></a>          , <span class="at">legend.text=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
-<span id="cb251-137"><a href="case-study-2-ico-thinning-prescription.html#cb251-137" tabindex="-1"></a>        )</span>
-<span id="cb251-138"><a href="case-study-2-ico-thinning-prescription.html#cb251-138" tabindex="-1"></a>  </span>
-<span id="cb251-139"><a href="case-study-2-ico-thinning-prescription.html#cb251-139" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
-<span id="cb251-140"><a href="case-study-2-ico-thinning-prescription.html#cb251-140" tabindex="-1"></a>    <span class="at">plt_dist_rast=</span>plt_dist_rast1</span>
-<span id="cb251-141"><a href="case-study-2-ico-thinning-prescription.html#cb251-141" tabindex="-1"></a>    , <span class="at">plt_open=</span>plt_open1</span>
-<span id="cb251-142"><a href="case-study-2-ico-thinning-prescription.html#cb251-142" tabindex="-1"></a>  ))</span>
-<span id="cb251-143"><a href="case-study-2-ico-thinning-prescription.html#cb251-143" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb251-115"><a href="case-study-2-ico-thinning-prescription.html#cb251-115" tabindex="-1"></a>      <span class="co"># harrypotter::scale_fill_hp_d(&quot;always&quot;, name = &quot;clump size&quot;, drop = F) + </span></span>
+<span id="cb251-116"><a href="case-study-2-ico-thinning-prescription.html#cb251-116" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_fill_manual</span>(</span>
+<span id="cb251-117"><a href="case-study-2-ico-thinning-prescription.html#cb251-117" tabindex="-1"></a>        <span class="at">values =</span> pal_clump_grp, <span class="at">name =</span> <span class="st">&quot;clump size&quot;</span>, <span class="at">drop =</span> F</span>
+<span id="cb251-118"><a href="case-study-2-ico-thinning-prescription.html#cb251-118" tabindex="-1"></a>        , <span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb251-119"><a href="case-study-2-ico-thinning-prescription.html#cb251-119" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb251-120"><a href="case-study-2-ico-thinning-prescription.html#cb251-120" tabindex="-1"></a>      <span class="co"># openings</span></span>
+<span id="cb251-121"><a href="case-study-2-ico-thinning-prescription.html#cb251-121" tabindex="-1"></a>      ggnewscale<span class="sc">::</span><span class="fu">new_scale_fill</span>() <span class="sc">+</span></span>
+<span id="cb251-122"><a href="case-study-2-ico-thinning-prescription.html#cb251-122" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(</span>
+<span id="cb251-123"><a href="case-study-2-ico-thinning-prescription.html#cb251-123" tabindex="-1"></a>        <span class="at">data =</span> openings_vect <span class="sc">%&gt;%</span> </span>
+<span id="cb251-124"><a href="case-study-2-ico-thinning-prescription.html#cb251-124" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb251-125"><a href="case-study-2-ico-thinning-prescription.html#cb251-125" tabindex="-1"></a>            openining_area_m2 <span class="sc">&gt;</span> min_openining_area_m2</span>
+<span id="cb251-126"><a href="case-study-2-ico-thinning-prescription.html#cb251-126" tabindex="-1"></a>          )</span>
+<span id="cb251-127"><a href="case-study-2-ico-thinning-prescription.html#cb251-127" tabindex="-1"></a>        , <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> openining_area_m2), <span class="at">color =</span> <span class="cn">NA</span></span>
+<span id="cb251-128"><a href="case-study-2-ico-thinning-prescription.html#cb251-128" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb251-129"><a href="case-study-2-ico-thinning-prescription.html#cb251-129" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">scale_fill_gradient</span>(</span>
+<span id="cb251-130"><a href="case-study-2-ico-thinning-prescription.html#cb251-130" tabindex="-1"></a>        <span class="at">low =</span> <span class="st">&quot;gray77&quot;</span>, <span class="at">high =</span> <span class="st">&quot;gray11&quot;</span></span>
+<span id="cb251-131"><a href="case-study-2-ico-thinning-prescription.html#cb251-131" tabindex="-1"></a>        , <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb251-132"><a href="case-study-2-ico-thinning-prescription.html#cb251-132" tabindex="-1"></a>        , <span class="at">name =</span> <span class="st">&quot;opening</span><span class="sc">\n</span><span class="st">area (m²)&quot;</span> <span class="co"># latex2exp::TeX(&quot;opening\narea ($\\m^2$)&quot;)</span></span>
+<span id="cb251-133"><a href="case-study-2-ico-thinning-prescription.html#cb251-133" tabindex="-1"></a>        , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,openining_area_m2_max)</span>
+<span id="cb251-134"><a href="case-study-2-ico-thinning-prescription.html#cb251-134" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb251-135"><a href="case-study-2-ico-thinning-prescription.html#cb251-135" tabindex="-1"></a>      <span class="co"># tree points</span></span>
+<span id="cb251-136"><a href="case-study-2-ico-thinning-prescription.html#cb251-136" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> ttops, <span class="at">color =</span> <span class="st">&quot;gray88&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb251-137"><a href="case-study-2-ico-thinning-prescription.html#cb251-137" tabindex="-1"></a>      <span class="co"># ggplot2::labs(subtitle = paste0(nm, &quot;: pre-treatment&quot;)) +</span></span>
+<span id="cb251-138"><a href="case-study-2-ico-thinning-prescription.html#cb251-138" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb251-139"><a href="case-study-2-ico-thinning-prescription.html#cb251-139" tabindex="-1"></a>      ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb251-140"><a href="case-study-2-ico-thinning-prescription.html#cb251-140" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb251-141"><a href="case-study-2-ico-thinning-prescription.html#cb251-141" tabindex="-1"></a>          , <span class="at">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span></span>
+<span id="cb251-142"><a href="case-study-2-ico-thinning-prescription.html#cb251-142" tabindex="-1"></a>          , <span class="at">plot.subtitle =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb251-143"><a href="case-study-2-ico-thinning-prescription.html#cb251-143" tabindex="-1"></a>          , <span class="at">legend.title=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb251-144"><a href="case-study-2-ico-thinning-prescription.html#cb251-144" tabindex="-1"></a>          , <span class="at">legend.text=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb251-145"><a href="case-study-2-ico-thinning-prescription.html#cb251-145" tabindex="-1"></a>        )</span>
+<span id="cb251-146"><a href="case-study-2-ico-thinning-prescription.html#cb251-146" tabindex="-1"></a>  </span>
+<span id="cb251-147"><a href="case-study-2-ico-thinning-prescription.html#cb251-147" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
+<span id="cb251-148"><a href="case-study-2-ico-thinning-prescription.html#cb251-148" tabindex="-1"></a>    <span class="at">plt_dist_rast=</span>plt_dist_rast1</span>
+<span id="cb251-149"><a href="case-study-2-ico-thinning-prescription.html#cb251-149" tabindex="-1"></a>    , <span class="at">plt_open=</span>plt_open1</span>
+<span id="cb251-150"><a href="case-study-2-ico-thinning-prescription.html#cb251-150" tabindex="-1"></a>  ))</span>
+<span id="cb251-151"><a href="case-study-2-ico-thinning-prescription.html#cb251-151" tabindex="-1"></a>}</span></code></pre></div>
 <p>get all the figures for the treatment scenarios and pre-treatment</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="case-study-2-ico-thinning-prescription.html#cb252-1" tabindex="-1"></a>get_clump_dist_rast_ans <span class="ot">&lt;-</span> </span>
 <span id="cb252-2"><a href="case-study-2-ico-thinning-prescription.html#cb252-2" tabindex="-1"></a>  trees2ico_ans_list <span class="sc">%&gt;%</span> </span>
@@ -2869,20 +2874,21 @@ High Clumping
 <span id="cb252-43"><a href="case-study-2-ico-thinning-prescription.html#cb252-43" tabindex="-1"></a>        , <span class="at">ttops =</span> x<span class="sc">$</span>tree_list <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(is_keep_tree)</span>
 <span id="cb252-44"><a href="case-study-2-ico-thinning-prescription.html#cb252-44" tabindex="-1"></a>        , <span class="at">my_title =</span> ico_targets_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">as.character</span>(scenario_id)<span class="sc">==</span>nm) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">pull</span>(scenario_desc_fact) <span class="sc">%&gt;%</span> <span class="fu">as.character</span>()</span>
 <span id="cb252-45"><a href="case-study-2-ico-thinning-prescription.html#cb252-45" tabindex="-1"></a>        , <span class="at">openining_area_m2_max =</span> openining_area_m2_max_temp, <span class="at">dist_max =</span> dist_max_temp</span>
-<span id="cb252-46"><a href="case-study-2-ico-thinning-prescription.html#cb252-46" tabindex="-1"></a>      )    </span>
-<span id="cb252-47"><a href="case-study-2-ico-thinning-prescription.html#cb252-47" tabindex="-1"></a>      <span class="fu">return</span>(plts)</span>
-<span id="cb252-48"><a href="case-study-2-ico-thinning-prescription.html#cb252-48" tabindex="-1"></a>  })</span>
-<span id="cb252-49"><a href="case-study-2-ico-thinning-prescription.html#cb252-49" tabindex="-1"></a><span class="co"># plt_post[[1]]$plt_dist_rast</span></span>
-<span id="cb252-50"><a href="case-study-2-ico-thinning-prescription.html#cb252-50" tabindex="-1"></a><span class="co"># get_the_plts_fn</span></span>
-<span id="cb252-51"><a href="case-study-2-ico-thinning-prescription.html#cb252-51" tabindex="-1"></a>plt_pre <span class="ot">&lt;-</span> <span class="fu">get_the_plts_fn</span>(</span>
-<span id="cb252-52"><a href="case-study-2-ico-thinning-prescription.html#cb252-52" tabindex="-1"></a>  <span class="at">dist_rast =</span> pre_get_clump_dist_rast_ans<span class="sc">$</span>dist_rast</span>
-<span id="cb252-53"><a href="case-study-2-ico-thinning-prescription.html#cb252-53" tabindex="-1"></a>  , <span class="at">openings_vect =</span> pre_get_clump_dist_rast_ans<span class="sc">$</span>openings_vect</span>
-<span id="cb252-54"><a href="case-study-2-ico-thinning-prescription.html#cb252-54" tabindex="-1"></a>  , <span class="at">stand_sf =</span> stand_sf</span>
-<span id="cb252-55"><a href="case-study-2-ico-thinning-prescription.html#cb252-55" tabindex="-1"></a>  , <span class="at">clump_polys =</span> trees2ico_ans_list[[<span class="dv">1</span>]]<span class="sc">$</span>pre_cut_clumps</span>
-<span id="cb252-56"><a href="case-study-2-ico-thinning-prescription.html#cb252-56" tabindex="-1"></a>  , <span class="at">ttops =</span> treetops_sf</span>
-<span id="cb252-57"><a href="case-study-2-ico-thinning-prescription.html#cb252-57" tabindex="-1"></a>  , <span class="at">my_title =</span> <span class="st">&quot;Pre-Treatment&quot;</span></span>
-<span id="cb252-58"><a href="case-study-2-ico-thinning-prescription.html#cb252-58" tabindex="-1"></a>  , <span class="at">openining_area_m2_max =</span> openining_area_m2_max_temp, <span class="at">dist_max =</span> dist_max_temp</span>
-<span id="cb252-59"><a href="case-study-2-ico-thinning-prescription.html#cb252-59" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb252-46"><a href="case-study-2-ico-thinning-prescription.html#cb252-46" tabindex="-1"></a>        , <span class="at">min_openining_area_m2 =</span> my_min_openining_area_m2</span>
+<span id="cb252-47"><a href="case-study-2-ico-thinning-prescription.html#cb252-47" tabindex="-1"></a>      )    </span>
+<span id="cb252-48"><a href="case-study-2-ico-thinning-prescription.html#cb252-48" tabindex="-1"></a>      <span class="fu">return</span>(plts)</span>
+<span id="cb252-49"><a href="case-study-2-ico-thinning-prescription.html#cb252-49" tabindex="-1"></a>  })</span>
+<span id="cb252-50"><a href="case-study-2-ico-thinning-prescription.html#cb252-50" tabindex="-1"></a><span class="co"># plt_post[[1]]$plt_dist_rast</span></span>
+<span id="cb252-51"><a href="case-study-2-ico-thinning-prescription.html#cb252-51" tabindex="-1"></a><span class="co"># get_the_plts_fn</span></span>
+<span id="cb252-52"><a href="case-study-2-ico-thinning-prescription.html#cb252-52" tabindex="-1"></a>plt_pre <span class="ot">&lt;-</span> <span class="fu">get_the_plts_fn</span>(</span>
+<span id="cb252-53"><a href="case-study-2-ico-thinning-prescription.html#cb252-53" tabindex="-1"></a>  <span class="at">dist_rast =</span> pre_get_clump_dist_rast_ans<span class="sc">$</span>dist_rast</span>
+<span id="cb252-54"><a href="case-study-2-ico-thinning-prescription.html#cb252-54" tabindex="-1"></a>  , <span class="at">openings_vect =</span> pre_get_clump_dist_rast_ans<span class="sc">$</span>openings_vect</span>
+<span id="cb252-55"><a href="case-study-2-ico-thinning-prescription.html#cb252-55" tabindex="-1"></a>  , <span class="at">stand_sf =</span> stand_sf</span>
+<span id="cb252-56"><a href="case-study-2-ico-thinning-prescription.html#cb252-56" tabindex="-1"></a>  , <span class="at">clump_polys =</span> trees2ico_ans_list[[<span class="dv">1</span>]]<span class="sc">$</span>pre_cut_clumps</span>
+<span id="cb252-57"><a href="case-study-2-ico-thinning-prescription.html#cb252-57" tabindex="-1"></a>  , <span class="at">ttops =</span> treetops_sf</span>
+<span id="cb252-58"><a href="case-study-2-ico-thinning-prescription.html#cb252-58" tabindex="-1"></a>  , <span class="at">my_title =</span> <span class="st">&quot;Pre-Treatment&quot;</span></span>
+<span id="cb252-59"><a href="case-study-2-ico-thinning-prescription.html#cb252-59" tabindex="-1"></a>  , <span class="at">openining_area_m2_max =</span> openining_area_m2_max_temp, <span class="at">dist_max =</span> dist_max_temp</span>
+<span id="cb252-60"><a href="case-study-2-ico-thinning-prescription.html#cb252-60" tabindex="-1"></a>)</span></code></pre></div>
 <p>check those plots out</p>
 <p>the distance raster</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="case-study-2-ico-thinning-prescription.html#cb253-1" tabindex="-1"></a>plt_post_temp <span class="ot">&lt;-</span> </span>
@@ -3395,7 +3401,7 @@ leave
 <p>Another lesson learned was the need to provide explicit direction for the creation of large openings. Retaining large, fire tolerant trees is a key principle of dry forest restoration and increasing resilience (Agee and Skinner, 2005; Hessburg and Agee, 2003; Taylor and Skinner, 2003), and removal of pre-settlement era trees (old trees) is not necessary to restore pattern (Franklin and Johnson, 2012). However, we concur with others that rigid diameter limits, with no flexibility for young trees or fire intolerant species, can conflict with restoration of spatial pattern and other objectives (Abella et al., 2006; North et al., 2007). (p.452)</p>
 </blockquote>
 <p>with that background let’s look at the openings created under our scenario ICO prescriptions. the <code>trees2ico</code> framework is an objective, rule-based marking algorithm that can operate with or without diameter limits. since it is an automated, algorithmic approach, it is completely free from human marking hesitancy and simply strives to meet the BA and tree clump proportion targets that human crews may struggle to execute in the field.</p>
-<p>We define openings as contiguous spatial areas that originate 6.0 m away from the nearest tree stem, which is equal to a 3.0 m buffer from the nearest tree crown edge based on a typical overstory tree crown radius of 3.0 m. Although these openings may form highly sinuous (“wavy”) corridors winding through tree clump groups, they are closed-off wherever the proximity of an adjacent tree or clump becomes less than the 6.0 m limit. We also require that an opening must cover at least a 40.5 square meter (0.01 acre) area to be considered an actual opening.</p>
+<p>We define openings as contiguous spatial areas that originate 6.0 m away from the nearest tree stem, which is equal to a 3.0 m buffer from the nearest tree crown edge based on a typical overstory tree crown radius of 3.0 m. Although these openings may form highly sinuous (“wavy”) corridors winding through tree clump groups, they are closed-off wherever the proximity of an adjacent tree or clump becomes less than the 6.0 m limit. We also require that an opening must have an area greater than 40.5 square meters (0.01 acres) to be considered an actual opening.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="case-study-2-ico-thinning-prescription.html#cb259-1" tabindex="-1"></a>openings_temp <span class="ot">&lt;-</span></span>
 <span id="cb259-2"><a href="case-study-2-ico-thinning-prescription.html#cb259-2" tabindex="-1"></a>  get_clump_dist_rast_ans <span class="sc">%&gt;%</span> </span>
 <span id="cb259-3"><a href="case-study-2-ico-thinning-prescription.html#cb259-3" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(<span class="sc">~</span>purrr<span class="sc">::</span><span class="fu">pluck</span>(.x,<span class="st">&quot;openings_vect&quot;</span>)) <span class="sc">%&gt;%</span> </span>
@@ -3430,7 +3436,7 @@ leave
 <span id="cb259-32"><a href="case-study-2-ico-thinning-prescription.html#cb259-32" tabindex="-1"></a>    )</span>
 <span id="cb259-33"><a href="case-study-2-ico-thinning-prescription.html#cb259-33" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
 <span id="cb259-34"><a href="case-study-2-ico-thinning-prescription.html#cb259-34" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb259-35"><a href="case-study-2-ico-thinning-prescription.html#cb259-35" tabindex="-1"></a>    openining_area_m2 <span class="sc">&gt;</span> <span class="fl">0.01</span><span class="sc">*</span><span class="dv">4047</span></span>
+<span id="cb259-35"><a href="case-study-2-ico-thinning-prescription.html#cb259-35" tabindex="-1"></a>    openining_area_m2 <span class="sc">&gt;</span> my_min_openining_area_m2</span>
 <span id="cb259-36"><a href="case-study-2-ico-thinning-prescription.html#cb259-36" tabindex="-1"></a>  )</span>
 <span id="cb259-37"><a href="case-study-2-ico-thinning-prescription.html#cb259-37" tabindex="-1"></a>  <span class="co"># sf::st_drop_geometry() %&gt;% dplyr::count(scenario_desc_fact)</span></span>
 <span id="cb259-38"><a href="case-study-2-ico-thinning-prescription.html#cb259-38" tabindex="-1"></a>  <span class="co"># dplyr::glimpse()</span></span>
@@ -3478,39 +3484,231 @@ leave
 <span id="cb260-40"><a href="case-study-2-ico-thinning-prescription.html#cb260-40" tabindex="-1"></a></span>
 <span id="cb260-41"><a href="case-study-2-ico-thinning-prescription.html#cb260-41" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="case_studies_cloud2trees_files/figure-html/unnamed-chunk-248-1.png" alt="" width="1008" /></p>
-<p>interesting</p>
-<p>let’s look at the distribution of openings by opening size where a small opening is classified as between 0.01 and 0.5 acres, large openings are &gt; 0.75 acres, and medium openings are anything between</p>
+<p>interesting. table that</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="case-study-2-ico-thinning-prescription.html#cb261-1" tabindex="-1"></a>openings_temp <span class="sc">%&gt;%</span> </span>
 <span id="cb261-2"><a href="case-study-2-ico-thinning-prescription.html#cb261-2" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb261-3"><a href="case-study-2-ico-thinning-prescription.html#cb261-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(scenario_desc_fact,openings_desc) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-4"><a href="case-study-2-ico-thinning-prescription.html#cb261-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb261-5"><a href="case-study-2-ico-thinning-prescription.html#cb261-5" tabindex="-1"></a>    <span class="at">n =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()</span>
-<span id="cb261-6"><a href="case-study-2-ico-thinning-prescription.html#cb261-6" tabindex="-1"></a>    , <span class="at">sum_openining_area_m2 =</span> <span class="fu">sum</span>(openining_area_m2, <span class="at">na.rm =</span>T)</span>
-<span id="cb261-7"><a href="case-study-2-ico-thinning-prescription.html#cb261-7" tabindex="-1"></a>    , <span class="at">mean_openining_area_m2 =</span> <span class="fu">mean</span>(openining_area_m2, <span class="at">na.rm =</span>T)</span>
-<span id="cb261-8"><a href="case-study-2-ico-thinning-prescription.html#cb261-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-9"><a href="case-study-2-ico-thinning-prescription.html#cb261-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb261-10"><a href="case-study-2-ico-thinning-prescription.html#cb261-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb261-11"><a href="case-study-2-ico-thinning-prescription.html#cb261-11" tabindex="-1"></a>    <span class="at">sum_openining_area_m2 =</span> scales<span class="sc">::</span><span class="fu">comma</span>(sum_openining_area_m2,<span class="at">accuracy=</span><span class="fl">0.1</span>)</span>
-<span id="cb261-12"><a href="case-study-2-ico-thinning-prescription.html#cb261-12" tabindex="-1"></a>    , <span class="at">mean_openining_area_m2 =</span> scales<span class="sc">::</span><span class="fu">comma</span>(mean_openining_area_m2,<span class="at">accuracy=</span><span class="fl">0.1</span>)</span>
-<span id="cb261-13"><a href="case-study-2-ico-thinning-prescription.html#cb261-13" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-14"><a href="case-study-2-ico-thinning-prescription.html#cb261-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(scenario_desc_fact, openings_desc) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-15"><a href="case-study-2-ico-thinning-prescription.html#cb261-15" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>(</span>
-<span id="cb261-16"><a href="case-study-2-ico-thinning-prescription.html#cb261-16" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;opening size distribution&quot;</span></span>
-<span id="cb261-17"><a href="case-study-2-ico-thinning-prescription.html#cb261-17" tabindex="-1"></a>    , <span class="at">col.names =</span> <span class="fu">c</span>(</span>
-<span id="cb261-18"><a href="case-study-2-ico-thinning-prescription.html#cb261-18" tabindex="-1"></a>      <span class="st">&quot;scenario&quot;</span>, <span class="st">&quot;opening class&quot;</span></span>
-<span id="cb261-19"><a href="case-study-2-ico-thinning-prescription.html#cb261-19" tabindex="-1"></a>      , <span class="st">&quot;# openings&quot;</span></span>
-<span id="cb261-20"><a href="case-study-2-ico-thinning-prescription.html#cb261-20" tabindex="-1"></a>      , <span class="st">&quot;total&lt;br /&gt;opening area (m&lt;sup&gt;2&lt;/sup&gt;)&quot;</span></span>
-<span id="cb261-21"><a href="case-study-2-ico-thinning-prescription.html#cb261-21" tabindex="-1"></a>      , <span class="st">&quot;mean&lt;br /&gt;opening area (m&lt;sup&gt;2&lt;/sup&gt;)&quot;</span></span>
+<span id="cb261-3"><a href="case-study-2-ico-thinning-prescription.html#cb261-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(scenario_desc_fact, openining_area_m2) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-4"><a href="case-study-2-ico-thinning-prescription.html#cb261-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(scenario_desc_fact) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-5"><a href="case-study-2-ico-thinning-prescription.html#cb261-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb261-6"><a href="case-study-2-ico-thinning-prescription.html#cb261-6" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb261-7"><a href="case-study-2-ico-thinning-prescription.html#cb261-7" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric)</span>
+<span id="cb261-8"><a href="case-study-2-ico-thinning-prescription.html#cb261-8" tabindex="-1"></a>      , <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb261-9"><a href="case-study-2-ico-thinning-prescription.html#cb261-9" tabindex="-1"></a>        <span class="at">sum =</span> <span class="sc">~</span><span class="fu">sum</span>(.x,<span class="at">na.rm=</span>T)</span>
+<span id="cb261-10"><a href="case-study-2-ico-thinning-prescription.html#cb261-10" tabindex="-1"></a>        , <span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x,<span class="at">na.rm=</span>T)</span>
+<span id="cb261-11"><a href="case-study-2-ico-thinning-prescription.html#cb261-11" tabindex="-1"></a>        <span class="co"># , q10 = ~quantile(.x,na.rm=T,probs=0.1)</span></span>
+<span id="cb261-12"><a href="case-study-2-ico-thinning-prescription.html#cb261-12" tabindex="-1"></a>        <span class="co"># , q50 = ~quantile(.x,na.rm=T,probs=0.5)</span></span>
+<span id="cb261-13"><a href="case-study-2-ico-thinning-prescription.html#cb261-13" tabindex="-1"></a>        <span class="co"># , q90 = ~quantile(.x,na.rm=T,probs=0.9)</span></span>
+<span id="cb261-14"><a href="case-study-2-ico-thinning-prescription.html#cb261-14" tabindex="-1"></a>        <span class="co"># , min = ~min(.x,na.rm=T)</span></span>
+<span id="cb261-15"><a href="case-study-2-ico-thinning-prescription.html#cb261-15" tabindex="-1"></a>        <span class="co"># , max = ~max(.x,na.rm=T)</span></span>
+<span id="cb261-16"><a href="case-study-2-ico-thinning-prescription.html#cb261-16" tabindex="-1"></a>        , <span class="at">range =</span> <span class="sc">~</span><span class="fu">paste0</span>(</span>
+<span id="cb261-17"><a href="case-study-2-ico-thinning-prescription.html#cb261-17" tabindex="-1"></a>          scales<span class="sc">::</span><span class="fu">comma</span>(<span class="fu">min</span>(.x,<span class="at">na.rm=</span>T), <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb261-18"><a href="case-study-2-ico-thinning-prescription.html#cb261-18" tabindex="-1"></a>          ,<span class="st">&quot;-&quot;</span></span>
+<span id="cb261-19"><a href="case-study-2-ico-thinning-prescription.html#cb261-19" tabindex="-1"></a>          , scales<span class="sc">::</span><span class="fu">comma</span>(<span class="fu">max</span>(.x,<span class="at">na.rm=</span>T), <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb261-20"><a href="case-study-2-ico-thinning-prescription.html#cb261-20" tabindex="-1"></a>        )</span>
+<span id="cb261-21"><a href="case-study-2-ico-thinning-prescription.html#cb261-21" tabindex="-1"></a>      )</span>
 <span id="cb261-22"><a href="case-study-2-ico-thinning-prescription.html#cb261-22" tabindex="-1"></a>    )</span>
-<span id="cb261-23"><a href="case-study-2-ico-thinning-prescription.html#cb261-23" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
+<span id="cb261-23"><a href="case-study-2-ico-thinning-prescription.html#cb261-23" tabindex="-1"></a>    , <span class="at">n =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()</span>
 <span id="cb261-24"><a href="case-study-2-ico-thinning-prescription.html#cb261-24" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-25"><a href="case-study-2-ico-thinning-prescription.html#cb261-25" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb261-26"><a href="case-study-2-ico-thinning-prescription.html#cb261-26" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">collapse_rows</span>(<span class="at">columns =</span> <span class="dv">1</span>, <span class="at">valign =</span> <span class="st">&quot;top&quot;</span>)  </span></code></pre></div>
+<span id="cb261-25"><a href="case-study-2-ico-thinning-prescription.html#cb261-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb261-26"><a href="case-study-2-ico-thinning-prescription.html#cb261-26" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb261-27"><a href="case-study-2-ico-thinning-prescription.html#cb261-27" tabindex="-1"></a>    <span class="at">n =</span> scales<span class="sc">::</span><span class="fu">comma</span>(n,<span class="at">accuracy=</span><span class="dv">1</span>)</span>
+<span id="cb261-28"><a href="case-study-2-ico-thinning-prescription.html#cb261-28" tabindex="-1"></a>    , dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb261-29"><a href="case-study-2-ico-thinning-prescription.html#cb261-29" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric)</span>
+<span id="cb261-30"><a href="case-study-2-ico-thinning-prescription.html#cb261-30" tabindex="-1"></a>      , <span class="sc">~</span>scales<span class="sc">::</span><span class="fu">comma</span>(.x,<span class="at">accuracy=</span><span class="fl">0.1</span>)</span>
+<span id="cb261-31"><a href="case-study-2-ico-thinning-prescription.html#cb261-31" tabindex="-1"></a>    )</span>
+<span id="cb261-32"><a href="case-study-2-ico-thinning-prescription.html#cb261-32" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-33"><a href="case-study-2-ico-thinning-prescription.html#cb261-33" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(scenario_desc_fact,n) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-34"><a href="case-study-2-ico-thinning-prescription.html#cb261-34" tabindex="-1"></a>  <span class="co"># ncol()</span></span>
+<span id="cb261-35"><a href="case-study-2-ico-thinning-prescription.html#cb261-35" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>(</span>
+<span id="cb261-36"><a href="case-study-2-ico-thinning-prescription.html#cb261-36" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;opening size distribution&lt;br /&gt;by opening size class&quot;</span></span>
+<span id="cb261-37"><a href="case-study-2-ico-thinning-prescription.html#cb261-37" tabindex="-1"></a>    , <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb261-38"><a href="case-study-2-ico-thinning-prescription.html#cb261-38" tabindex="-1"></a>      <span class="st">&quot;scenario&quot;</span></span>
+<span id="cb261-39"><a href="case-study-2-ico-thinning-prescription.html#cb261-39" tabindex="-1"></a>      , <span class="st">&quot;# openings&quot;</span></span>
+<span id="cb261-40"><a href="case-study-2-ico-thinning-prescription.html#cb261-40" tabindex="-1"></a>      , <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Total&quot;</span>,<span class="st">&quot;Mean&quot;</span>,<span class="st">&quot;Range&quot;</span>), <span class="at">times =</span> <span class="dv">1</span>)</span>
+<span id="cb261-41"><a href="case-study-2-ico-thinning-prescription.html#cb261-41" tabindex="-1"></a>    )</span>
+<span id="cb261-42"><a href="case-study-2-ico-thinning-prescription.html#cb261-42" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
+<span id="cb261-43"><a href="case-study-2-ico-thinning-prescription.html#cb261-43" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-44"><a href="case-study-2-ico-thinning-prescription.html#cb261-44" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-45"><a href="case-study-2-ico-thinning-prescription.html#cb261-45" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(</span>
+<span id="cb261-46"><a href="case-study-2-ico-thinning-prescription.html#cb261-46" tabindex="-1"></a>    <span class="fu">c</span>(</span>
+<span id="cb261-47"><a href="case-study-2-ico-thinning-prescription.html#cb261-47" tabindex="-1"></a>      <span class="st">&quot; &quot;</span><span class="ot">=</span><span class="dv">2</span></span>
+<span id="cb261-48"><a href="case-study-2-ico-thinning-prescription.html#cb261-48" tabindex="-1"></a>      , <span class="st">&quot;opening area (m&lt;sup&gt;2&lt;/sup&gt;)&quot;</span> <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb261-49"><a href="case-study-2-ico-thinning-prescription.html#cb261-49" tabindex="-1"></a>    )</span>
+<span id="cb261-50"><a href="case-study-2-ico-thinning-prescription.html#cb261-50" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
+<span id="cb261-51"><a href="case-study-2-ico-thinning-prescription.html#cb261-51" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-52"><a href="case-study-2-ico-thinning-prescription.html#cb261-52" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>,<span class="at">by=</span><span class="dv">3</span>), <span class="at">border_right =</span> <span class="cn">TRUE</span>, <span class="at">include_thead =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-53"><a href="case-study-2-ico-thinning-prescription.html#cb261-53" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">collapse_rows</span>(<span class="at">columns =</span> <span class="dv">1</span>, <span class="at">valign =</span> <span class="st">&quot;top&quot;</span>)  </span></code></pre></div>
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-<span id="tab:unnamed-chunk-249">Table 3.10: </span>opening size distribution
+<span id="tab:unnamed-chunk-249">Table 3.10: </span>opening size distribution<br>by opening size class
 </caption>
 <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+opening area (m<sup>2</sup>)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+scenario
+</th>
+<th style="text-align:left;border-right:1px solid;">
+# openings
+</th>
+<th style="text-align:left;">
+Total
+</th>
+<th style="text-align:left;">
+Mean
+</th>
+<th style="text-align:left;border-right:1px solid;">
+Range
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Pre-Treatment
+</td>
+<td style="text-align:left;border-right:1px solid;">
+17
+</td>
+<td style="text-align:left;">
+1,064.5
+</td>
+<td style="text-align:left;">
+62.6
+</td>
+<td style="text-align:left;border-right:1px solid;">
+40.5-176.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Clumping
+</td>
+<td style="text-align:left;border-right:1px solid;">
+62
+</td>
+<td style="text-align:left;">
+17,584.9
+</td>
+<td style="text-align:left;">
+283.6
+</td>
+<td style="text-align:left;border-right:1px solid;">
+40.7-1,170.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Moderate Clumping
+</td>
+<td style="text-align:left;border-right:1px solid;">
+73
+</td>
+<td style="text-align:left;">
+15,906.4
+</td>
+<td style="text-align:left;">
+217.9
+</td>
+<td style="text-align:left;border-right:1px solid;">
+42.8-1,565.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High Clumping
+</td>
+<td style="text-align:left;border-right:1px solid;">
+45
+</td>
+<td style="text-align:left;">
+19,456.3
+</td>
+<td style="text-align:left;">
+432.4
+</td>
+<td style="text-align:left;border-right:1px solid;">
+41.1-3,168.4
+</td>
+</tr>
+</tbody>
+</table>
+<p>let’s look at the distribution of openings by opening size where a small opening is classified as between 0.01 and 0.5 acres, large openings are &gt; 0.75 acres, and medium openings are anything between</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="case-study-2-ico-thinning-prescription.html#cb262-1" tabindex="-1"></a>openings_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb262-2"><a href="case-study-2-ico-thinning-prescription.html#cb262-2" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb262-3"><a href="case-study-2-ico-thinning-prescription.html#cb262-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(scenario_desc_fact,openings_desc, openining_area_m2) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-4"><a href="case-study-2-ico-thinning-prescription.html#cb262-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(scenario_desc_fact,openings_desc) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-5"><a href="case-study-2-ico-thinning-prescription.html#cb262-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb262-6"><a href="case-study-2-ico-thinning-prescription.html#cb262-6" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb262-7"><a href="case-study-2-ico-thinning-prescription.html#cb262-7" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric)</span>
+<span id="cb262-8"><a href="case-study-2-ico-thinning-prescription.html#cb262-8" tabindex="-1"></a>      , <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb262-9"><a href="case-study-2-ico-thinning-prescription.html#cb262-9" tabindex="-1"></a>        <span class="at">sum =</span> <span class="sc">~</span><span class="fu">sum</span>(.x,<span class="at">na.rm=</span>T)</span>
+<span id="cb262-10"><a href="case-study-2-ico-thinning-prescription.html#cb262-10" tabindex="-1"></a>        , <span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x,<span class="at">na.rm=</span>T)</span>
+<span id="cb262-11"><a href="case-study-2-ico-thinning-prescription.html#cb262-11" tabindex="-1"></a>        <span class="co"># , q10 = ~quantile(.x,na.rm=T,probs=0.1)</span></span>
+<span id="cb262-12"><a href="case-study-2-ico-thinning-prescription.html#cb262-12" tabindex="-1"></a>        <span class="co"># , q50 = ~quantile(.x,na.rm=T,probs=0.5)</span></span>
+<span id="cb262-13"><a href="case-study-2-ico-thinning-prescription.html#cb262-13" tabindex="-1"></a>        <span class="co"># , q90 = ~quantile(.x,na.rm=T,probs=0.9)</span></span>
+<span id="cb262-14"><a href="case-study-2-ico-thinning-prescription.html#cb262-14" tabindex="-1"></a>        <span class="co"># , min = ~min(.x,na.rm=T)</span></span>
+<span id="cb262-15"><a href="case-study-2-ico-thinning-prescription.html#cb262-15" tabindex="-1"></a>        <span class="co"># , max = ~max(.x,na.rm=T)</span></span>
+<span id="cb262-16"><a href="case-study-2-ico-thinning-prescription.html#cb262-16" tabindex="-1"></a>        , <span class="at">range =</span> <span class="sc">~</span><span class="fu">paste0</span>(</span>
+<span id="cb262-17"><a href="case-study-2-ico-thinning-prescription.html#cb262-17" tabindex="-1"></a>          scales<span class="sc">::</span><span class="fu">comma</span>(<span class="fu">min</span>(.x,<span class="at">na.rm=</span>T), <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb262-18"><a href="case-study-2-ico-thinning-prescription.html#cb262-18" tabindex="-1"></a>          ,<span class="st">&quot;-&quot;</span></span>
+<span id="cb262-19"><a href="case-study-2-ico-thinning-prescription.html#cb262-19" tabindex="-1"></a>          , scales<span class="sc">::</span><span class="fu">comma</span>(<span class="fu">max</span>(.x,<span class="at">na.rm=</span>T), <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb262-20"><a href="case-study-2-ico-thinning-prescription.html#cb262-20" tabindex="-1"></a>        )</span>
+<span id="cb262-21"><a href="case-study-2-ico-thinning-prescription.html#cb262-21" tabindex="-1"></a>      )</span>
+<span id="cb262-22"><a href="case-study-2-ico-thinning-prescription.html#cb262-22" tabindex="-1"></a>    )</span>
+<span id="cb262-23"><a href="case-study-2-ico-thinning-prescription.html#cb262-23" tabindex="-1"></a>    , <span class="at">n =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()</span>
+<span id="cb262-24"><a href="case-study-2-ico-thinning-prescription.html#cb262-24" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-25"><a href="case-study-2-ico-thinning-prescription.html#cb262-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb262-26"><a href="case-study-2-ico-thinning-prescription.html#cb262-26" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb262-27"><a href="case-study-2-ico-thinning-prescription.html#cb262-27" tabindex="-1"></a>    <span class="at">n =</span> scales<span class="sc">::</span><span class="fu">comma</span>(n,<span class="at">accuracy=</span><span class="dv">1</span>)</span>
+<span id="cb262-28"><a href="case-study-2-ico-thinning-prescription.html#cb262-28" tabindex="-1"></a>    , dplyr<span class="sc">::</span><span class="fu">across</span>(</span>
+<span id="cb262-29"><a href="case-study-2-ico-thinning-prescription.html#cb262-29" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">where</span>(is.numeric)</span>
+<span id="cb262-30"><a href="case-study-2-ico-thinning-prescription.html#cb262-30" tabindex="-1"></a>      , <span class="sc">~</span>scales<span class="sc">::</span><span class="fu">comma</span>(.x,<span class="at">accuracy=</span><span class="fl">0.1</span>)</span>
+<span id="cb262-31"><a href="case-study-2-ico-thinning-prescription.html#cb262-31" tabindex="-1"></a>    )</span>
+<span id="cb262-32"><a href="case-study-2-ico-thinning-prescription.html#cb262-32" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-33"><a href="case-study-2-ico-thinning-prescription.html#cb262-33" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(scenario_desc_fact,openings_desc,n) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-34"><a href="case-study-2-ico-thinning-prescription.html#cb262-34" tabindex="-1"></a>  <span class="co"># ncol()</span></span>
+<span id="cb262-35"><a href="case-study-2-ico-thinning-prescription.html#cb262-35" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>(</span>
+<span id="cb262-36"><a href="case-study-2-ico-thinning-prescription.html#cb262-36" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;opening size distribution&lt;br /&gt;by opening size class&quot;</span></span>
+<span id="cb262-37"><a href="case-study-2-ico-thinning-prescription.html#cb262-37" tabindex="-1"></a>    , <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb262-38"><a href="case-study-2-ico-thinning-prescription.html#cb262-38" tabindex="-1"></a>      <span class="st">&quot;scenario&quot;</span>, <span class="st">&quot;opening class&quot;</span></span>
+<span id="cb262-39"><a href="case-study-2-ico-thinning-prescription.html#cb262-39" tabindex="-1"></a>      , <span class="st">&quot;# openings&quot;</span></span>
+<span id="cb262-40"><a href="case-study-2-ico-thinning-prescription.html#cb262-40" tabindex="-1"></a>      , <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Total&quot;</span>,<span class="st">&quot;Mean&quot;</span>,<span class="st">&quot;Range&quot;</span>), <span class="at">times =</span> <span class="dv">1</span>)</span>
+<span id="cb262-41"><a href="case-study-2-ico-thinning-prescription.html#cb262-41" tabindex="-1"></a>    )</span>
+<span id="cb262-42"><a href="case-study-2-ico-thinning-prescription.html#cb262-42" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
+<span id="cb262-43"><a href="case-study-2-ico-thinning-prescription.html#cb262-43" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-44"><a href="case-study-2-ico-thinning-prescription.html#cb262-44" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-45"><a href="case-study-2-ico-thinning-prescription.html#cb262-45" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(</span>
+<span id="cb262-46"><a href="case-study-2-ico-thinning-prescription.html#cb262-46" tabindex="-1"></a>    <span class="fu">c</span>(</span>
+<span id="cb262-47"><a href="case-study-2-ico-thinning-prescription.html#cb262-47" tabindex="-1"></a>      <span class="st">&quot; &quot;</span><span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb262-48"><a href="case-study-2-ico-thinning-prescription.html#cb262-48" tabindex="-1"></a>      , <span class="st">&quot;opening area (m&lt;sup&gt;2&lt;/sup&gt;)&quot;</span> <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb262-49"><a href="case-study-2-ico-thinning-prescription.html#cb262-49" tabindex="-1"></a>    )</span>
+<span id="cb262-50"><a href="case-study-2-ico-thinning-prescription.html#cb262-50" tabindex="-1"></a>    , <span class="at">escape =</span> F</span>
+<span id="cb262-51"><a href="case-study-2-ico-thinning-prescription.html#cb262-51" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-52"><a href="case-study-2-ico-thinning-prescription.html#cb262-52" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="fu">seq</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="at">by=</span><span class="dv">3</span>), <span class="at">border_right =</span> <span class="cn">TRUE</span>, <span class="at">include_thead =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-53"><a href="case-study-2-ico-thinning-prescription.html#cb262-53" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">collapse_rows</span>(<span class="at">columns =</span> <span class="dv">1</span>, <span class="at">valign =</span> <span class="st">&quot;top&quot;</span>)  </span></code></pre></div>
+<table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-250">Table 3.11: </span>opening size distribution<br>by opening size class
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="3">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+opening area (m<sup>2</sup>)
+</div>
+</th>
+</tr>
 <tr>
 <th style="text-align:left;">
 scenario
@@ -3518,14 +3716,17 @@ scenario
 <th style="text-align:left;">
 opening class
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;border-right:1px solid;">
 # openings
 </th>
 <th style="text-align:left;">
-total<br>opening area (m<sup>2</sup>)
+Total
 </th>
 <th style="text-align:left;">
-mean<br>opening area (m<sup>2</sup>)
+Mean
+</th>
+<th style="text-align:left;border-right:1px solid;">
+Range
 </th>
 </tr>
 </thead>
@@ -3537,7 +3738,7 @@ Pre-Treatment
 <td style="text-align:left;">
 small opening
 </td>
-<td style="text-align:right;">
+<td style="text-align:left;border-right:1px solid;">
 17
 </td>
 <td style="text-align:left;">
@@ -3545,6 +3746,9 @@ small opening
 </td>
 <td style="text-align:left;">
 62.6
+</td>
+<td style="text-align:left;border-right:1px solid;">
+40.5-176.8
 </td>
 </tr>
 <tr>
@@ -3554,7 +3758,7 @@ Low Clumping
 <td style="text-align:left;">
 small opening
 </td>
-<td style="text-align:right;">
+<td style="text-align:left;border-right:1px solid;">
 62
 </td>
 <td style="text-align:left;">
@@ -3562,6 +3766,9 @@ small opening
 </td>
 <td style="text-align:left;">
 283.6
+</td>
+<td style="text-align:left;border-right:1px solid;">
+40.7-1,170.2
 </td>
 </tr>
 <tr>
@@ -3571,7 +3778,7 @@ Moderate Clumping
 <td style="text-align:left;">
 small opening
 </td>
-<td style="text-align:right;">
+<td style="text-align:left;border-right:1px solid;">
 73
 </td>
 <td style="text-align:left;">
@@ -3579,6 +3786,9 @@ small opening
 </td>
 <td style="text-align:left;">
 217.9
+</td>
+<td style="text-align:left;border-right:1px solid;">
+42.8-1,565.9
 </td>
 </tr>
 <tr>
@@ -3588,7 +3798,7 @@ High Clumping
 <td style="text-align:left;">
 small opening
 </td>
-<td style="text-align:right;">
+<td style="text-align:left;border-right:1px solid;">
 43
 </td>
 <td style="text-align:left;">
@@ -3597,12 +3807,15 @@ small opening
 <td style="text-align:left;">
 316.5
 </td>
+<td style="text-align:left;border-right:1px solid;">
+41.1-1,873.6
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
 medium opening
 </td>
-<td style="text-align:right;">
+<td style="text-align:left;border-right:1px solid;">
 1
 </td>
 <td style="text-align:left;">
@@ -3610,13 +3823,16 @@ medium opening
 </td>
 <td style="text-align:left;">
 2,678.8
+</td>
+<td style="text-align:left;border-right:1px solid;">
+2,678.8-2,678.8
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 large opening
 </td>
-<td style="text-align:right;">
+<td style="text-align:left;border-right:1px solid;">
 1
 </td>
 <td style="text-align:left;">
@@ -3625,9 +3841,53 @@ large opening
 <td style="text-align:left;">
 3,168.4
 </td>
+<td style="text-align:left;border-right:1px solid;">
+3,168.4-3,168.4
+</td>
 </tr>
 </tbody>
 </table>
+<p>mostly small openings were created under all scenarios, let’s look at the distribution of opening size by treatment scenario</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="case-study-2-ico-thinning-prescription.html#cb263-1" tabindex="-1"></a>openings_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb263-2"><a href="case-study-2-ico-thinning-prescription.html#cb263-2" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb263-3"><a href="case-study-2-ico-thinning-prescription.html#cb263-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">scenario_desc_fact=</span>forcats<span class="sc">::</span><span class="fu">fct_rev</span>(scenario_desc_fact)) <span class="sc">%&gt;%</span> </span>
+<span id="cb263-4"><a href="case-study-2-ico-thinning-prescription.html#cb263-4" tabindex="-1"></a>  <span class="co"># dplyr::glimpse()</span></span>
+<span id="cb263-5"><a href="case-study-2-ico-thinning-prescription.html#cb263-5" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb263-6"><a href="case-study-2-ico-thinning-prescription.html#cb263-6" tabindex="-1"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> openining_area_m2, <span class="at">y =</span> scenario_desc_fact)</span>
+<span id="cb263-7"><a href="case-study-2-ico-thinning-prescription.html#cb263-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb263-8"><a href="case-study-2-ico-thinning-prescription.html#cb263-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>(</span>
+<span id="cb263-9"><a href="case-study-2-ico-thinning-prescription.html#cb263-9" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.4</span></span>
+<span id="cb263-10"><a href="case-study-2-ico-thinning-prescription.html#cb263-10" tabindex="-1"></a>    , <span class="at">alpha =</span> <span class="fl">0.9</span></span>
+<span id="cb263-11"><a href="case-study-2-ico-thinning-prescription.html#cb263-11" tabindex="-1"></a>    , <span class="at">color =</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb263-12"><a href="case-study-2-ico-thinning-prescription.html#cb263-12" tabindex="-1"></a>    , <span class="at">outliers =</span> F</span>
+<span id="cb263-13"><a href="case-study-2-ico-thinning-prescription.html#cb263-13" tabindex="-1"></a>    , <span class="at">fill =</span> <span class="st">&quot;plum4&quot;</span></span>
+<span id="cb263-14"><a href="case-study-2-ico-thinning-prescription.html#cb263-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb263-15"><a href="case-study-2-ico-thinning-prescription.html#cb263-15" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_discrete</span>(<span class="at">drop =</span> F) <span class="sc">+</span> </span>
+<span id="cb263-16"><a href="case-study-2-ico-thinning-prescription.html#cb263-16" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(</span>
+<span id="cb263-17"><a href="case-study-2-ico-thinning-prescription.html#cb263-17" tabindex="-1"></a>    <span class="co"># breaks = seq(0,1,by=0.2)</span></span>
+<span id="cb263-18"><a href="case-study-2-ico-thinning-prescription.html#cb263-18" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>comma</span>
+<span id="cb263-19"><a href="case-study-2-ico-thinning-prescription.html#cb263-19" tabindex="-1"></a>    , <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="cn">NA</span>)</span>
+<span id="cb263-20"><a href="case-study-2-ico-thinning-prescription.html#cb263-20" tabindex="-1"></a>    , <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="at">n=</span><span class="dv">8</span>)</span>
+<span id="cb263-21"><a href="case-study-2-ico-thinning-prescription.html#cb263-21" tabindex="-1"></a>    <span class="co"># , expand = ggplot2::expansion(mult = c(0,0.1))</span></span>
+<span id="cb263-22"><a href="case-study-2-ico-thinning-prescription.html#cb263-22" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb263-23"><a href="case-study-2-ico-thinning-prescription.html#cb263-23" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb263-24"><a href="case-study-2-ico-thinning-prescription.html#cb263-24" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb263-25"><a href="case-study-2-ico-thinning-prescription.html#cb263-25" tabindex="-1"></a>    , <span class="at">x =</span> <span class="st">&quot;opening</span><span class="sc">\n</span><span class="st">area (m²)&quot;</span></span>
+<span id="cb263-26"><a href="case-study-2-ico-thinning-prescription.html#cb263-26" tabindex="-1"></a>    , <span class="at">subtitle =</span> <span class="st">&quot;opening size distribution&quot;</span></span>
+<span id="cb263-27"><a href="case-study-2-ico-thinning-prescription.html#cb263-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb263-28"><a href="case-study-2-ico-thinning-prescription.html#cb263-28" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb263-29"><a href="case-study-2-ico-thinning-prescription.html#cb263-29" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb263-30"><a href="case-study-2-ico-thinning-prescription.html#cb263-30" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb263-31"><a href="case-study-2-ico-thinning-prescription.html#cb263-31" tabindex="-1"></a>    , <span class="at">strip.text =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb263-32"><a href="case-study-2-ico-thinning-prescription.html#cb263-32" tabindex="-1"></a>    , <span class="at">axis.text.y =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(</span>
+<span id="cb263-33"><a href="case-study-2-ico-thinning-prescription.html#cb263-33" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span></span>
+<span id="cb263-34"><a href="case-study-2-ico-thinning-prescription.html#cb263-34" tabindex="-1"></a>      <span class="co"># size = 9, angle = 45, hjust = 1, vjust = 1</span></span>
+<span id="cb263-35"><a href="case-study-2-ico-thinning-prescription.html#cb263-35" tabindex="-1"></a>    )</span>
+<span id="cb263-36"><a href="case-study-2-ico-thinning-prescription.html#cb263-36" tabindex="-1"></a>    <span class="co"># , axis.text.x = ggplot2::element_text(size = 12)</span></span>
+<span id="cb263-37"><a href="case-study-2-ico-thinning-prescription.html#cb263-37" tabindex="-1"></a>    <span class="co"># , axis.text.y = ggplot2::element_blank()</span></span>
+<span id="cb263-38"><a href="case-study-2-ico-thinning-prescription.html#cb263-38" tabindex="-1"></a>    <span class="co"># , axis.ticks.y = ggplot2::element_blank()</span></span>
+<span id="cb263-39"><a href="case-study-2-ico-thinning-prescription.html#cb263-39" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="case_studies_cloud2trees_files/figure-html/unnamed-chunk-251-1.png" alt="" width="1008" /></p>
 
 </div>
 </div>
