@@ -1669,7 +1669,7 @@ openings_temp %>%
     # breaks = seq(0,1,by=0.2)
     labels = scales::comma
     , limits = c(0,NA)
-    , breaks = scales::breaks_extended(n=8)
+    , breaks = scales::breaks_extended(n=6)
     # , expand = ggplot2::expansion(mult = c(0,0.1))
   ) +
   ggplot2::labs(
