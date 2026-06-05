@@ -28,7 +28,7 @@ ico_clumps_temp <- trees2ico:::get_ico_clumps(treetops_sf, clump_dist_m = my_clu
 names(ico_clumps_temp)
 ```
 
-this gave us the tree list with clumps defined using a maximum distance between trees for determining tree clumps of `r scales::comma(my_clump_dist_m,accuracy=.1)` m which is based on the approximate crown radius of a typical, mature overstory tree. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) provide instructions for implementing the clump identification ([Plotkin et al. 2002](https://doi.org/10.1086/342823)) in ArcGIS:
+this gave us the tree list with clumps defined using a maximum distance between trees for determining tree clumps of `r scales::comma(my_clump_dist_m,accuracy=.1)` m which is based on the approximate crown diameter of a typical, mature overstory tree. [Churchill et al. (2016)](https://scholarworks.umt.edu/ico/3) provide instructions for implementing the clump identification ([Plotkin et al. 2002](https://doi.org/10.1086/342823)) in ArcGIS:
 
 >Use the Buffer tool (in the Proximity toolset within the Analysis toolbox) to create a buffer of distance $d/2$, one half the inter-tree distance, around each point. This quantity $d/2$ is meant to approximate the crown radius of a "typical" overstory tree. Set the Dissolve Type option to ALL, which dissolves overlapping buffers, creating a reduced set of spatially non-overlapping polygons stored as a multipart polygon feature...[Sanchez Meador et al. (2011)](https://scholar.google.com/scholar?cluster=15721451396848616769&oi=gsb&hl=en&as_sdt=0,6) provide some useful examples of how clump attributes can be summarized...The method described here can be modified to use measured or modeled crown radii for each tree in place of $d/2$
 (p.36)
