@@ -42,7 +42,7 @@ library(cloud2trees) # the cloud2trees
 
 ```{r, include=F, warning=F, message=F}
 #########################
-#   ```{r,eval=F
+#   ```{r,eval=T
 #########################
 
 # knit options
@@ -109,6 +109,21 @@ cloud2trees_tree_tops <-
 # huh?
 dplyr::glimpse(cloud2trees_tree_tops)
 ```
+
+```{r, include=FALSE, eval=TRUE}
+cloud2trees_tree_tops %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::slice_sample(n=8888) %>% 
+  dplyr::mutate(tree_height_ft = tree_height_m*3.281, dbh_in=dbh_cm/2.54) %>% 
+  # dplyr::select(tree_height_ft,dbh_in) %>%  summary()
+  ggplot2::ggplot(mapping = ggplot2::aes(x = tree_height_ft, y = dbh_in)) + 
+  ggplot2::geom_point(color = "plum4", alpha = 0.6) +
+  ggplot2::scale_x_continuous(limits = c(0,NA), breaks = scales::breaks_extended(n=10)) +
+  ggplot2::scale_y_continuous(limits = c(0,NA), breaks = scales::breaks_extended(n=10)) +
+  ggplot2::theme_light()
+
+```
+
 
 say we have a single spatial file (`.gpkg`, `.shp`, etc.) with multiple stand polygon boundaries which we identify with a column in the data named `stand_id`
 
@@ -415,7 +430,19 @@ if(length(list.files(out_dir))==0){
     }) %>% 
     purrr::list_rbind(names_to = "stand_id") %>% 
     dplyr::mutate(stand_id = as.character(stand_id)) %>% 
-    dplyr::relocate("stand_id")
+    dplyr::relocate("stand_id") %>% 
+    dplyr::mutate(
+        pre_clump_n_trees_grp = pre_clump_n_trees_grp %>% 
+          factor(
+            ordered = T
+            , levels = c("Individual", "2-4 trees", "5-9 trees", "10-15 trees", ">15 trees")
+          )
+        , post_clump_n_trees_grp = post_clump_n_trees_grp %>% 
+          factor(
+            ordered = T
+            , levels = c("Individual", "2-4 trees", "5-9 trees", "10-15 trees", ">15 trees")
+          )
+    )
 }
 
 # add on stand ha
@@ -433,7 +460,7 @@ with so many trees in each stand, that took a while to run (4-6 hours/stand) so 
 
 check out the residual BA and clump size proportions
 
-```{r, include = F, eval = F}
+```{r}
 pre_post_temp <-
   dplyr::bind_rows(
     # get pre-treatment
@@ -534,7 +561,7 @@ table_temp %>%
   kableExtra::collapse_rows(columns = 1, valign = "top")
 ```
 
-close, let's check out the stand-level silvicultural metrics
+we got close the BA targets and exact on the clump proportion targets. let's check out the stand-level silvicultural metrics
 
 ```{r}
 ### stand-level summaries

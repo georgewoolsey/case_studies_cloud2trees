@@ -1075,7 +1075,7 @@ check those plots out
 
 the distance raster
 
-```{r,eval=F, fig.height=10.1, fig.width=9}
+```{r,eval=T, fig.height=10.1, fig.width=9}
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1112,7 +1112,7 @@ patchwork::plot_annotation(
 
 ```
 
-```{r,eval=F, include=FALSE, eval=TRUE}
+```{r,eval=T, include=FALSE, eval=TRUE}
 ggplot2::ggsave(
   "../data/ico_treatment_dist_rast.jpg"
   , dpi = "print"
@@ -1122,7 +1122,7 @@ ggplot2::ggsave(
 
 the openings
 
-```{r,eval=F, fig.height=10.1, fig.width=9}
+```{r,eval=T, fig.height=10.1, fig.width=9}
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1160,7 +1160,7 @@ patchwork::plot_annotation(
 
 ```
 
-```{r,eval=F, include=FALSE, eval=TRUE}
+```{r,eval=T, include=FALSE, eval=TRUE}
 ggplot2::ggsave(
   "../data/ico_treatment_openings.jpg"
   , dpi = "print"

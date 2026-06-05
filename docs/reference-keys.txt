@@ -19,9 +19,10 @@ tab:unnamed-chunk-230
 tab:unnamed-chunk-246
 tab:unnamed-chunk-249
 tab:unnamed-chunk-250
-tab:unnamed-chunk-260
 tab:unnamed-chunk-261
+tab:unnamed-chunk-262
 tab:unnamed-chunk-267
+tab:unnamed-chunk-268
 introduction
 objective
 case-study-1-quic-fire-inputs-for-prescribed-burn-planning
