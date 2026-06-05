@@ -142,7 +142,8 @@ ggplot2::ggsave(filename = "../data/itd_tuning_plot_samples1.jpg", height = 11, 
 ```
 
 ```{r, echo=FALSE, out.width="80%", out.height="80%", fig.align='center', fig.show='hold',results='asis'}
-knitr::include_graphics("../data/itd_tuning_plot_samples1.jpg",rel_path = FALSE)
+# knitr::include_graphics("../data/itd_tuning_plot_samples1.jpg",rel_path = FALSE)
+knitr::include_graphics("https://i.ibb.co/Wpg90RSP/itd-tuning-plot-samples1.jpg")
 ```
 
 the most noticeable difference between the window functions is with the segmentation of tall areas of the CHM using the `log_fn` compared to the other two. this function appears to not be separating tall trees appropriately: it is under-segmenting these areas resulting in too few tall trees. this under-segmentation by the `log_fn` can be seen most clearly in the top-right tall tree group of sample 1
@@ -158,7 +159,8 @@ ggplot2::ggsave(filename = "../data/itd_tuning_plot_sample_summary1.jpg", height
 ```
 
 ```{r, echo=FALSE, out.width="80%", out.height="80%", fig.align='center', fig.show='hold',results='asis'}
-knitr::include_graphics("../data/itd_tuning_plot_sample_summary1.jpg",rel_path = FALSE)
+# knitr::include_graphics("../data/itd_tuning_plot_sample_summary1.jpg",rel_path = FALSE)
+knitr::include_graphics("https://i.ibb.co/6RHTZvyr/itd-tuning-plot-sample-summary1.jpg")
 ```
 
 these results confirm what we identified about the `log_fn` compared to the other two: that it under-segments taller trees. predicting too few tall trees by not separating multiple tree crowns has the effect of producing tall trees with very wide crowns.
@@ -241,7 +243,8 @@ ggplot2::ggsave(filename = "../data/itd_tuning_plot_samples2.jpg", height = 11, 
 ```
 
 ```{r, echo=FALSE, out.width="80%", out.height="80%", fig.align='center', fig.show='hold',results='asis'}
-knitr::include_graphics("../data/itd_tuning_plot_samples2.jpg",rel_path = FALSE)
+# knitr::include_graphics("../data/itd_tuning_plot_samples2.jpg",rel_path = FALSE)
+knitr::include_graphics("https://i.ibb.co/ccThn4NT/itd-tuning-plot-samples2.jpg")
 ```
 
 Our custom `my_linear` function appears to do a good job striking a balance between the default `lin_fn` which tended to undersegment taller trees an the `exp_fn` which tended to undersegment shorter trees. The custom function and the `exp_fn` yield similar tree segmentation results for sample 1 which is what we expected since that area consists primarily of taller trees and the biggest change we made to `my_linear` function was to limit the search window at the taller range and expand the search window for shorter trees so that less were detected compared to the default `lin_fn`. One notable difference with the `exp_fn` (exponential function) in sample 1 is in the lower left corner where the custom function limited crown sprawl for one of the taller objects in the scene an yielded more realistic crown shapes. Our custom `my_linear` function yields fewer small trees than the default `lin_fn` (but more than the `exp_fn`) since we allowed a larger window size at lower portions of the CHM with this effect most clear for the short trees (purple CHM regions) on sample 2.
