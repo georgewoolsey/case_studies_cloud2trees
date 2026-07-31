@@ -78,6 +78,17 @@ if(nrow(stand_sf)<length(harrypotter::hp_palettes$hermionegranger)){
 }
 ```
 
+```{r, include=F, eval=F}
+stand_sf %>% 
+  dplyr::filter(unit_id==2) %>% 
+  sf::st_union() %>% 
+  sf::st_buffer(100) %>% 
+  sf::st_bbox() %>% 
+  sf::st_as_sfc() %>% 
+  sf::st_write("../data/QUIK-Fire_Boundary/quicfirebbox.gpkg")
+  # mapview::mapview(layer.name="asdf")
+```
+
 what is the stand data?
 
 ```{r}

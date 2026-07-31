@@ -42,7 +42,7 @@ library(cloud2trees) # the cloud2trees
 
 ```{r, include=F, warning=F, message=F}
 #########################
-#   ```{r,eval=T
+#   ```{r,eval=F
 #########################
 
 # knit options
@@ -259,7 +259,7 @@ prescriptions_cleaned %>%
 
 with only a few stands, this is simple to do manually. for example:
 
-```{r, include = T, eval=FALSE}
+```
 # stand1_trees
 stand1_trees <- sf::st_intersection(
   x = cloud2trees_tree_tops
@@ -274,7 +274,7 @@ stand2_trees <- sf::st_intersection(
 
 and then we would run `trees2ico` on each stand. for example:
 
-```{r, include = T, eval=FALSE}
+```
 # stand1_trees2ico_ans
 stand1_trees2ico_ans <- trees2ico::trees2ico(
   tree_list = stand1_trees
@@ -755,7 +755,7 @@ plt_fn_temp <- function(this_stand_id) {
     plt_ht <- 
       plt_stand +
       ggplot2::geom_sf(
-        data = trees2ico_stands_ans %>% dplyr::filter(stand_id==this_stand_id)
+        data = trees2ico_stands_ans %>% dplyr::filter(stand_id==this_stand_id) %>% dplyr::arrange(tree_height_m)
         , mapping = ggplot2::aes(color = tree_height_m)
         , size = 0.5, alpha = 0.8
       ) +

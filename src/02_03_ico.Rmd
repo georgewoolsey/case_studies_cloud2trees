@@ -924,14 +924,17 @@ plt_dist_rast1 <-
         dplyr::filter(
           openining_area_m2 > min_openining_area_m2
         )
-      , mapping = ggplot2::aes(color = openining_area_m2), fill = NA
+      # , mapping = ggplot2::aes(color = openining_area_m2)
+      , color =   "gray66" # "cadetblue3"
+      , fill = NA
     ) +
-    ggplot2::scale_color_gradient(
-      low = "gray77", high = "gray11"
-      , labels = scales::comma_format(accuracy = 1)
-      , name = "opening\narea (m²)" # latex2exp::TeX("opening\narea ($\\m^2$)")
-      , limits = c(0,openining_area_m2_max)
-    ) +
+    # ggplot2::scale_color_gradient(
+    #   low = "gray77", high = "gray11"
+    #   , labels = scales::comma_format(accuracy = 1)
+    #   , name = "opening\narea (m²)" # latex2exp::TeX("opening\narea ($\\m^2$)")
+    #   , limits = c(0,openining_area_m2_max)
+    #   , guide = "none"
+    # ) +
     # clumps
     ggnewscale::new_scale_fill() +
     ggplot2::geom_sf(
@@ -978,7 +981,9 @@ plt_dist_rast1 <-
           dplyr::filter(
             openining_area_m2 > min_openining_area_m2
           )
-        , mapping = ggplot2::aes(fill = openining_area_m2), color = NA
+        , mapping = ggplot2::aes(fill = openining_area_m2)
+        , color =   "gray66" # "cadetblue3"
+        # , color = NA
       ) +
       ggplot2::scale_fill_gradient(
         low = "gray77", high = "gray11"
@@ -1057,7 +1062,9 @@ plt_post <-
       )    
       return(plts)
   })
-# plt_post[[1]]$plt_dist_rast
+# plt_post[[3]]$plt_dist_rast
+# plt_post[[3]]$plt_open
+
 # get_the_plts_fn
 plt_pre <- get_the_plts_fn(
   dist_rast = pre_get_clump_dist_rast_ans$dist_rast
@@ -1068,6 +1075,7 @@ plt_pre <- get_the_plts_fn(
   , my_title = "Pre-Treatment"
   , openining_area_m2_max = openining_area_m2_max_temp, dist_max = dist_max_temp
 )
+# plt_pre$plt_dist_rast
 
 ```
 
@@ -1075,7 +1083,12 @@ check those plots out
 
 the distance raster
 
-```{r,eval=T, fig.height=10.1, fig.width=9}
+```{r,eval=F, fig.height=10.1, fig.width=9}
+# plt_post[[2]][["plt_dist_rast"]] 
+#   # ggplot2::theme(legend.position = "none") +
+#   # ggplot2::guides(color = "none", fill = "none", shape = "none")
+# plt_pre$plt_dist_rast
+
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1112,7 +1125,7 @@ patchwork::plot_annotation(
 
 ```
 
-```{r,eval=T, include=FALSE, eval=TRUE}
+```{r,eval=F, include=FALSE, eval=TRUE}
 ggplot2::ggsave(
   "../data/ico_treatment_dist_rast.jpg"
   , dpi = "print"
@@ -1122,7 +1135,7 @@ ggplot2::ggsave(
 
 the openings
 
-```{r,eval=T, fig.height=10.1, fig.width=9}
+```{r,eval=F, fig.height=10.1, fig.width=9}
 plt_post_temp <- 
   plt_post %>% 
   purrr::map(
@@ -1160,7 +1173,7 @@ patchwork::plot_annotation(
 
 ```
 
-```{r,eval=T, include=FALSE, eval=TRUE}
+```{r,eval=F, include=FALSE, eval=TRUE}
 ggplot2::ggsave(
   "../data/ico_treatment_openings.jpg"
   , dpi = "print"
